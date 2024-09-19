@@ -1,6 +1,6 @@
-package com.github.moevm.nosql2h24_dogs.database.repository;
+package org.example.database.repository;
 
-import com.github.moevm.nosql2h24_dogs.database.document.MyDocument;
+import org.example.database.document.MyDocument;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;

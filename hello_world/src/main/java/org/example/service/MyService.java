@@ -1,7 +1,7 @@
-package com.github.moevm.nosql2h24_dogs.service;
+package org.example.service;
 
-import com.github.moevm.nosql2h24_dogs.database.document.MyDocument;
-import com.github.moevm.nosql2h24_dogs.database.repository.MyRepository;
+import org.example.database.document.MyDocument;
+import org.example.database.repository.MyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

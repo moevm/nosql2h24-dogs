@@ -1,7 +1,8 @@
-package com.github.moevm.nosql2h24_dogs;
+package org.example;
 
-import com.github.moevm.nosql2h24_dogs.database.document.MyDocument;
-import com.github.moevm.nosql2h24_dogs.service.MyService;
+
+import org.example.database.document.MyDocument;
+import org.example.service.MyService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

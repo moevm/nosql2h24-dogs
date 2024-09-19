@@ -1,4 +1,4 @@
-package com.github.moevm.nosql2h24_dogs.database.document;
+package org.example.database.document;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
