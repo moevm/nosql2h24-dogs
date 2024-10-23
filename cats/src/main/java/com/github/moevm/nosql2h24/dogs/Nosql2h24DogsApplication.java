@@ -20,6 +20,5 @@ public class Nosql2h24DogsApplication {
         service.countDocuments();
         service.findAllDocuments();
         service.findDocumentsByScoreGreaterThan(5);
-
     }
 }
