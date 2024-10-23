@@ -16,7 +16,7 @@ public class Nosql2h24DogsApplication {
         //service.deleteDocuments();
         service.saveDocument(new MyDocument("foo", 10));
         service.saveDocument(new MyDocument("bar", 5));
-        service.saveDocument(new MyDocument("baz", 2));
+        service.saveDocument(new MyDocument("baz", 3));
 
         service.countDocuments();
         service.findAllDocuments();
