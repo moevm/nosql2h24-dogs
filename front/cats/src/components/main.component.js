@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {catOptions} from "../options";
 import CardComponent from "../ui/card.component";
+import data from "../profiles.json";
+
 
 export const MainComponent = () => {
 
@@ -29,7 +31,8 @@ export const MainComponent = () => {
     // })
     const data = catData?.map(cat =>
         <div>
-            <CardComponent name={cat.name} img={cat.reference_image_id}></CardComponent>
+            <CardComponent name={cat.name} img={cat.reference_image_id}
+                          ></CardComponent>
         </div>
     )
     if (isDataLoading) {
@@ -42,7 +45,7 @@ export const MainComponent = () => {
             </div>
         )
     } else {
-        return(
+        return (
             <></>
         )
     }
