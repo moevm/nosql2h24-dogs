@@ -1,5 +1,5 @@
 
-import './App.css';
+
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import StatisticComponent from "./components/statistic.component";
 import CatCardComponent from "./components/catCard.component";

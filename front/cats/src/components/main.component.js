@@ -3,7 +3,8 @@ import axios from "axios";
 import {catOptions} from "../options";
 import CardComponent from "../ui/card.component";
 import data from "../profiles.json";
-
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 export const MainComponent = () => {
 
@@ -46,7 +47,9 @@ export const MainComponent = () => {
         )
     } else {
         return (
-            <></>
+            <Box sx={{ display: 'flex' }}>
+                <CircularProgress />
+            </Box>
         )
     }
 
