@@ -7,6 +7,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import {Button} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import SearchComponent from "../ui/search.component";
 
 export const MainComponent = () => {
 
@@ -42,6 +43,7 @@ export const MainComponent = () => {
         return (
             <div>
                 <h3>Main</h3>
+                <SearchComponent></SearchComponent>
                 <Button onClick={() => {
                     navigate("/profile")
                 }}> Profile</Button>
