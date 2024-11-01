@@ -9,6 +9,7 @@ import {Button} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import SearchComponent from "../ui/search.component";
 import CatGridComponent from "./catGrid.component";
+import FilterComponent from "../ui/filter.component";
 
 export const MainComponent = () => {
 
@@ -27,7 +28,7 @@ export const MainComponent = () => {
                 }}> Profile</Button></div>
 
             <SearchComponent></SearchComponent>
-
+            <FilterComponent></FilterComponent>
             <CatGridComponent></CatGridComponent>
         </div>
     )
