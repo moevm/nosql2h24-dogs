@@ -5,10 +5,12 @@ import CardComponent from "../ui/card.component";
 import data from "../profiles.json";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import {Button} from "@mui/material";
+import {useNavigate} from "react-router-dom";
 
 export const MainComponent = () => {
 
-
+    const navigate = useNavigate();
     const [catData, setCatData] = useState(null);
     const [isDataLoading, setIsDataLoading] = useState(false);
     const fetchData = async () => {
@@ -33,22 +35,23 @@ export const MainComponent = () => {
     const data = catData?.map(cat =>
         <div>
             <CardComponent name={cat.name} img={cat.reference_image_id}
-                          ></CardComponent>
+            ></CardComponent>
         </div>
     )
     if (isDataLoading) {
         return (
             <div>
                 <h3>Main</h3>
+                <Button onClick={() => {
+                    navigate("/profile")
+                }}> Profile</Button>
                 {data}
-
-
             </div>
         )
     } else {
         return (
-            <Box sx={{ display: 'flex' }}>
-                <CircularProgress />
+            <Box sx={{display: 'flex'}}>
+                <CircularProgress/>
             </Box>
         )
     }
