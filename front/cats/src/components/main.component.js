@@ -8,55 +8,29 @@ import Box from '@mui/material/Box';
 import {Button} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import SearchComponent from "../ui/search.component";
+import CatGridComponent from "./catGrid.component";
 
 export const MainComponent = () => {
 
     const navigate = useNavigate();
-    const [catData, setCatData] = useState(null);
-    const [isDataLoading, setIsDataLoading] = useState(false);
-    const fetchData = async () => {
-        axios.get("https://api.thecatapi.com/v1/breeds?limit=100",
-            catOptions)
-            .then(res => {
-                console.log(res);
-                setCatData(res.data)
-                setIsDataLoading(true)
-            })
 
-            .catch(err => {
-                console.error("error fetching data", err)
-            });
-    }
-    useEffect(() => {
-        fetchData();
-    }, []);
+
     // catData?.forEach((item) => {
     //     alert(item.image)
     // })
-    const data = catData?.map(cat =>
+
+    return (
         <div>
-            <CardComponent name={cat.name} img={cat.reference_image_id}
-            ></CardComponent>
-        </div>
-    )
-    if (isDataLoading) {
-        return (
-            <div>
-                <h3>Main</h3>
-                <SearchComponent></SearchComponent>
+            <div>Main
                 <Button onClick={() => {
                     navigate("/profile")
-                }}> Profile</Button>
-                {data}
-            </div>
-        )
-    } else {
-        return (
-            <Box sx={{display: 'flex'}}>
-                <CircularProgress/>
-            </Box>
-        )
-    }
+                }}> Profile</Button></div>
+
+            <SearchComponent></SearchComponent>
+
+            <CatGridComponent></CatGridComponent>
+        </div>
+    )
 
 
 }
