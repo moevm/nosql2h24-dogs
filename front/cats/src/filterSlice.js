@@ -1,9 +1,9 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-    filter_number:null,
-    filter_string:null,
-    filter_list:null
+    filter_number:[],
+    filter_string:[],
+    filter_list:[]
 }
 
 const filterSlice = createSlice({

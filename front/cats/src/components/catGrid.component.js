@@ -11,7 +11,7 @@ import {useSelector} from "react-redux";
 
 const CatGridComponent = () => {
     let filter_data = useSelector(state => state.filter);
-    let value = useSelector(state => state.filter.value);
+
     const [catData, setCatData] = useState(null);
     const [isDataLoading, setIsDataLoading] = useState(false);
     const fetchData = async () => {

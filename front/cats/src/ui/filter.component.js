@@ -2,6 +2,7 @@ import {useState} from "react";
 import {Button, Input, InputLabel} from "@mui/material";
 import {useDispatch} from "react-redux";
 import {increment, updateFilter} from "../filterSlice.js";
+import {tab} from "@testing-library/user-event/dist/tab";
 
 export const FilterComponent = () => {
 
@@ -36,16 +37,31 @@ export const FilterComponent = () => {
         {id: "2", value: "life_span", string: ""},
         {id: "3", value: "weight", string: ""},
     ]
+    const filter_data_temperament = [
+        {id: "1", value: "Active"},
+        {id: "2", value: "Energetic"},
+        {id: "3", value: "Independent"},
+        {id: "4", value: "Intelligent"},
+        {id: "5", value: "Gentle"},
+        {id: "6", value: "Affectionate"},
+        {id: "7", value: "Social"},
+        {id: "8", value: "Playful"},
+    ]
     const [checkedNumbers, setCheckedNumbers] = useState([])
     const [checkedString, setCheckedString] = useState([])
+    const [isTemperamentChecked, setIsTemperamentChecked] = useState(false)
+    const [checkedTemperament, setCheckedTemperament] = useState([])
     return (
         <div>
             <Button onClick={() => {
                 const filter_data = {
-                    filter_number:checkedNumbers,
-                    filter_string:checkedString,
-                    filter_list:null,
+                    filter_number: checkedNumbers,
+                    filter_string: checkedString,
+                    filter_list: [],
                 }
+                if(isTemperamentChecked)
+                    filter_data.filter_list = checkedTemperament
+
                 dispatch(updateFilter(filter_data))
             }}> Filter Data</Button>
             <Button onClick={() => {
@@ -144,6 +160,44 @@ export const FilterComponent = () => {
                             filter_data_string[Number(item.id) - 1].string = e.target.value;
 
                         }}/>
+
+                    </div>
+                )
+            })}
+            <input type="checkbox"
+                   value="temp"
+                   id="temp"
+                   onChange={(e) => {
+                       const isChecked = e.target.checked
+                       setIsTemperamentChecked(isChecked)
+                   }}
+            />
+            <label htmlFor="temp">temperament</label>
+            {filter_data_temperament.map((item) => {
+                return (
+                    <div key={item.id}>
+
+                        <input type="checkbox"
+                               value={item.id}
+                               id={item.id}
+                               style={{marginLeft: 30}}
+                               onChange={(e) => {
+                                   const isChecked = e.target.checked
+                                   const value = filter_data_temperament[Number(e.target.value) - 1]
+
+
+                                   if (isChecked) {
+                                       setCheckedTemperament([...checkedTemperament, value])
+
+                                   } else {
+                                       const filtered = checkedTemperament.filter(item => item.id !== value.id);
+                                       setCheckedTemperament(filtered)
+                                   }
+
+
+                               }}
+                        />
+                        <label htmlFor={item.id}>{item.value}</label>
 
                     </div>
                 )
