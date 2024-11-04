@@ -14,12 +14,6 @@ import FilterComponent from "../ui/filter.component";
 export const MainComponent = () => {
 
     const navigate = useNavigate();
-
-
-    // catData?.forEach((item) => {
-    //     alert(item.image)
-    // })
-
     return (
         <div>
             <div>Main

@@ -1,6 +1,6 @@
 
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes,Navigate    } from 'react-router-dom'
 import StatisticComponent from "./components/statistic.component";
 import CatCardComponent from "./components/catCard.component";
 import MainComponent from "./components/main.component";
@@ -19,14 +19,15 @@ function App() {
                   <Route exact path="/sign_in" element={<SignInComponent/>}/>
                   <Route exact path="/sign_up" element={<SignUpComponent/>}/>
                   <Route exact path="/statistic" element={<StatisticComponent/>}/>
-                  <Route path="*" element={<NoMatch/>}/>
+                  <Route path="*" element={<Navigate to="/sign_in" replace={true} />}/>
               </Routes>
           </div>
       </Router>
 
   );
 }
-function Home() { return <div><h3>Home</h3></div> }
-function About() { return <div><h3>About</h3></div> }
-function NoMatch() { return <div><h3>No match!</h3></div> }
+
+function NoMatch() {
+    return <div><h3>No match!</h3></div>
+}
 export default App;

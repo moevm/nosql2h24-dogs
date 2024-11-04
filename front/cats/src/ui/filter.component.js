@@ -42,6 +42,7 @@ export const FilterComponent = () => {
             <Button onClick={() => {
                 setCheckedNumbers([])
                 setCheckedString([])
+                window.location.reload();
             }}> сброс </Button>
             {filter_data_numbers.map((item) => {
                 return (
