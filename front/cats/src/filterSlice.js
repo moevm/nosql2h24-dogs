@@ -3,7 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 const initialState = {
     filter_number:null,
     filter_string:null,
-    filter_list:null,
+    filter_list:null
 }
 
 const filterSlice = createSlice({
@@ -11,12 +11,14 @@ const filterSlice = createSlice({
     initialState,
     reducers:{
         updateFilter: (state, action) => {
-            state.filter_number = action.filter_number;
-            state.filter_string = action.filter_string;
-            state.filter_list = action.filter_list;
-        }
+            console.log(action.payload)
+            state.filter_number = action.payload.filter_number;
+            state.filter_string = action.payload.filter_string;
+            state.filter_list = action.payload.filter_list;
+        },
+
     }
 })
 
-export const {updateFilter} = filterSlice.actions;
+export const {updateFilter, increment} = filterSlice.actions;
 export default filterSlice.reducer;

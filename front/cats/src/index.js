@@ -12,7 +12,9 @@ import filterReducer from "./filterSlice.js";
 
 
 const store = configureStore({
-    reducers: filterReducer
+    reducer: {
+        filter: filterReducer
+    }
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -1,8 +1,13 @@
 import {useState} from "react";
 import {Button, Input, InputLabel} from "@mui/material";
+import {useDispatch} from "react-redux";
+import {increment, updateFilter} from "../filterSlice.js";
 
 export const FilterComponent = () => {
-    let filter_data_numbers = [
+
+    let dispatch = useDispatch();
+
+    const filter_data_numbers = [
         {id: "1", value: "adaptability", from: 0, to: 0},
         {id: "2", value: "affection_level", from: 0, to: 0},
         {id: "3", value: "child_friendly", from: 0, to: 0},
@@ -36,9 +41,13 @@ export const FilterComponent = () => {
     return (
         <div>
             <Button onClick={() => {
-                alert(JSON.stringify(checkedNumbers))
-                alert(JSON.stringify(checkedString))
-            }}> show filter list</Button>
+                const filter_data = {
+                    filter_number:checkedNumbers,
+                    filter_string:checkedString,
+                    filter_list:null,
+                }
+                dispatch(updateFilter(filter_data))
+            }}> Filter Data</Button>
             <Button onClick={() => {
                 setCheckedNumbers([])
                 setCheckedString([])
@@ -54,7 +63,7 @@ export const FilterComponent = () => {
 
                                onChange={(e) => {
                                    const isChecked = e.target.checked
-                                   filter_data_numbers[Number(e.target.value) - 1].isChecked = isChecked;
+                                   //filter_data_numbers[Number(e.target.value) - 1].isChecked = isChecked;
                                    const value = filter_data_numbers[Number(e.target.value) - 1]
 
 

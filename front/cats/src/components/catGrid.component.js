@@ -7,7 +7,11 @@ import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import CardComponent from "../ui/card.component";
 
+import {useSelector} from "react-redux";
+
 const CatGridComponent = () => {
+    let filter_data = useSelector(state => state.filter);
+    let value = useSelector(state => state.filter.value);
     const [catData, setCatData] = useState(null);
     const [isDataLoading, setIsDataLoading] = useState(false);
     const fetchData = async () => {
@@ -35,6 +39,7 @@ const CatGridComponent = () => {
     if (isDataLoading) {
         return (
             <div>
+                {JSON.stringify(filter_data)}
                 {data}
             </div>
         )
