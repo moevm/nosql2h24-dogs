@@ -8,22 +8,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/users")
 public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/users")
+    @GetMapping("")
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public User getUserById(@PathVariable String id) {
         return userRepository.findById(id).orElseThrow();
     }
 
-    @PostMapping("/users")
+    @PostMapping("")
     public User createUser(@RequestBody User user) {
         return userRepository.save(user);
     }

@@ -8,23 +8,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/events")
 public class EventController {
     @Autowired
     private EventRepository eventRepository;
 
-    @GetMapping("/events")
+    @GetMapping("")
     public List<Event> getAllEvents() {
         return eventRepository.findAll();
     }
 
-    @GetMapping("/events/{id}")
-    public Event getEventById(@PathVariable String id) {
-        return eventRepository.findById(id).orElseThrow();
+    @GetMapping("/{userId}")
+    public List<Event> getEventByUserId(@PathVariable String userId) {
+        return eventRepository.findByUserId(userId);
     }
 
-    @PostMapping("/events")
+    @PostMapping("")
     public Event createEvent(@RequestBody Event event) {
         return eventRepository.save(event);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteEvent(@PathVariable String id) {
+        eventRepository.deleteById(id);
     }
 }
