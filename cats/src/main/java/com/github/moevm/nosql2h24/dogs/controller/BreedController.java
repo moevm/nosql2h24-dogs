@@ -2,6 +2,7 @@ package com.github.moevm.nosql2h24.dogs.controller;
 
 import com.github.moevm.nosql2h24.dogs.database.document.Breed;
 import com.github.moevm.nosql2h24.dogs.database.repository.BreedRepository;
+import com.github.moevm.nosql2h24.dogs.dto.BreedInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/breeds")
@@ -35,15 +35,11 @@ public class BreedController {
     @GetMapping("/{id}/info")
     public BreedInfo getBreedInfoById(@PathVariable String id) {
         Breed breed = breedRepository.findById(id).orElse(null);
-        if(breed != null) {
+        if (breed != null) {
             return new BreedInfo(breed);
         }
         return null;
     }
 
-    private record BreedInfo(String id, String name, String referenceImageId) {
-        public BreedInfo(Breed breed) {
-            this(breed.getId(), breed.getName(), breed.getReferenceImageId());
-        }
-    }
+
 }

@@ -1,7 +1,6 @@
 package com.github.moevm.nosql2h24.dogs.database.document;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;

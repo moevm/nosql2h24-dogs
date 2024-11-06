@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository extends MongoRepository<User, String> {
