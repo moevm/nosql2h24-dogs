@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.moevm.nosql2h24.dogs.database.document.Breed;
 import com.github.moevm.nosql2h24.dogs.database.repository.BreedRepository;
 import com.github.moevm.nosql2h24.dogs.database.repository.UserRepository;
+import com.github.moevm.nosql2h24.dogs.dto.UserDto;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,11 +32,12 @@ public class DatabaseInitializer {
 
     @PostConstruct
     public void initUsers() {
+        userRepository.deleteAll();
         if (userRepository.count() == 0) {
             // добавляем пользователей
-            userRepository.saveUser("Sasha", 21, "sasha", "image1");
-            userRepository.saveAdmin("Margo", 21, "margo", "image2");
-            userRepository.saveAdmin("Karim", 21, "karim", "image3");
+            userRepository.saveUser(new UserDto("Sasha", 21, "sasha", "image1"));
+            userRepository.saveAdmin(new UserDto("Margo", 21, "margo", "image2"));
+            userRepository.saveAdmin(new UserDto("Karim", 21, "karim", "image3"));
         }
     }
     @PostConstruct

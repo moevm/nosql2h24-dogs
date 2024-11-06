@@ -15,9 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class User {
-    @Id
-    private String id;
 
+    @Id
     @Field("name")
     private String name;
 

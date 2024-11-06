@@ -1,47 +1,48 @@
 package com.github.moevm.nosql2h24.dogs.database.repository;
 
 import com.github.moevm.nosql2h24.dogs.database.document.User;
+import com.github.moevm.nosql2h24.dogs.dto.UserDto;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.time.Instant;
-import java.util.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserRepository extends MongoRepository<User, String> {
-    List<User> findByName(String name);
+    Optional<User> findByName(String name);
 
-    List<User> findByNameAndPasswordHash(String name, String passwordHash);
+    Optional<User> findByNameAndPasswordHash(String name, String passwordHash);
 
-    default void saveUser(String name, int age, String passwordHash, String image) {
+    default User saveUser(UserDto userDto) {
         Date date = Date.from(Instant.now());
         User user = User.builder()
-                .name(name)
-                .age(age)
+                .name(userDto.name())
+                .age(userDto.age())
                 .isAdmin(false)
-                .passwordHash(passwordHash)
-                .image(image)
+                .passwordHash(userDto.passwordHash())
+                .image(userDto.image())
                 .creationDate(date)
                 .lastDate(date)
                 .favorites(new ArrayList<>())
                 .build();
-        save(user);
+        return save(user);
     }
 
     // чтобы точно случайно не перепутать!!
-    default void saveAdmin(String name, int age, String passwordHash, String image) {
+    default User saveAdmin(UserDto userDto) {
         Date date = Date.from(Instant.now());
         User user = User.builder()
-                .name(name)
-                .age(age)
+                .name(userDto.name())
+                .age(userDto.age())
                 .isAdmin(true)
-                .passwordHash(passwordHash)
-                .image(image)
+                .passwordHash(userDto.passwordHash())
+                .image(userDto.image())
                 .creationDate(date)
                 .lastDate(date)
                 .favorites(new ArrayList<>())
                 .build();
-        save(user);
+        return save(user);
     }
 }
