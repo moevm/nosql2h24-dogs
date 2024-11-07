@@ -35,10 +35,13 @@ export const FilterComponent = () => {
         {id: "22", value: "lap", from: 0, to: 0},
     ]
     const filter_data_string = [
-        {id: "1", value: "country", string: ""},
+        {id: "1", value: "country", string: ""}
+    ]
+    const filter_data_string_number = [
         {id: "2", value: "life_span", string: ""},
         {id: "3", value: "weight", string: ""},
     ]
+
     //Todo
     // add all values of temperament
     const filter_data_temperament = [

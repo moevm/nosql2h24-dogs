@@ -15,6 +15,8 @@ const CatGridComponent = () => {
     const [catData, setCatData] = useState(null);
     const [isDataLoading, setIsDataLoading] = useState(false);
     const fetchData = async () => {
+        //Todo
+        // request to local server (http://localhost:1240)
         axios.get("https://api.thecatapi.com/v1/breeds?limit=100",
             catOptions)
             .then(res => {
