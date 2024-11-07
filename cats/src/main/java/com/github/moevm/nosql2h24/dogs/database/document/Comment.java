@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 public class Comment {
@@ -23,5 +24,5 @@ public class Comment {
     private String text;
 
     @Field("likes")
-    private List<String> likesUsersId;
+    private HashSet<String> likesUsersId;
 }

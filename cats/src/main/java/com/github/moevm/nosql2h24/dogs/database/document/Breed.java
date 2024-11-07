@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Document(collection = "breeds")
@@ -43,7 +44,7 @@ public class Breed {
 
     @JsonProperty("temperament")
     @Field("temperament")
-    private String temperament;
+    private HashSet<String> temperament;
 
     @JsonProperty("origin")
     @Field("origin")
@@ -63,11 +64,11 @@ public class Breed {
 
     @JsonProperty("life_span_min")
     @Field("life_span_min")
-    private String lifeSpanMin;
+    private int lifeSpanMin;
 
     @JsonProperty("life_span_max")
     @Field("life_span_max")
-    private String lifeSpanMax;
+    private int lifeSpanMax;
 
     @JsonProperty("indoor")
     @Field("indoor")

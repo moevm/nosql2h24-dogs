@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Optional;
 
 public interface UserRepository extends MongoRepository<User, String> {
@@ -24,7 +25,7 @@ public interface UserRepository extends MongoRepository<User, String> {
                 .image(userDto.image())
                 .creationDate(date)
                 .lastDate(date)
-                .favorites(new ArrayList<>())
+                .favorites(new HashSet<>())
                 .build();
         return save(user);
     }
@@ -40,7 +41,7 @@ public interface UserRepository extends MongoRepository<User, String> {
                 .image(userDto.image())
                 .creationDate(date)
                 .lastDate(date)
-                .favorites(new ArrayList<>())
+                .favorites(new HashSet<>())
                 .build();
         return save(user);
     }

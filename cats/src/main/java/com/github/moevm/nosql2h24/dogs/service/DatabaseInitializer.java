@@ -41,6 +41,7 @@ public class DatabaseInitializer {
 
     @PostConstruct
     public void initBreeds() {
+        breedRepository.deleteAll();
         if (breedRepository.count() == 0) {
             try {
                 ObjectMapper mapper = new ObjectMapper();

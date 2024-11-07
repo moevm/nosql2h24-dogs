@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 @Data
@@ -39,5 +40,5 @@ public class User {
     private Date lastDate;
 
     @Field("favorites")
-    private List<String> favorites;
+    private HashSet<String> favorites;
 }

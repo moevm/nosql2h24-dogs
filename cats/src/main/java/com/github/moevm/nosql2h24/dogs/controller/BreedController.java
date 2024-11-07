@@ -42,59 +42,82 @@ public class BreedController {
 
     @GetMapping("/search")
     public List<Breed> searchBreeds(
-            @RequestParam(required = false) List<Integer> indoor,
-            @RequestParam(required = false) List<Integer> adaptability,
-            @RequestParam(required = false) List<Integer> affectionLevel,
-            @RequestParam(required = false) List<Integer> childFriendly,
-            @RequestParam(required = false) List<Integer> dogFriendly,
-            @RequestParam(required = false) List<Integer> energyLevel,
-            @RequestParam(required = false) List<Integer> grooming,
-            @RequestParam(required = false) List<Integer> healthIssues,
-            @RequestParam(required = false) List<Integer> intelligence,
-            @RequestParam(required = false) List<Integer> sheddingLevel,
-            @RequestParam(required = false) List<Integer> socialNeeds,
-            @RequestParam(required = false) List<Integer> strangerFriendly,
-            @RequestParam(required = false) List<Integer> vocalisation,
-            @RequestParam(required = false) List<Integer> experimental,
-            @RequestParam(required = false) List<Integer> hairless,
-            @RequestParam(required = false) List<Integer> natural,
-            @RequestParam(required = false) List<Integer> rare,
-            @RequestParam(required = false) List<Integer> rex,
-            @RequestParam(required = false) List<Integer> suppressedTail,
-            @RequestParam(required = false) List<Integer> shortLegs,
-            @RequestParam(required = false) List<Integer> hypoallergenic,
+            @RequestParam(required = false) Integer indoorMin,
+            @RequestParam(required = false) Integer indoorMax,
+            @RequestParam(required = false) Integer adaptabilityMin,
+            @RequestParam(required = false) Integer adaptabilityMax,
+            @RequestParam(required = false) Integer affectionLevelMin,
+            @RequestParam(required = false) Integer affectionLevelMax,
+            @RequestParam(required = false) Integer childFriendlyMin,
+            @RequestParam(required = false) Integer childFriendlyMax,
+            @RequestParam(required = false) Integer dogFriendlyMin,
+            @RequestParam(required = false) Integer dogFriendlyMax,
+            @RequestParam(required = false) Integer energyLevelMin,
+            @RequestParam(required = false) Integer energyLevelMax,
+            @RequestParam(required = false) Integer groomingMin,
+            @RequestParam(required = false) Integer groomingMax,
+            @RequestParam(required = false) Integer healthIssuesMin,
+            @RequestParam(required = false) Integer healthIssuesMax,
+            @RequestParam(required = false) Integer intelligenceMin,
+            @RequestParam(required = false) Integer intelligenceMax,
+            @RequestParam(required = false) Integer sheddingLevelMin,
+            @RequestParam(required = false) Integer sheddingLevelMax,
+            @RequestParam(required = false) Integer socialNeedsMin,
+            @RequestParam(required = false) Integer socialNeedsMax,
+            @RequestParam(required = false) Integer strangerFriendlyMin,
+            @RequestParam(required = false) Integer strangerFriendlyMax,
+            @RequestParam(required = false) Integer vocalisationMin,
+            @RequestParam(required = false) Integer vocalisationMax,
+            @RequestParam(required = false) Integer experimentalMin,
+            @RequestParam(required = false) Integer experimentalMax,
+            @RequestParam(required = false) Integer hairlessMin,
+            @RequestParam(required = false) Integer hairlessMax,
+            @RequestParam(required = false) Integer naturalMin,
+            @RequestParam(required = false) Integer naturalMax,
+            @RequestParam(required = false) Integer rareMin,
+            @RequestParam(required = false) Integer rareMax,
+            @RequestParam(required = false) Integer rexMin,
+            @RequestParam(required = false) Integer rexMax,
+            @RequestParam(required = false) Integer suppressedTailMin,
+            @RequestParam(required = false) Integer suppressedTailMax,
+            @RequestParam(required = false) Integer shortLegsMin,
+            @RequestParam(required = false) Integer shortLegsMax,
+            @RequestParam(required = false) Integer hypoallergenicMin,
+            @RequestParam(required = false) Integer hypoallergenicMax,
             @RequestParam(required = false) List<String> countryCode,
             @RequestParam(required = false) List<String> origin,
             @RequestParam(required = false) List<String> temperament,
-            @RequestParam(required = false) List<String> weight,
-            @RequestParam(required = false) List<String> lifeSpan) {
+            @RequestParam(required = false) Integer weightMin,
+            @RequestParam(required = false) Integer weightMax,
+            @RequestParam(required = false) Integer lifeSpanMin,
+            @RequestParam(required = false) Integer lifeSpanMax) {
         return breedRepository.findAll().stream()
-                .filter(breed -> (indoor == null || indoor.contains(breed.getIndoor())))
-                .filter(breed -> (adaptability == null || adaptability.contains(breed.getAdaptability())))
-                .filter(breed -> (affectionLevel == null || affectionLevel.contains(breed.getAffectionLevel())))
-                .filter(breed -> (childFriendly == null || childFriendly.contains(breed.getChildFriendly())))
-                .filter(breed -> (dogFriendly == null || dogFriendly.contains(breed.getDogFriendly())))
-                .filter(breed -> (energyLevel == null || energyLevel.contains(breed.getEnergyLevel())))
-                .filter(breed -> (grooming == null || grooming.contains(breed.getGrooming())))
-                .filter(breed -> (healthIssues == null || healthIssues.contains(breed.getHealthIssues())))
-                .filter(breed -> (intelligence == null || intelligence.contains(breed.getIntelligence())))
-                .filter(breed -> (sheddingLevel == null || sheddingLevel.contains(breed.getSheddingLevel())))
-                .filter(breed -> (socialNeeds == null || socialNeeds.contains(breed.getSocialNeeds())))
-                .filter(breed -> (strangerFriendly == null || strangerFriendly.contains(breed.getStrangerFriendly())))
-                .filter(breed -> (vocalisation == null || vocalisation.contains(breed.getVocalisation())))
-                .filter(breed -> (experimental == null || experimental.contains(breed.getExperimental())))
-                .filter(breed -> (hairless == null || hairless.contains(breed.getHairless())))
-                .filter(breed -> (natural == null || natural.contains(breed.getNatural())))
-                .filter(breed -> (rare == null || rare.contains(breed.getRare())))
-                .filter(breed -> (rex == null || rex.contains(breed.getRex())))
-                .filter(breed -> (suppressedTail == null || suppressedTail.contains(breed.getSuppressedTail())))
-                .filter(breed -> (shortLegs == null || shortLegs.contains(breed.getShortLegs())))
-                .filter(breed -> (hypoallergenic == null || hypoallergenic.contains(breed.getHypoallergenic())))
+                .filter(breed -> (indoorMin == null || breed.getIndoor() >= indoorMin) && (indoorMax == null || breed.getIndoor() <= indoorMax))
+                .filter(breed -> (adaptabilityMin == null || breed.getAdaptability() >= adaptabilityMin) && (adaptabilityMax == null || breed.getAdaptability() <= adaptabilityMax))
+                .filter(breed -> (affectionLevelMin == null || breed.getAffectionLevel() >= affectionLevelMin) && (affectionLevelMax == null || breed.getAffectionLevel() <= affectionLevelMax))
+                .filter(breed -> (childFriendlyMin == null || breed.getChildFriendly() >= childFriendlyMin) && (childFriendlyMax == null || breed.getChildFriendly() <= childFriendlyMax))
+                .filter(breed -> (dogFriendlyMin == null || breed.getDogFriendly() >= dogFriendlyMin) && (dogFriendlyMax == null || breed.getDogFriendly() <= dogFriendlyMax))
+                .filter(breed -> (energyLevelMin == null || breed.getEnergyLevel() >= energyLevelMin) && (energyLevelMax == null || breed.getEnergyLevel() <= energyLevelMax))
+                .filter(breed -> (groomingMin == null || breed.getGrooming() >= groomingMin) && (groomingMax == null || breed.getGrooming() <= groomingMax))
+                .filter(breed -> (healthIssuesMin == null || breed.getHealthIssues() >= healthIssuesMin) && (healthIssuesMax == null || breed.getHealthIssues() <= healthIssuesMax))
+                .filter(breed -> (intelligenceMin == null || breed.getIntelligence() >= intelligenceMin) && (intelligenceMax == null || breed.getIntelligence() <= intelligenceMax))
+                .filter(breed -> (sheddingLevelMin == null || breed.getSheddingLevel() >= sheddingLevelMin) && (sheddingLevelMax == null || breed.getSheddingLevel() <= sheddingLevelMax))
+                .filter(breed -> (socialNeedsMin == null || breed.getSocialNeeds() >= socialNeedsMin) && (socialNeedsMax == null || breed.getSocialNeeds() <= socialNeedsMax))
+                .filter(breed -> (strangerFriendlyMin == null || breed.getStrangerFriendly() >= strangerFriendlyMin) && (strangerFriendlyMax == null || breed.getStrangerFriendly() <= strangerFriendlyMax))
+                .filter(breed -> (vocalisationMin == null || breed.getVocalisation() >= vocalisationMin) && (vocalisationMax == null || breed.getVocalisation() <= vocalisationMax))
+                .filter(breed -> (experimentalMin == null || breed.getExperimental() >= experimentalMin) && (experimentalMax == null || breed.getExperimental() <= experimentalMax))
+                .filter(breed -> (hairlessMin == null || breed.getHairless() >= hairlessMin) && (hairlessMax == null || breed.getHairless() <= hairlessMax))
+                .filter(breed -> (naturalMin == null || breed.getNatural() >= naturalMin) && (naturalMax == null || breed.getNatural() <= naturalMax))
+                .filter(breed -> (rareMin == null || breed.getRare() >= rareMin) && (rareMax == null || breed.getRare() <= rareMax))
+                .filter(breed -> (rexMin == null || breed.getRex() >= rexMin) && (rexMax == null || breed.getRex() <= rexMax))
+                .filter(breed -> (suppressedTailMin == null || breed.getSuppressedTail() >= suppressedTailMin) && (suppressedTailMax == null || breed.getSuppressedTail() <= suppressedTailMax))
+                .filter(breed -> (shortLegsMin == null || breed.getShortLegs() >= shortLegsMin) && (shortLegsMax == null || breed.getShortLegs() <= shortLegsMax))
+                .filter(breed -> (hypoallergenicMin == null || breed.getHypoallergenic() >= hypoallergenicMin) && (hypoallergenicMax == null || breed.getHypoallergenic() <= hypoallergenicMax))
                 .filter(breed -> (countryCode == null || countryCode.contains(breed.getCountryCode())))
                 .filter(breed -> (origin == null || origin.contains(breed.getOrigin())))
-          //      .filter(breed -> (temperament == null || temperament.contains(breed.getTemperament())))
-          //      .filter(breed -> (weight == null || weight.contains(breed.getWeight())))
-          //      .filter(breed -> (lifeSpan == null || lifeSpan.contains(breed.getLifeSpan())))
+                .filter(breed -> (temperament == null || breed.getTemperament().containsAll(temperament)))
+                .filter(breed -> ((lifeSpanMin == null || lifeSpanMin <= breed.getLifeSpanMax()) && (lifeSpanMax == null || lifeSpanMax >= breed.getLifeSpanMin())))
+                .filter(breed -> (weightMin == null || weightMin <= breed.getWeightMax()) && (weightMax == null || weightMax >= breed.getWeightMin()))
                 .collect(Collectors.toList());
 
     }
