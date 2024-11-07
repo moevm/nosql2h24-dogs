@@ -35,11 +35,11 @@ export const FilterComponent = () => {
         {id: "22", value: "lap", from: 0, to: 0},
     ]
     const filter_data_string = [
-        {id: "1", value: "country", string: ""}
+        {id: "1", value: "RU"}
     ]
-    const filter_data_string_number = [
-        {id: "2", value: "life_span", string: ""},
-        {id: "3", value: "weight", string: ""},
+    const filter_data_string_numbers = [
+        {id: "2", value: "life_span", from: 0, to: 0},
+        {id: "3", value: "weight", from: 0, to: 0},
     ]
 
     //Todo
@@ -57,6 +57,7 @@ export const FilterComponent = () => {
     const [checkedNumbers, setCheckedNumbers] = useState([])
     const [checkedString, setCheckedString] = useState([])
     const [isTemperamentChecked, setIsTemperamentChecked] = useState(false)
+    const [isCountryCodesChecked, setIsCountryCodesChecked] = useState(false)
     const [checkedTemperament, setCheckedTemperament] = useState([])
     return (
         <div>
@@ -67,7 +68,7 @@ export const FilterComponent = () => {
                     filter_string: JSON.parse(JSON.stringify(checkedString)),
                     filter_list: [],
                 }
-                if(isTemperamentChecked)
+                if (isTemperamentChecked)
                     filter_data.filter_list = JSON.parse(JSON.stringify(checkedTemperament))
 
                 dispatch(updateFilter(filter_data))
@@ -134,7 +135,15 @@ export const FilterComponent = () => {
 
                 )
             })}
-
+            <input type="checkbox"
+                   value="temp"
+                   id="temp"
+                   onChange={(e) => {
+                       const isChecked = e.target.checked
+                       setIsCountryCodesChecked(isChecked)
+                   }}
+            />
+            <label htmlFor="temp">country codes</label>
             {filter_data_string.map((item) => {
                 return (
                     <div key={item.id}>
