@@ -54,13 +54,14 @@ export const FilterComponent = () => {
     return (
         <div>
             <Button onClick={() => {
+
                 const filter_data = {
-                    filter_number: checkedNumbers,
-                    filter_string: checkedString,
+                    filter_number: JSON.parse(JSON.stringify(checkedNumbers)),
+                    filter_string: JSON.parse(JSON.stringify(checkedString)),
                     filter_list: [],
                 }
                 if(isTemperamentChecked)
-                    filter_data.filter_list = checkedTemperament
+                    filter_data.filter_list = JSON.parse(JSON.stringify(checkedTemperament))
 
                 dispatch(updateFilter(filter_data))
             }}> Filter Data</Button>
@@ -104,6 +105,7 @@ export const FilterComponent = () => {
                             } else {
                                 const index = checkedNumbers.findIndex(itemm => itemm.id === item.id);
                                 if (index !== -1) {
+                                    //alert(JSON.stringify(checkedNumbers[index]))
                                     checkedNumbers[index].from = Number(e.target.value);
                                 }
                                 filter_data_numbers[Number(item.id) - 1].from = Number(e.target.value);
