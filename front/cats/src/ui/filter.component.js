@@ -8,6 +8,8 @@ export const FilterComponent = () => {
 
     let dispatch = useDispatch();
 
+    //Todo
+    // snake style -> camel style
     const filter_data_numbers = [
         {id: "1", value: "adaptability", from: 0, to: 0},
         {id: "2", value: "affection_level", from: 0, to: 0},
@@ -37,6 +39,8 @@ export const FilterComponent = () => {
         {id: "2", value: "life_span", string: ""},
         {id: "3", value: "weight", string: ""},
     ]
+    //Todo
+    // add all values of temperament
     const filter_data_temperament = [
         {id: "1", value: "Active"},
         {id: "2", value: "Energetic"},
