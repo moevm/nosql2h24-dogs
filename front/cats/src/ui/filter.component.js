@@ -34,12 +34,11 @@ export const FilterComponent = () => {
         {id: "21", value: "indoor", from: 0, to: 0},
         {id: "22", value: "lap", from: 0, to: 0},
     ]
-    const filter_data_string = [
+    const filter_data_coutry_codes = [
         {id: "1", value: "RU"}
     ]
-    const filter_data_string_numbers = [
-        {id: "2", value: "life_span", from: 0, to: 0},
-        {id: "3", value: "weight", from: 0, to: 0},
+    const filter_data_country = [
+        {id: "1", value: "Singapore"}
     ]
 
     //Todo
