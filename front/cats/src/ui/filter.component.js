@@ -35,10 +35,15 @@ export const FilterComponent = () => {
         {id: "22", value: "lap", from: 0, to: 0},
     ]
     const filter_data_coutry_codes = [
-        {id: "1", value: "RU"}
+        {id: "1", value: "RU"},
+        {id: "2", value: "SG"},
+        {id: "3", value: "US"},
+
     ]
     const filter_data_country = [
-        {id: "1", value: "Singapore"}
+        {id: "1", value: "Russia"},
+        {id: "2", value: "Singapore"},
+        {id: "3", value: "United States"},
     ]
 
     //Todo
