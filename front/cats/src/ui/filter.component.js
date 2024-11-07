@@ -46,8 +46,6 @@ export const FilterComponent = () => {
         {id: "3", value: "United States"},
     ]
 
-    //Todo
-    // add all values of temperament
     const filter_data_temperament = [
         {id: "1", value: "Active"},
         {id: "2", value: "Energetic"},
@@ -57,6 +55,18 @@ export const FilterComponent = () => {
         {id: "6", value: "Affectionate"},
         {id: "7", value: "Social"},
         {id: "8", value: "Playful"},
+        {id: "9", value: "Sedate"},
+        {id: "10", value: "Tenacious"},
+        {id: "11", value: "Loyal"},
+        {id: "12", value: "Friendly"},
+        {id: "13", value: "Curious"},
+        {id: "14", value: "Expressive"},
+        {id: "15", value: "Sociable"},
+        {id: "16", value: "Dependent"},
+        {id: "17", value: "Outgoing"},
+        {id: "18", value: "Loving"},
+        {id: "19", value: "Warm"},
+        {id: "20", value: "Devoted"},
     ]
     const [checkedNumbers, setCheckedNumbers] = useState([])
     const [checkedString, setCheckedString] = useState([])
