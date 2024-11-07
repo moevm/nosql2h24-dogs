@@ -118,6 +118,5 @@ public class BreedController {
                 .filter(breed -> ((lifeSpanMin == null || lifeSpanMin <= breed.getLifeSpanMax()) && (lifeSpanMax == null || lifeSpanMax >= breed.getLifeSpanMin())))
                 .filter(breed -> (weightMin == null || weightMin <= breed.getWeightMax()) && (weightMax == null || weightMax >= breed.getWeightMin()))
                 .collect(Collectors.toList());
-
     }
 }

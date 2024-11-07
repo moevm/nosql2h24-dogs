@@ -67,6 +67,4 @@ public class UserController {
     public User createUser(@RequestBody UserDto user) {
         return userRepository.saveUser(user);
     }
-
-
 }
