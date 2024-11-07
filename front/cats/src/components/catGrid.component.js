@@ -13,22 +13,31 @@ const CatGridComponent = () => {
     let filter_data = useSelector(state => state.filter);
 
     const [catData, setCatData] = useState(null);
+    const [usersData, setUsersData] = useState(null);
+    const [eventsData, setEventsData] = useState(null);
     const [isDataLoading, setIsDataLoading] = useState(false);
-    const fetchData = async () => {
-        //Todo
-        // request to local server (http://localhost:1240)
-        axios.get("https://api.thecatapi.com/v1/breeds?limit=100",
-            catOptions)
-            .then(res => {
-                console.log(res);
-                setCatData(res.data)
-                setIsDataLoading(true)
-            })
 
-            .catch(err => {
-                console.error("error fetching data", err)
-            });
+    const fetchData = async () => {
+        try {
+            const breedsResponse = await axios.get("http://localhost:1240/api/breeds");
+            console.log("Breeds data:", breedsResponse);
+            setCatData(breedsResponse.data);
+
+            const usersResponse = await axios.get("http://localhost:1240/api/users");
+            console.log("Users data:", usersResponse);
+            setUsersData(usersResponse.data);
+
+            const eventsResponse = await axios.get("http://localhost:1240/api/events");
+            console.log("Events data:", eventsResponse);
+            setEventsData(eventsResponse.data);
+
+            setIsDataLoading(true);
+
+        } catch (err) {
+            console.error("Error fetching data:", err);
+        }
     }
+
     useEffect(() => {
         fetchData();
     }, []);
