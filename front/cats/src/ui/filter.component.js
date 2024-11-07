@@ -70,9 +70,16 @@ export const FilterComponent = () => {
         {id: "10", value: "AE"},
         {id: "11", value: "MM"},
         {id: "12", value: "TH"},
-        {id: "13", value: "RU"}
-
+        {id: "13", value: "RU"},
+        {id: "14", value: "GR"},
+        {id: "15", value: "CA"},
+        {id: "16", value: "TR"},
+        {id: "17", value: "NO"},
+        {id: "18", value: "CN"},
+        {id: "19", value: "AU"},
+        {id: "20", value: "FR"}
     ]
+
     const filter_data_country = [
         {id: "1", value: "Singapore"},
         {id: "2", value: "Cyprus"},
@@ -86,7 +93,14 @@ export const FilterComponent = () => {
         {id: "10", value: "United Arab Emirates"},
         {id: "11", value: "Burma"},
         {id: "12", value: "Thailand"},
-        {id: "13", value: "Russia"}
+        {id: "13", value: "Russia"},
+        {id: "14", value: "Greece"},
+        {id: "15", value: "Canada"},
+        {id: "16", value: "Turkey"},
+        {id: "17", value: "Norway"},
+        {id: "18", value: "China"},
+        {id: "19", value: "Australia"},
+        {id: "20", value: "France"}
     ]
 
     const filter_data_temperament = [
