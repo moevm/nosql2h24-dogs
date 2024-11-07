@@ -41,6 +41,7 @@ public class BreedController {
 
     @GetMapping("/search")
     public List<Breed> searchBreeds(
+            @RequestParam(required = false) String partName,
             @RequestParam(required = false) Integer indoorMin,
             @RequestParam(required = false) Integer indoorMax,
             @RequestParam(required = false) Integer adaptabilityMin,
@@ -91,6 +92,7 @@ public class BreedController {
             @RequestParam(required = false) Integer lifeSpanMin,
             @RequestParam(required = false) Integer lifeSpanMax) {
         return breedRepository.findAll().stream()
+                .filter(breed -> (partName == null || breed.getName().toLowerCase().contains(partName.toLowerCase())))
                 .filter(breed -> (indoorMin == null || breed.getIndoor() >= indoorMin) && (indoorMax == null || breed.getIndoor() <= indoorMax))
                 .filter(breed -> (adaptabilityMin == null || breed.getAdaptability() >= adaptabilityMin) && (adaptabilityMax == null || breed.getAdaptability() <= adaptabilityMax))
                 .filter(breed -> (affectionLevelMin == null || breed.getAffectionLevel() >= affectionLevelMin) && (affectionLevelMax == null || breed.getAffectionLevel() <= affectionLevelMax))
