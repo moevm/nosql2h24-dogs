@@ -14,11 +14,5 @@ public class Nosql2h24DogsApplication {
     public static void main(String[] args) {
         var app = SpringApplication.run(Nosql2h24DogsApplication.class, args);
 
-        BreedRepository breedRepository = app.getBean(BreedRepository.class);
-        UserRepository userRepository = app.getBean(UserRepository.class);
-        System.out.println(userRepository.count());
-        List<Breed> breeds = breedRepository.findAll();
-        breeds.forEach(System.out::println);
-
     }
 }
