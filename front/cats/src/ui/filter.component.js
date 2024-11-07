@@ -57,7 +57,7 @@ export const FilterComponent = () => {
         {id: "46", value: "lifeSpanMax", from: 0, to: 0}
     ]
     
-    const filter_data_coutry_codes = [
+    const filter_data_country_codes = [
         {id: "1", value: "SG"},
         {id: "2", value: "CY"},
         {id: "3", value: "US"},
@@ -243,7 +243,7 @@ export const FilterComponent = () => {
                    }}
             />
             <label htmlFor="temp">country codes</label>
-            {filter_data_string.map((item) => {
+            {filter_data_country_codes.map((item) => {
                 return (
                     <div key={item.id}>
                         <input type="checkbox"
@@ -251,7 +251,7 @@ export const FilterComponent = () => {
                                id={item.id}
                                onChange={(e) => {
                                    const isChecked = e.target.checked
-                                   const value = filter_data_string[Number(e.target.value) - 1]
+                                   const value = filter_data_country_codes[Number(e.target.value) - 1]
 
 
                                    if (isChecked) {
@@ -274,7 +274,7 @@ export const FilterComponent = () => {
                             if (index !== -1) {
                                 checkedString[index].string = e.target.value;
                             }
-                            filter_data_string[Number(item.id) - 1].string = e.target.value;
+                            filter_data_country_codes[Number(item.id) - 1].string = e.target.value;
 
                         }}/>
 
