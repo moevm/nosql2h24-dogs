@@ -2,7 +2,6 @@ package com.github.moevm.nosql2h24.dogs.controller;
 
 import com.github.moevm.nosql2h24.dogs.database.document.Breed;
 import com.github.moevm.nosql2h24.dogs.database.repository.BreedRepository;
-import com.github.moevm.nosql2h24.dogs.dto.BreedFilter;
 import com.github.moevm.nosql2h24.dogs.dto.BreedInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

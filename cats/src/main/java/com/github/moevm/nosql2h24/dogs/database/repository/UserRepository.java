@@ -5,7 +5,6 @@ import com.github.moevm.nosql2h24.dogs.dto.UserDto;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Optional;
