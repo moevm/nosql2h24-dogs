@@ -35,15 +35,35 @@ export const FilterComponent = () => {
         {id: "22", value: "lap", from: 0, to: 0}
     ]
     const filter_data_coutry_codes = [
-        {id: "1", value: "RU"},
-        {id: "2", value: "SG"},
+        {id: "1", value: "SG"},
+        {id: "2", value: "CY"},
         {id: "3", value: "US"},
+        {id: "4", value: "JP"},
+        {id: "5", value: "IM"},
+        {id: "6", value: "EG"},
+        {id: "7", value: "SO"},
+        {id: "8", value: "GB"},
+        {id: "9", value: "IR"},
+        {id: "10", value: "AE"},
+        {id: "11", value: "MM"},
+        {id: "12", value: "TH"},
+        {id: "13", value: "RU"}
 
     ]
     const filter_data_country = [
-        {id: "1", value: "Russia"},
-        {id: "2", value: "Singapore"},
+        {id: "1", value: "Singapore"},
+        {id: "2", value: "Cyprus"},
         {id: "3", value: "United States"},
+        {id: "4", value: "Japan"},
+        {id: "5", value: "Isle of Man"},
+        {id: "6", value: "Egypt"},
+        {id: "7", value: "Somalia"},
+        {id: "8", value: "United Kingdom"},
+        {id: "9", value: "Iran (Persia)"},
+        {id: "10", value: "United Arab Emirates"},
+        {id: "11", value: "Burma"},
+        {id: "12", value: "Thailand"},
+        {id: "13", value: "Russia"}
     ]
 
     const filter_data_temperament = [
