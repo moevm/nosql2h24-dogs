@@ -7,3 +7,10 @@ services:
       - 'MONGO_INITDB_ROOT_USERNAME=root'
     ports:
       - '27017'
+  client:
+    build: ./front
+    container_name: client_frontend
+    ports:
+      - '3000:3000'
+    stdin_open: true
+    tty: true
