@@ -1,11 +1,11 @@
 FROM node:17-alpine
-WORKDIR /front/cats
+WORKDIR /cats
 
-COPY /front/cats/package.json .
+COPY /cats/package.json .
 
 RUN npm config set fetch-retry-mintimeout 20000 && npm config set fetch-retry-maxtimeout 120000 && npm install
 
-COPY ./front/cats .
+COPY ./cats .
 
 EXPOSE 3000
 
