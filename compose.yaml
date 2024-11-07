@@ -1,12 +1,24 @@
+version: '3'
 services:
+  backend:
+    build: ./cats
+    ports:
+      - "1240:1240"
+    depends_on:
+      - mongodb
+    restart: always
+    networks:
+      - app-network
+
   mongodb:
     image: 'mongo:7.0.14'
     environment:
       - 'MONGO_INITDB_DATABASE=cats'
       - 'MONGO_INITDB_ROOT_PASSWORD=secret'
       - 'MONGO_INITDB_ROOT_USERNAME=root'
-    ports:
-      - '27017'
+    networks:
+      - app-network
+
   client:
     build: ./front
     container_name: client_frontend
@@ -14,3 +26,9 @@ services:
       - '3000:3000'
     stdin_open: true
     tty: true
+    networks:
+      - app-network
+      -
+networks:
+  app-network:
+    driver: bridge
