@@ -31,7 +31,6 @@ public class DatabaseInitializer {
 
     @PostConstruct
     public void initUsers() {
-        userRepository.deleteAll();
         if (userRepository.count() == 0) {
             // добавляем пользователей
             userRepository.saveUser(new UserDto("Sasha", 21, "sasha", "image1"));

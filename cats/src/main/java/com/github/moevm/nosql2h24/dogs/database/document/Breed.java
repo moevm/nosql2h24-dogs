@@ -17,9 +17,13 @@ public class Breed {
     @JsonProperty("id")
     private String id;
 
-    @JsonProperty("weight")
-    @Field("weight")
-    private String weight;
+    @JsonProperty("weight_min")
+    @Field("weight_min")
+    private int weightMin;
+
+    @JsonProperty("weight_max")
+    @Field("weight_max")
+    private int weightMax;
 
     @JsonProperty("name")
     @Field("name")
@@ -57,9 +61,13 @@ public class Breed {
     @Field("description")
     private String description;
 
-    @JsonProperty("life_span")
-    @Field("life_span")
-    private String lifeSpan;
+    @JsonProperty("life_span_min")
+    @Field("life_span_min")
+    private String lifeSpanMin;
+
+    @JsonProperty("life_span_max")
+    @Field("life_span_max")
+    private String lifeSpanMax;
 
     @JsonProperty("indoor")
     @Field("indoor")

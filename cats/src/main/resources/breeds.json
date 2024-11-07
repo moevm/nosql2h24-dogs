@@ -1,6 +1,7 @@
 [
   {
-    "weight": "3 - 5",
+    "weight_min": 3,
+    "weight_max": 5,
     "id": "abys",
     "name": "Abyssinian",
     "cfa_url": "http://cfa.org/Breeds/BreedsAB/Abyssinian.aspx",
@@ -11,7 +12,8 @@
     "country_codes": "EG",
     "country_code": "EG",
     "description": "The Abyssinian is easy to care for, and a joy to have in your home. They’re affectionate cats and love both people and other animals.",
-    "life_span": "14 - 15",
+    "life_span_min":  14,
+    "life_span_max":  15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "",
@@ -39,7 +41,8 @@
     "reference_image_id": "0XYvRd7oD"
   },
   {
-    "weight": "3 - 5",
+    "weight_min": 3,
+    "weight_max": 5,
     "id": "aege",
     "name": "Aegean",
     "vetstreet_url": "http://www.vetstreet.com/cats/aegean-cat",
@@ -48,7 +51,8 @@
     "country_codes": "GR",
     "country_code": "GR",
     "description": "Native to the Greek islands known as the Cyclades in the Aegean Sea, these are natural cats, meaning they developed without humans getting involved in their breeding. As a breed, Aegean Cats are rare, although they are numerous on their home islands. They are generally friendly toward people and can be excellent cats for families with children.",
-    "life_span": "9 - 12",
+    "life_span_min": 9,
+    "life_span_max": 12,
     "indoor": 0,
     "alt_names": "",
     "adaptability": 5,
@@ -75,7 +79,8 @@
     "reference_image_id": "ozEvzdVM-"
   },
   {
-    "weight": "3 - 7",
+    "weight_min": 3,
+    "weight_max": 7,
     "id": "abob",
     "name": "American Bobtail",
     "cfa_url": "http://cfa.org/Breeds/BreedsAB/AmericanBobtail.aspx",
@@ -86,7 +91,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "American Bobtails are loving and incredibly intelligent cats possessing a distinctive wild appearance. They are extremely interactive cats that bond with their human family with great devotion.",
-    "life_span": "11 - 15",
+    "life_span_min": 11,
+    "life_span_max": 15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "",
@@ -114,7 +120,8 @@
     "reference_image_id": "hBXicehMA"
   },
   {
-    "weight": "2 - 5",
+    "weight_min": 2,
+    "weight_max": 5,
     "id": "acur",
     "name": "American Curl",
     "cfa_url": "http://cfa.org/Breeds/BreedsAB/AmericanCurl.aspx",
@@ -125,7 +132,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "Distinguished by truly unique ears that curl back in a graceful arc, offering an alert, perky, happily surprised expression, they cause people to break out into a big smile when viewing their first Curl. Curls are very people-oriented, faithful, affectionate soulmates, adjusting remarkably fast to other pets, children, and new situations.",
-    "life_span": "12 - 16",
+    "life_span_min":  12,
+    "life_span_max":  16,
     "indoor": 0,
     "lap": 1,
     "alt_names": "",
@@ -153,7 +161,8 @@
     "reference_image_id": "xnsqonbjW"
   },
   {
-    "weight": "4 - 7",
+    "weight_min": 4,
+    "weight_max": 7,
     "id": "asho",
     "name": "American Shorthair",
     "cfa_url": "http://cfa.org/Breeds/BreedsAB/AmericanShorthair.aspx",
@@ -164,7 +173,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "The American Shorthair is known for its longevity, robust health, good looks, sweet personality, and amiability with children, dogs, and other pets.",
-    "life_span": "15 - 17",
+    "life_span_min": 15,
+    "life_span_max": 17,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Domestic Shorthair",
@@ -192,7 +202,8 @@
     "reference_image_id": "JFPROfGtQ"
   },
   {
-    "weight": "4 - 7",
+    "weight_min": 4,
+    "weight_max": 7,
     "id": "awir",
     "name": "American Wirehair",
     "cfa_url": "http://cfa.org/Breeds/BreedsAB/AmericanWirehair.aspx",
@@ -202,7 +213,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "The American Wirehair tends to be a calm and tolerant cat who takes life as it comes. His favorite hobby is bird-watching from a sunny windowsill, and his hunting ability will stand you in good stead if insects enter the house.",
-    "life_span": "14 - 18",
+    "life_span_min":  14,
+    "life_span_max":  18,
     "indoor": 0,
     "lap": 1,
     "alt_names": "",
@@ -230,7 +242,8 @@
     "reference_image_id": "8D--jCd21"
   },
   {
-    "weight": "4 - 7",
+    "weight_min": 4,
+    "weight_max": 7,
     "id": "amau",
     "name": "Arabian Mau",
     "vcahospitals_url": "",
@@ -239,7 +252,8 @@
     "country_codes": "AE",
     "country_code": "AE",
     "description": "Arabian Mau cats are social and energetic. Due to their energy levels, these cats do best in homes where their owners will be able to provide them with plenty of playtime, attention and interaction from their owners. These kitties are friendly, intelligent, and adaptable, and will even get along well with other pets and children.",
-    "life_span": "12 - 14",
+    "life_span_min":  12,
+    "life_span_max":  14,
     "indoor": 0,
     "alt_names": "Alley cat",
     "adaptability": 5,
@@ -266,7 +280,8 @@
     "reference_image_id": "k71ULYfRr"
   },
   {
-    "weight": "3 - 7",
+    "weight_min": 3,
+    "weight_max": 7,
     "id": "amis",
     "name": "Australian Mist",
     "temperament": "Lively, Social, Fun-loving, Relaxed, Affectionate",
@@ -274,7 +289,8 @@
     "country_codes": "AU",
     "country_code": "AU",
     "description": "The Australian Mist thrives on human companionship. Tolerant of even the youngest of children, these friendly felines enjoy playing games and being part of the hustle and bustle of a busy household. They make entertaining companions for people of all ages, and are happy to remain indoors between dusk and dawn or to be wholly indoor pets.",
-    "life_span": "12 - 16",
+    "life_span_min":  12,
+    "life_span_max":  16,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Spotted Mist",
@@ -302,7 +318,8 @@
     "reference_image_id": "_6x-3TiCA"
   },
   {
-    "weight": "2 - 5",
+    "weight_min": 2,
+    "weight_max": 5,
     "id": "bali",
     "name": "Balinese",
     "cfa_url": "http://cfa.org/Breeds/BreedsAB/Balinese.aspx",
@@ -313,7 +330,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "Balinese are curious, outgoing, intelligent cats with excellent communication skills. They are known for their chatty personalities and are always eager to tell you their views on life, love, and what you’ve served them for dinner. ",
-    "life_span": "10 - 15",
+    "life_span_min":  10,
+    "life_span_max":  15,
     "indoor": 0,
     "alt_names": "Long-haired Siamese",
     "adaptability": 5,
@@ -340,7 +358,8 @@
     "reference_image_id": "13MkvUreZ"
   },
   {
-    "weight": "2 - 4",
+    "weight_min": 2,
+    "weight_max": 4,
     "id": "bamb",
     "name": "Bambino",
     "temperament": "Affectionate, Lively, Friendly, Intelligent",
@@ -348,7 +367,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "The Bambino is a breed of cat that was created as a cross between the Sphynx and the Munchkin breeds. The Bambino cat has short legs, large upright ears, and is usually hairless. They love to be handled and cuddled up on the laps of their family members.",
-    "life_span": "12 - 14",
+    "life_span_min":  12,
+    "life_span_max":  14,
     "indoor": 0,
     "lap": 1,
     "alt_names": "",
@@ -376,7 +396,8 @@
     "reference_image_id": "5AdhMjeEu"
   },
   {
-    "weight": "3 - 7",
+    "weight_min": 3,
+    "weight_max": 7,
     "id": "beng",
     "name": "Bengal",
     "cfa_url": "http://cfa.org/Breeds/BreedsAB/Bengal.aspx",
@@ -387,7 +408,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "Bengals are a lot of fun to live with, but they're definitely not the cat for everyone, or for first-time cat owners. Extremely intelligent, curious and active, they demand a lot of interaction and woe betide the owner who doesn't provide it.",
-    "life_span": "12 - 15",
+    "life_span_min":  12,
+    "life_span_max":  15,
     "indoor": 0,
     "lap": 0,
     "adaptability": 5,
@@ -416,7 +438,8 @@
     "reference_image_id": "O3btzLlsO"
   },
   {
-    "weight": "3 - 7",
+    "weight_min": 3,
+    "weight_max": 7,
     "id": "birm",
     "name": "Birman",
     "cfa_url": "http://cfa.org/Breeds/BreedsAB/Birman.aspx",
@@ -427,7 +450,8 @@
     "country_codes": "FR",
     "country_code": "FR",
     "description": "The Birman is a docile, quiet cat who loves people and will follow them from room to room. Expect the Birman to want to be involved in what you’re doing. He communicates in a soft voice, mainly to remind you that perhaps it’s time for dinner or maybe for a nice cuddle on the sofa. He enjoys being held and will relax in your arms like a furry baby.",
-    "life_span": "14 - 15",
+    "life_span_min":  14,
+    "life_span_max":  15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Sacred Birman, Sacred Cat Of Burma",
@@ -455,7 +479,8 @@
     "reference_image_id": "HOrX5gwLS"
   },
   {
-    "weight": "3 - 5",
+    "weight_min": 3,
+    "weight_max": 5,
     "id": "bomb",
     "name": "Bombay",
     "cfa_url": "http://cfa.org/Breeds/BreedsAB/Bombay.aspx",
@@ -466,7 +491,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "The the golden eyes and the shiny black coa of the Bopmbay is absolutely striking. Likely to bond most with one family member, the Bombay will follow you from room to room and will almost always have something to say about what you are doing, loving attention and to be carried around, often on his caregiver's shoulder.",
-    "life_span": "12 - 16",
+    "life_span_min":  12,
+    "life_span_max":  16,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Small black Panther",
@@ -494,7 +520,8 @@
     "reference_image_id": "5iYq9NmT1"
   },
   {
-    "weight": "4 - 8",
+    "weight_min": 4,
+    "weight_max": 8,
     "id": "bslo",
     "name": "British Longhair",
     "temperament": "Affectionate, Easy Going, Independent, Intelligent, Loyal, Social",
@@ -502,7 +529,8 @@
     "country_codes": "GB",
     "country_code": "GB",
     "description": "The British Longhair is a very laid-back relaxed cat, often perceived to be very independent although they will enjoy the company of an equally relaxed and likeminded cat. They are an affectionate breed, but very much on their own terms and tend to prefer to choose to come and sit with their owners rather than being picked up.",
-    "life_span": "12 - 14",
+    "life_span_min":  12,
+    "life_span_max":  14,
     "indoor": 0,
     "alt_names": "",
     "adaptability": 5,
@@ -529,7 +557,8 @@
     "reference_image_id": "7isAO4Cav"
   },
   {
-    "weight": "5 - 9",
+    "weight_min": 5,
+    "weight_max": 9,
     "id": "bsho",
     "name": "British Shorthair",
     "cfa_url": "http://cfa.org/Breeds/BreedsAB/BritishShorthair.aspx",
@@ -540,7 +569,8 @@
     "country_codes": "GB",
     "country_code": "GB",
     "description": "The British Shorthair is a very pleasant cat to have as a companion, ans is easy going and placid. The British is a fiercely loyal, loving cat and will attach herself to every one of her family members. While loving to play, she doesn't need hourly attention. If she is in the mood to play, she will find someone and bring a toy to that person. The British also plays well by herself, and thus is a good companion for single people.",
-    "life_span": "12 - 17",
+    "life_span_min":  12,
+    "life_span_max":  17,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Highlander, Highland Straight, Britannica",
@@ -568,7 +598,8 @@
     "reference_image_id": "s4wQfYoEk"
   },
   {
-    "weight": "3 - 5",
+    "weight_min": 3,
+    "weight_max": 5,
     "id": "bure",
     "name": "Burmese",
     "cfa_url": "http://cfa.org/Breeds/BreedsAB/Burmese.aspx",
@@ -579,7 +610,8 @@
     "country_codes": "MM",
     "country_code": "MM",
     "description": "Burmese love being with people, playing with them, and keeping them entertained. They crave close physical contact and abhor an empty lap. They will follow their humans from room to room, and sleep in bed with them, preferably under the covers, cuddled as close as possible. At play, they will turn around to see if their human is watching and being entertained by their crazy antics.",
-    "life_span": "15 - 16",
+    "life_span_min":  15,
+    "life_span_max":  16,
     "indoor": 0,
     "lap": 1,
     "alt_names": "",
@@ -607,7 +639,8 @@
     "reference_image_id": "4lXnnfxac"
   },
   {
-    "weight": "3 - 6",
+    "weight_min": 3,
+    "weight_max": 6,
     "id": "buri",
     "name": "Burmilla",
     "cfa_url": "http://cfa.org/Breeds/BreedsAB/Burmilla.aspx",
@@ -617,7 +650,8 @@
     "country_codes": "GB",
     "country_code": "GB",
     "description": "The Burmilla is a fairly placid cat. She tends to be an easy cat to get along with, requiring minimal care. The Burmilla is affectionate and sweet and makes a good companion, the Burmilla is an ideal companion to while away a lonely evening. Loyal, devoted, and affectionate, this cat will stay by its owner, always keeping them company.",
-    "life_span": "10 - 15",
+    "life_span_min":  10,
+    "life_span_max":  15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "",
@@ -645,7 +679,8 @@
     "reference_image_id": "jvg3XfEdC"
   },
   {
-    "weight": "5 - 7",
+    "weight_min": 5,
+    "weight_max": 7,
     "id": "cspa",
     "name": "California Spangled",
     "temperament": "Affectionate, Curious, Intelligent, Loyal, Social",
@@ -653,7 +688,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "Perhaps the only thing about the California spangled cat that isn’t wild-like is its personality. Known to be affectionate, gentle and sociable, this breed enjoys spending a great deal of time with its owners. They are very playful, often choosing to perch in high locations and show off their acrobatic skills.",
-    "life_span": "10 - 14",
+    "life_span_min": 10,
+    "life_span_max": 14,
     "indoor": 0,
     "alt_names": "Spangle",
     "adaptability": 5,
@@ -680,7 +716,8 @@
     "reference_image_id": "B1ERTmgph"
   },
   {
-    "weight": "3 - 5",
+    "weight_min": 3,
+    "weight_max": 5,
     "id": "ctif",
     "name": "Chantilly-Tiffany",
     "temperament": "Affectionate, Demanding, Interactive, Loyal",
@@ -688,7 +725,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "The Chantilly is a devoted companion and prefers company to being left alone. While the Chantilly is not demanding, she will \"chirp\" and \"talk\" as if having a conversation. This breed is affectionate, with a sweet temperament. It can stay still for extended periods, happily lounging in the lap of its loved one. This quality makes the Tiffany an ideal traveling companion, and an ideal house companion for senior citizens and the physically handicapped.",
-    "life_span": "14 - 16",
+    "life_span_min":  14,
+    "life_span_max":  16,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Chantilly, Foreign Longhair",
@@ -716,7 +754,8 @@
     "reference_image_id": "TR-5nAd_S"
   },
   {
-    "weight": "3 - 7",
+    "weight_min": 3,
+    "weight_max": 7,
     "id": "char",
     "name": "Chartreux",
     "cfa_url": "http://cfa.org/Breeds/BreedsCJ/Chartreux.aspx",
@@ -727,7 +766,8 @@
     "country_codes": "FR",
     "country_code": "FR",
     "description": "The Chartreux is generally silent but communicative. Short play sessions, mixed with naps and meals are their perfect day. Whilst appreciating any attention you give them, they are not demanding, content instead to follow you around devotedly, sleep on your bed and snuggle with you if you’re not feeling well.",
-    "life_span": "12 - 15",
+    "life_span_min":  12,
+    "life_span_max":  15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "",
@@ -755,7 +795,8 @@
     "reference_image_id": "j6oFGLpRG"
   },
   {
-    "weight": "3 - 7",
+    "weight_min": 3,
+    "weight_max": 7,
     "id": "chau",
     "name": "Chausie",
     "temperament": "Affectionate, Intelligent, Playful, Social",
@@ -763,7 +804,8 @@
     "country_codes": "EG",
     "country_code": "EG",
     "description": "For those owners who desire a feline capable of evoking the great outdoors, the strikingly beautiful Chausie retains a bit of the wild in its appearance but has the house manners of our friendly, familiar moggies. Very playful, this cat needs a large amount of space to be able to fully embrace its hunting instincts.",
-    "life_span": "12 - 14",
+    "life_span_min":  12,
+    "life_span_max":  14,
     "indoor": 0,
     "alt_names": "Nile Cat",
     "adaptability": 5,
@@ -790,7 +832,8 @@
     "reference_image_id": "vJ3lEYgXr"
   },
   {
-    "weight": "4 - 7",
+    "weight_min": 4,
+    "weight_max": 7,
     "id": "chee",
     "name": "Cheetoh",
     "temperament": "Affectionate, Gentle, Intelligent, Social",
@@ -798,7 +841,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "The Cheetoh has a super affectionate nature and real love for their human companions; they are intelligent with the ability to learn quickly. You can expect that a Cheetoh will be a fun-loving kitty who enjoys playing, running, and jumping through every room in your house.",
-    "life_span": "12 - 14",
+    "life_span_min":  12,
+    "life_span_max":  14,
     "indoor": 0,
     "alt_names": " ",
     "adaptability": 5,
@@ -825,7 +869,8 @@
     "reference_image_id": "IFXsxmXLm"
   },
   {
-    "weight": "2 - 5",
+    "weight_min": 2,
+    "weight_max": 5,
     "id": "csho",
     "name": "Colorpoint Shorthair",
     "cfa_url": "http://cfa.org/Breeds/BreedsCJ/ColorpointShorthair.aspx",
@@ -835,7 +880,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "Colorpoint Shorthairs are an affectionate breed, devoted and loyal to their people. Sensitive to their owner’s moods, Colorpoints are more than happy to sit at your side or on your lap and purr words of encouragement on a bad day. They will constantly seek out your lap whenever it is open and in the moments when your lap is preoccupied they will stretch out in sunny spots on the ground.",
-    "life_span": "12 - 16",
+    "life_span_min":  12,
+    "life_span_max":  16,
     "indoor": 0,
     "lap": 1,
     "alt_names": "",
@@ -865,7 +911,8 @@
     "reference_image_id": "oSpqGyUDS"
   },
   {
-    "weight": "2 - 4",
+    "weight_min": 2,
+    "weight_max": 4,
     "id": "crex",
     "name": "Cornish Rex",
     "cfa_url": "http://cfa.org/Breeds/BreedsCJ/CornishRex.aspx",
@@ -876,7 +923,8 @@
     "country_codes": "GB",
     "country_code": "GB",
     "description": "This is a confident cat who loves people and will follow them around, waiting for any opportunity to sit in a lap or give a kiss. He enjoys being handled, making it easy to take him to the veterinarian or train him for therapy work. The Cornish Rex stay in kitten mode most of their lives and well into their senior years. ",
-    "life_span": "11 - 14",
+    "life_span_min": 11,
+    "life_span_max": 14,
     "indoor": 0,
     "lap": 1,
     "alt_names": "",
@@ -905,7 +953,8 @@
     "reference_image_id": "unX21IBVB"
   },
   {
-    "weight": "4 - 6",
+    "weight_min": 4,
+    "weight_max": 6,
     "id": "cymr",
     "name": "Cymric",
     "vetstreet_url": "http://www.vetstreet.com/cats/cymric",
@@ -914,7 +963,8 @@
     "country_codes": "CA",
     "country_code": "CA",
     "description": "The Cymric is a placid, sweet cat. They do not get too upset about anything that happens in their world. They are loving companions and adore people. They are smart and dexterous, capable of using his paws to get into cabinets or to open doors.",
-    "life_span": "8 - 14",
+    "life_span_min": 8,
+    "life_span_max": 14,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Spangle",
@@ -942,7 +992,8 @@
     "reference_image_id": "3dbtapCWM"
   },
   {
-    "weight": "4 - 7",
+    "weight_min": 4,
+    "weight_max": 7,
     "id": "cypr",
     "name": "Cyprus",
     "temperament": "Affectionate, Social",
@@ -950,7 +1001,8 @@
     "country_codes": "CY",
     "country_code": "CY",
     "description": "Loving, loyal, social and inquisitive, the Cyprus cat forms strong ties with their families and love nothing more than to be involved in everything that goes on in their surroundings. They are not overly active by nature which makes them the perfect companion for people who would like to share their homes with a laid-back relaxed feline companion. ",
-    "life_span": "12 - 15",
+    "life_span_min":  12,
+    "life_span_max":  15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Cypriot cat",
@@ -978,7 +1030,8 @@
     "reference_image_id": "tJbzb7FKo"
   },
   {
-    "weight": "2 - 5",
+    "weight_min": 2,
+    "weight_max": 5,
     "id": "drex",
     "name": "Devon Rex",
     "cfa_url": "http://cfa.org/Breeds/BreedsCJ/DevonRex.aspx",
@@ -989,7 +1042,8 @@
     "country_codes": "GB",
     "country_code": "GB",
     "description": "The favourite perch of the Devon Rex is right at head level, on the shoulder of her favorite person. She takes a lively interest in everything that is going on and refuses to be left out of any activity. Count on her to stay as close to you as possible, occasionally communicating his opinions in a quiet voice. She loves people and welcomes the attentions of friends and family alike.",
-    "life_span": "10 - 15",
+    "life_span_min":  10,
+    "life_span_max":  15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Pixie cat, Alien cat, Poodle cat",
@@ -1017,7 +1071,8 @@
     "reference_image_id": "4RzEwvyzz"
   },
   {
-    "weight": "5 - 6",
+    "weight_min": 5,
+    "weight_max": 6,
     "id": "dons",
     "name": "Donskoy",
     "temperament": "Playful, affectionate, loyal, social",
@@ -1025,7 +1080,8 @@
     "country_codes": "RU",
     "country_code": "RU",
     "description": "Donskoy are affectionate, intelligent, and easy-going. They demand lots of attention and interaction. The Donskoy also gets along well with other pets. It is now thought the same gene that causes degrees of hairlessness in the Donskoy also causes alterations in cat personality, making them calmer the less hair they have.",
-    "life_span": "12 - 15",
+    "life_span_min":  12,
+    "life_span_max":  15,
     "indoor": 0,
     "adaptability": 4,
     "affection_level": 4,
@@ -1052,7 +1108,8 @@
     "reference_image_id": "3KG57GfMW"
   },
   {
-    "weight": "4 - 6",
+    "weight_min": 4,
+    "weight_max": 6,
     "id": "lihu",
     "name": "Dragon Li",
     "vetstreet_url": "http://www.vetstreet.com/cats/li-hua",
@@ -1061,7 +1118,8 @@
     "country_codes": "CN",
     "country_code": "CN",
     "description": "The Dragon Li is loyal, but not particularly affectionate. They are known to be very intelligent, and their natural breed status means that they're very active. She is is gentle with people, and has a reputation as a talented hunter of rats and other vermin.",
-    "life_span": "12 - 15",
+    "life_span_min":  12,
+    "life_span_max":  15,
     "indoor": 1,
     "alt_names": "Chinese Lia Hua, Lí hua māo (貍花貓), Li Hua",
     "adaptability": 3,
@@ -1089,7 +1147,8 @@
     "reference_image_id": "BQMSld0A0"
   },
   {
-    "weight": "3 - 6",
+    "weight_min": 3,
+    "weight_max": 6,
     "id": "emau",
     "name": "Egyptian Mau",
     "cfa_url": "http://cfa.org/Breeds/BreedsCJ/EgyptianMau.aspx",
@@ -1100,7 +1159,8 @@
     "country_codes": "EG",
     "country_code": "EG",
     "description": "The Egyptian Mau is gentle and reserved. She loves her people and desires attention and affection from them but is wary of others. Early, continuing socialization is essential with this sensitive and sometimes shy cat, especially if you plan to show or travel with her. Otherwise, she can be easily startled by unexpected noises or events.",
-    "life_span": "18 - 20",
+    "life_span_min": 18,
+    "life_span_max": 20,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Pharaoh Cat",
@@ -1128,7 +1188,8 @@
     "reference_image_id": "TuSyTkt2n"
   },
   {
-    "weight": "3 - 6",
+    "weight_min": 3,
+    "weight_max": 6,
     "id": "ebur",
     "name": "European Burmese",
     "cfa_url": "http://cfa.org/Breeds/BreedsCJ/EuropeanBurmese.aspx",
@@ -1137,7 +1198,8 @@
     "country_codes": "MM",
     "country_code": "MM",
     "description": "The European Burmese is a very affectionate, intelligent, and loyal cat. They thrive on companionship and will want to be with you, participating in everything you do. While they might pick a favorite family member, chances are that they will interact with everyone in the home, as well as any visitors that come to call. They are inquisitive and playful, even as adults. ",
-    "life_span": "10 - 15",
+    "life_span_min":  10,
+    "life_span_max":  15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "",
@@ -1164,7 +1226,8 @@
     "hypoallergenic": 0
   },
   {
-    "weight": "3 - 6",
+    "weight_min": 3,
+    "weight_max": 6,
     "id": "esho",
     "name": "Exotic Shorthair",
     "cfa_url": "http://cfa.org/Breeds/BreedsCJ/Exotic.aspx",
@@ -1175,7 +1238,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "The Exotic Shorthair is a gentle friendly cat that has the same personality as the Persian. They love having fun, don’t mind the company of other cats and dogs, also love to curl up for a sleep in a safe place. Exotics love their own people, but around strangers they are cautious at first. Given time, they usually warm up to visitors.",
-    "life_span": "12 - 15",
+    "life_span_min":  12,
+    "life_span_max":  15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Exotic",
@@ -1203,7 +1267,8 @@
     "reference_image_id": "YnPrYEmfe"
   },
   {
-    "weight": "3 - 5",
+    "weight_min": 3,
+    "weight_max": 5,
     "id": "hbro",
     "name": "Havana Brown",
     "cfa_url": "http://cfa.org/Breeds/BreedsCJ/HavanaBrown.aspx",
@@ -1214,7 +1279,8 @@
     "country_codes": "GB",
     "country_code": "GB",
     "description": "The Havana Brown is human oriented, playful, and curious. She has a strong desire to spend time with her people and involve herself in everything they do. Being naturally inquisitive, the Havana Brown reaches out with a paw to touch and feel when investigating curiosities in its environment. They are truly sensitive by nature and frequently gently touch their human companions as if they are extending a paw of friendship.",
-    "life_span": "10 - 15",
+    "life_span_min":  10,
+    "life_span_max":  15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Havana, HB",
@@ -1242,7 +1308,8 @@
     "reference_image_id": "njK25knLH"
   },
   {
-    "weight": "3 - 6",
+    "weight_min": 3,
+    "weight_max": 6,
     "id": "hima",
     "name": "Himalayan",
     "vetstreet_url": "http://www.vetstreet.com/cats/himalayan",
@@ -1252,7 +1319,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "Calm and devoted, Himalayans make excellent companions, though they prefer a quieter home. They are playful in a sedate kind of way and enjoy having an assortment of toys. The Himalayan will stretch out next to you, sleep in your bed and even sit on your lap when she is in the mood.",
-    "life_span": "9 - 15",
+    "life_span_min": 9,
+    "life_span_max": 15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Himalayan Persian, Colourpoint Persian, Longhaired Colourpoint, Himmy",
@@ -1280,7 +1348,8 @@
     "reference_image_id": "CDhOtM-Ig"
   },
   {
-    "weight": "2 - 5",
+    "weight_min": 2,
+    "weight_max": 5,
     "id": "jbob",
     "name": "Japanese Bobtail",
     "cfa_url": "http://cfa.org/Breeds/BreedsCJ/JapaneseBobtail.aspx",
@@ -1291,7 +1360,8 @@
     "country_codes": "JP",
     "country_code": "JP",
     "description": "The Japanese Bobtail is an active, sweet, loving and highly intelligent breed. They love to be with people and play seemingly endlessly. They learn their name and respond to it. They bring toys to people and play fetch with a favorite toy for hours. Bobtails are social and are at their best when in the company of people. They take over the house and are not intimidated. If a dog is in the house, Bobtails assume Bobtails are in charge.",
-    "life_span": "14 - 16",
+    "life_span_min":  14,
+    "life_span_max":  16,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Japanese Truncated Cat",
@@ -1319,7 +1389,8 @@
     "reference_image_id": "-tm9-znzl"
   },
   {
-    "weight": "2 - 5",
+    "weight_min": 2,
+    "weight_max": 5,
     "id": "java",
     "name": "Javanese",
     "vetstreet_url": "http://www.vetstreet.com/cats/javanese",
@@ -1329,7 +1400,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "Javanese are endlessly interested, intelligent and active. They tend to enjoy jumping to great heights, playing with fishing pole-type or other interactive toys and just generally investigating their surroundings. He will attempt to copy things you do, such as opening doors or drawers.",
-    "life_span": "10 - 12",
+    "life_span_min": 10,
+    "life_span_max": 12,
     "indoor": 0,
     "alt_names": " ",
     "adaptability": 4,
@@ -1356,7 +1428,8 @@
     "reference_image_id": "xoI_EpOKe"
   },
   {
-    "weight": "4 - 6",
+    "weight_min": 4,
+    "weight_max": 6,
     "id": "khao",
     "name": "Khao Manee",
     "cfa_url": "http://cfa.org/Breeds/BreedsKthruR/KhaoManee.aspx",
@@ -1365,7 +1438,8 @@
     "country_codes": "TH",
     "country_code": "TH",
     "description": "The Khao Manee is highly intelligent, with an extrovert and inquisitive nature, however they are also very calm and relaxed, making them an idea lap cat.",
-    "life_span": "10 - 12",
+    "life_span_min": 10,
+    "life_span_max": 12,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Diamond Eye cat",
@@ -1394,7 +1468,8 @@
     "reference_image_id": "165ok6ESN"
   },
   {
-    "weight": "3 - 5",
+    "weight_min": 3,
+    "weight_max": 5,
     "id": "kora",
     "name": "Korat",
     "cfa_url": "http://cfa.org/Breeds/BreedsKthruR/Korat.aspx",
@@ -1405,7 +1480,8 @@
     "country_codes": "TH",
     "country_code": "TH",
     "description": "The Korat is a natural breed, and one of the oldest stable cat breeds. They are highly intelligent and confident cats that can be fearless, although they are startled by loud sounds and sudden movements. Korats form strong bonds with their people and like to cuddle and stay nearby.",
-    "life_span": "10 - 15",
+    "life_span_min":  10,
+    "life_span_max":  15,
     "indoor": 0,
     "adaptability": 5,
     "affection_level": 5,
@@ -1431,7 +1507,8 @@
     "reference_image_id": "DbwiefiaY"
   },
   {
-    "weight": "4 - 7",
+    "weight_min": 4,
+    "weight_max": 7,
     "id": "kuri",
     "name": "Kurilian",
     "vetstreet_url": "http://www.vetstreet.com/cats/kurilian-bobtail",
@@ -1440,7 +1517,8 @@
     "country_codes": "RU",
     "country_code": "RU",
     "description": "The character of the Kurilian Bobtail is independent, highly intelligent, clever, inquisitive, sociable, playful, trainable, absent of aggression and very gentle. They are devoted to their humans and when allowed are either on the lap of or sleeping in bed with their owners.",
-    "life_span": "15 - 20",
+    "life_span_min": 15,
+    "life_span_max": 20,
     "indoor": 0,
     "adaptability": 5,
     "affection_level": 5,
@@ -1466,7 +1544,8 @@
     "reference_image_id": "NZpO4pU56M"
   },
   {
-    "weight": "3 - 5",
+    "weight_min": 3,
+    "weight_max": 5,
     "id": "lape",
     "name": "LaPerm",
     "cfa_url": "http://cfa.org/Breeds/BreedsKthruR/LaPerm.aspx",
@@ -1477,7 +1556,8 @@
     "country_codes": "TH",
     "country_code": "TH",
     "description": "LaPerms are gentle and affectionate but also very active. Unlike many active breeds, the LaPerm is also quite content to be a lap cat. The LaPerm will often follow your lead; that is, if they are busy playing and you decide to sit and relax, simply pick up your LaPerm and sit down with it, and it will stay in your lap, devouring the attention you give it.",
-    "life_span": "10 - 15",
+    "life_span_min":  10,
+    "life_span_max":  15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Si-Sawat",
@@ -1505,7 +1585,8 @@
     "reference_image_id": "aKbsEYjSl"
   },
   {
-    "weight": "5 - 8",
+    "weight_min": 5,
+    "weight_max": 8,
     "id": "mcoo",
     "name": "Maine Coon",
     "cfa_url": "http://cfa.org/Breeds/BreedsKthruR/MaineCoon.aspx",
@@ -1516,7 +1597,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "They are known for their size and luxurious long coat Maine Coons are considered a gentle giant. The good-natured and affable Maine Coon adapts well to many lifestyles and personalities. She likes being with people and has the habit of following them around, but isn’t needy. Most Maine Coons love water and they can be quite good swimmers.",
-    "life_span": "12 - 15",
+    "life_span_min":  12,
+    "life_span_max":  15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Coon Cat, Maine Cat, Maine Shag, Snowshoe Cat, American Longhair, The Gentle Giants",
@@ -1544,7 +1626,8 @@
     "reference_image_id": "OOD3VXAQn"
   },
   {
-    "weight": "3 - 6",
+    "weight_min": 3,
+    "weight_max": 6,
     "id": "mala",
     "name": "Malayan",
     "temperament": "Affectionate, Interactive, Playful, Social",
@@ -1552,7 +1635,8 @@
     "country_codes": "GB",
     "country_code": "GB",
     "description": "Malayans love to explore and even enjoy traveling by way of a cat carrier. They are quite a talkative and rather loud cat with an apparent strong will. These cats will make sure that you give it the attention it seeks and always seem to want to be held and hugged. They will constantly interact with people, even strangers. They love to play and cuddle.",
-    "life_span": "12 - 18",
+    "life_span_min": 12,
+    "life_span_max": 18,
     "indoor": 0,
     "alt_names": "Asian",
     "adaptability": 5,
@@ -1578,7 +1662,8 @@
     "hypoallergenic": 0
   },
   {
-    "weight": "3 - 6",
+    "weight_min": 3,
+    "weight_max": 6,
     "id": "manx",
     "name": "Manx",
     "cfa_url": "http://cfa.org/Breeds/BreedsKthruR/Manx.aspx",
@@ -1589,7 +1674,8 @@
     "country_codes": "IM",
     "country_code": "IM",
     "description": "The Manx is a placid, sweet cat that is gentle and playful. She never seems to get too upset about anything. She is a loving companion and adores being with people.",
-    "life_span": "12 - 14",
+    "life_span_min":  12,
+    "life_span_max":  14,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Manks, Stubbin, Rumpy",
@@ -1617,7 +1703,8 @@
     "reference_image_id": "fhYh2PDcC"
   },
   {
-    "weight": "2 - 4",
+    "weight_min": 2,
+    "weight_max": 4,
     "id": "munc",
     "name": "Munchkin",
     "vetstreet_url": "http://www.vetstreet.com/cats/munchkin",
@@ -1626,7 +1713,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "The Munchkin is an outgoing cat who enjoys being handled. She has lots of energy and is faster and more agile than she looks. The shortness of their legs does not seem to interfere with their running and leaping abilities.",
-    "life_span": "10 - 15",
+    "life_span_min":  10,
+    "life_span_max":  15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "",
@@ -1654,7 +1742,8 @@
     "reference_image_id": "j5cVSqLer"
   },
   {
-    "weight": "3 - 5",
+    "weight_min": 3,
+    "weight_max": 5,
     "id": "nebe",
     "name": "Nebelung",
     "temperament": "Gentle, Quiet, Shy, Playful",
@@ -1662,7 +1751,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "The Nebelung may have a reserved nature, but she loves to play (being especially fond of retrieving) and enjoys jumping or climbing to high places where she can study people and situations at her leisure before making up her mind about whether she wants to get involved.",
-    "life_span": "11 - 16",
+    "life_span_min": 11,
+    "life_span_max": 16,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Longhaired Russian Blue",
@@ -1690,7 +1780,8 @@
     "reference_image_id": "OGTWqNNOt"
   },
   {
-    "weight": "4 - 7",
+    "weight_min": 4,
+    "weight_max": 7,
     "id": "norw",
     "name": "Norwegian Forest Cat",
     "cfa_url": "http://cfa.org/Breeds/BreedsKthruR/NorwegianForestCat.aspx",
@@ -1701,7 +1792,8 @@
     "country_codes": "NO",
     "country_code": "NO",
     "description": "The Norwegian Forest Cat is a sweet, loving cat. She appreciates praise and loves to interact with her parent. She makes a loving companion and bonds with her parents once she accepts them for her own. She is still a hunter at heart. She loves to chase toys as if they are real. She is territorial and patrols several times each day to make certain that all is fine.",
-    "life_span": "12 - 16",
+    "life_span_min":  12,
+    "life_span_max":  16,
     "indoor": 0,
     "alt_names": "Skogkatt / Skaukatt, Norsk Skogkatt / Norsk Skaukatt, Weegie",
     "adaptability": 5,
@@ -1728,7 +1820,8 @@
     "reference_image_id": "06dgGmEOV"
   },
   {
-    "weight": "3 - 7",
+    "weight_min": 3,
+    "weight_max": 7,
     "id": "ocic",
     "name": "Ocicat",
     "cfa_url": "http://cfa.org/Breeds/BreedsKthruR/Ocicat.aspx",
@@ -1739,7 +1832,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "Loyal and devoted to their owners, the Ocicat is intelligent, confident, outgoing, and seems to have many dog traits. They can be trained to fetch toys, walk on a lead, taught to 'speak', come when called, and follow other commands. ",
-    "life_span": "12 - 14",
+    "life_span_min":  12,
+    "life_span_max":  14,
     "indoor": 0,
     "alt_names": "",
     "adaptability": 5,
@@ -1766,7 +1860,8 @@
     "reference_image_id": "JAx-08Y0n"
   },
   {
-    "weight": "2 - 5",
+    "weight_min": 2,
+    "weight_max": 5,
     "id": "orie",
     "name": "Oriental",
     "cfa_url": "http://cfa.org/Breeds/BreedsKthruR/Oriental.aspx",
@@ -1777,7 +1872,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "Orientals are passionate about the people in their lives. They become extremely attached to their humans, so be prepared for a lifetime commitment. When you are not available to entertain her, an Oriental will divert herself by jumping on top of the refrigerator, opening drawers, seeking out new hideaways.",
-    "life_span": "12 - 14",
+    "life_span_min":  12,
+    "life_span_max":  14,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Foreign Type",
@@ -1805,7 +1901,8 @@
     "reference_image_id": "LutjkZJpH"
   },
   {
-    "weight": "4 - 6",
+    "weight_min": 4,
+    "weight_max": 6,
     "id": "pers",
     "name": "Persian",
     "cfa_url": "http://cfa.org/Breeds/BreedsKthruR/Persian.aspx",
@@ -1816,7 +1913,8 @@
     "country_codes": "IR",
     "country_code": "IR",
     "description": "Persians are sweet, gentle cats that can be playful or quiet and laid-back. Great with families and children, they absolutely love to lounge around the house. While they don’t mind a full house or active kids, they’ll usually hide when they need some alone time.",
-    "life_span": "14 - 15",
+    "life_span_min":  14,
+    "life_span_max":  15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Longhair, Persian Longhair, Shiraz, Shirazi",
@@ -1844,7 +1942,8 @@
     "reference_image_id": "-Zfz5z2jK"
   },
   {
-    "weight": "4 - 8",
+    "weight_min": 4,
+    "weight_max": 8,
     "id": "pixi",
     "name": "Pixie-bob",
     "vetstreet_url": "http://www.vetstreet.com/cats/pixiebob",
@@ -1853,7 +1952,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "Companionable and affectionate, the Pixie-bob wants to be an integral part of the family. The Pixie-Bob’s ability to bond with their humans along with their patient personas make them excellent companions for children.",
-    "life_span": "13 - 16",
+    "life_span_min": 13,
+    "life_span_max": 16,
     "indoor": 0,
     "lap": 1,
     "alt_names": "",
@@ -1881,7 +1981,8 @@
     "reference_image_id": "z7fJRNeN6"
   },
   {
-    "weight": "4 - 9",
+    "weight_min": 4,
+    "weight_max": 9,
     "id": "raga",
     "name": "Ragamuffin",
     "cfa_url": "http://cfa.org/Breeds/BreedsKthruR/Ragamuffin.aspx",
@@ -1892,7 +1993,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "The Ragamuffin is calm, even tempered and gets along well with all family members. Changes in routine generally do not upset her. She is an ideal companion for those in apartments, and with children due to her patient nature.",
-    "life_span": "12 - 16",
+    "life_span_min":  12,
+    "life_span_max":  16,
     "indoor": 0,
     "lap": 1,
     "alt_names": "",
@@ -1920,7 +2022,8 @@
     "reference_image_id": "SMuZx-bFM"
   },
   {
-    "weight": "5 - 9",
+    "weight_min": 5,
+    "weight_max": 9,
     "id": "ragd",
     "name": "Ragdoll",
     "cfa_url": "http://cfa.org/Breeds/BreedsKthruR/Ragdoll.aspx",
@@ -1931,7 +2034,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "Ragdolls love their people, greeting them at the door, following them around the house, and leaping into a lap or snuggling in bed whenever given the chance. They are the epitome of a lap cat, enjoy being carried and collapsing into the arms of anyone who holds them.",
-    "life_span": "12 - 17",
+    "life_span_min":  12,
+    "life_span_max":  17,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Rag doll",
@@ -1959,7 +2063,8 @@
     "reference_image_id": "oGefY4YoG"
   },
   {
-    "weight": "2 - 5",
+    "weight_min": 2,
+    "weight_max": 5,
     "id": "rblu",
     "name": "Russian Blue",
     "cfa_url": "http://cfa.org/Breeds/BreedsKthruR/RussianBlue.aspx",
@@ -1970,7 +2075,8 @@
     "country_codes": "RU",
     "country_code": "RU",
     "description": "Russian Blues are very loving and reserved. They do not like noisy households but they do like to play and can be quite active when outdoors. They bond very closely with their owner and are known to be compatible with other pets.",
-    "life_span": "10 - 16",
+    "life_span_min": 10,
+    "life_span_max": 16,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Archangel Blue, Archangel Cat",
@@ -1998,7 +2104,8 @@
     "reference_image_id": "Rhj-JsTLP"
   },
   {
-    "weight": "4 - 11",
+    "weight_min": 4,
+    "weight_max": 11,
     "id": "sava",
     "name": "Savannah",
     "vetstreet_url": "http://www.vetstreet.com/cats/savannah",
@@ -2007,7 +2114,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "Savannah is the feline version of a dog. Actively seeking social interaction, they are given to pouting if left out. Remaining kitten-like through life. Profoundly loyal to immediate family members whilst questioning the presence of strangers. Making excellent companions that are loyal, intelligent and eager to be involved.",
-    "life_span": "17 - 20",
+    "life_span_min": 17,
+    "life_span_max": 20,
     "indoor": 0,
     "alt_names": "",
     "adaptability": 5,
@@ -2034,7 +2142,8 @@
     "reference_image_id": "a8nIYvs6S"
   },
   {
-    "weight": "2 - 5",
+    "weight_min": 2,
+    "weight_max": 5,
     "id": "sfol",
     "name": "Scottish Fold",
     "cfa_url": "http://cfa.org/Breeds/BreedsSthruT/ScottishFold.aspx",
@@ -2045,7 +2154,8 @@
     "country_codes": "GB",
     "country_code": "GB",
     "description": "The Scottish Fold is a sweet, charming breed. She is an easy cat to live with and to care for. She is affectionate and is comfortable with all members of her family. Her tail should be handled gently. Folds are known for sleeping on their backs, and for sitting with their legs stretched out and their paws on their belly. This is called the \"Buddha Position\".",
-    "life_span": "11 - 14",
+    "life_span_min": 11,
+    "life_span_max": 14,
     "indoor": 0,
     "alt_names": "Scot Fold",
     "adaptability": 5,
@@ -2072,7 +2182,8 @@
     "reference_image_id": "o9t0LDcsa"
   },
   {
-    "weight": "3 - 7",
+    "weight_min": 3,
+    "weight_max": 7,
     "id": "srex",
     "name": "Selkirk Rex",
     "cfa_url": "http://cfa.org/Breeds/BreedsSthruT/SelkirkRex.aspx",
@@ -2083,7 +2194,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "The Selkirk Rex is an incredibly patient, loving, and tolerant breed. The Selkirk also has a silly side and is sometimes described as clownish. She loves being a lap cat and will be happy to chat with you in a quiet voice if you talk to her. ",
-    "life_span": "14 - 15",
+    "life_span_min":  14,
+    "life_span_max":  15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Shepherd Cat",
@@ -2111,7 +2223,8 @@
     "reference_image_id": "II9dOZmrw"
   },
   {
-    "weight": "4 - 7",
+    "weight_min": 4,
+    "weight_max": 7,
     "id": "siam",
     "name": "Siamese",
     "cfa_url": "http://cfa.org/Breeds/BreedsSthruT/Siamese.aspx",
@@ -2122,7 +2235,8 @@
     "country_codes": "TH",
     "country_code": "TH",
     "description": "While Siamese cats are extremely fond of their people, they will follow you around and supervise your every move, being talkative and opinionated. They are a demanding and social cat, that do not like being left alone for long periods.",
-    "life_span": "12 - 15",
+    "life_span_min":  12,
+    "life_span_max":  15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Siam, Thai Cat",
@@ -2150,7 +2264,8 @@
     "reference_image_id": "ai6Jps4sx"
   },
   {
-    "weight": "4 - 7",
+    "weight_min": 4,
+    "weight_max": 7,
     "id": "sibe",
     "name": "Siberian",
     "cfa_url": "http://cfa.org/Breeds/BreedsSthruT/Siberian.aspx",
@@ -2161,7 +2276,8 @@
     "country_codes": "RU",
     "country_code": "RU",
     "description": "The Siberians dog like temperament and affection makes the ideal lap cat and will live quite happily indoors. Very agile and powerful, the Siberian cat can easily leap and reach high places, including the tops of refrigerators and even doors. ",
-    "life_span": "12 - 15",
+    "life_span_min":  12,
+    "life_span_max":  15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Moscow Semi-longhair, HairSiberian Forest Cat",
@@ -2189,7 +2305,8 @@
     "reference_image_id": "3bkZAjRh1"
   },
   {
-    "weight": "2 - 4",
+    "weight_min": 2,
+    "weight_max": 4,
     "id": "sing",
     "name": "Singapura",
     "cfa_url": "http://cfa.org/Breeds/BreedsSthruT/Singapura.aspx",
@@ -2200,7 +2317,8 @@
     "country_codes": "SP",
     "country_code": "SP",
     "description": "The Singapura is usually cautious when it comes to meeting new people, but loves attention from his family so much that she sometimes has the reputation of being a pest. This is a highly active, curious and affectionate cat. She may be small, but she knows she’s in charge",
-    "life_span": "12 - 15",
+    "life_span_min":  12,
+    "life_span_max":  15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Drain Cat, Kucinta, Pura",
@@ -2228,7 +2346,8 @@
     "reference_image_id": "Qtncp2nRe"
   },
   {
-    "weight": "3 - 5",
+    "weight_min": 3,
+    "weight_max": 5,
     "id": "snow",
     "name": "Snowshoe",
     "temperament": "Affectionate, Social, Intelligent, Sweet-tempered",
@@ -2236,7 +2355,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "The Snowshoe is a vibrant, energetic, affectionate and intelligent cat. They love being around people which makes them ideal for families, and becomes unhappy when left alone for long periods of time. Usually attaching themselves to one person, they do whatever they can to get your attention.",
-    "life_span": "14 - 19",
+    "life_span_min": 14,
+    "life_span_max": 19,
     "indoor": 0,
     "lap": 1,
     "alt_names": "",
@@ -2264,7 +2384,8 @@
     "reference_image_id": "MK-sYESvO"
   },
   {
-    "weight": "3 - 5",
+    "weight_min": 3,
+    "weight_max": 5,
     "id": "soma",
     "name": "Somali",
     "cfa_url": "http://cfa.org/Breeds/BreedsSthruT/Somali.aspx",
@@ -2275,7 +2396,8 @@
     "country_codes": "SO",
     "country_code": "SO",
     "description": "The Somali lives life to the fullest. He climbs higher, jumps farther, plays harder. Nothing escapes the notice of this highly intelligent and inquisitive cat. Somalis love the company of humans and other animals.",
-    "life_span": "12 - 16",
+    "life_span_min":  12,
+    "life_span_max":  16,
     "indoor": 0,
     "alt_names": "Fox Cat, Long-Haired Abyssinian",
     "adaptability": 5,
@@ -2302,7 +2424,8 @@
     "reference_image_id": "EPF2ejNS0"
   },
   {
-    "weight": "3 - 5",
+    "weight_min": 3,
+    "weight_max": 5,
     "id": "sphy",
     "name": "Sphynx",
     "cfa_url": "http://cfa.org/Breeds/BreedsSthruT/Sphynx.aspx",
@@ -2313,7 +2436,8 @@
     "country_codes": "CA",
     "country_code": "CA",
     "description": "The Sphynx is an intelligent, inquisitive, extremely friendly people-oriented breed. Sphynx commonly greet their owners  at the front door, with obvious excitement and happiness. She has an unexpected sense of humor that is often at odds with her dour expression.",
-    "life_span": "12 - 14",
+    "life_span_min":  12,
+    "life_span_max":  14,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Canadian Hairless, Canadian Sphynx",
@@ -2341,7 +2465,8 @@
     "reference_image_id": "BDb8ZXb1v"
   },
   {
-    "weight": "3 - 5",
+    "weight_min": 3,
+    "weight_max": 5,
     "id": "tonk",
     "name": "Tonkinese",
     "cfa_url": "http://cfa.org/Breeds/BreedsSthruT/Tonkinese.aspx",
@@ -2352,7 +2477,8 @@
     "country_codes": "CA",
     "country_code": "CA",
     "description": "Intelligent and generous with their affection, a Tonkinese will supervise all activities with curiosity. Loving, social, active, playful, yet content to be a lap cat",
-    "life_span": "14 - 16",
+    "life_span_min":  14,
+    "life_span_max":  16,
     "indoor": 0,
     "lap": 1,
     "alt_names": "Tonk",
@@ -2380,7 +2506,8 @@
     "reference_image_id": "KBroiVNCM"
   },
   {
-    "weight": "3 - 7",
+    "weight_min": 3,
+    "weight_max": 7,
     "id": "toyg",
     "name": "Toyger",
     "vetstreet_url": "http://www.vetstreet.com/cats/toyger",
@@ -2389,7 +2516,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "The Toyger has a sweet, calm personality and is generally friendly. He's outgoing enough to walk on a leash, energetic enough to play fetch and other interactive games, and confident enough to get along with other cats and friendly dogs.",
-    "life_span": "12 - 15",
+    "life_span_min":  12,
+    "life_span_max":  15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "",
@@ -2417,7 +2545,8 @@
     "reference_image_id": "O3F3_S1XN"
   },
   {
-    "weight": "2 - 5",
+    "weight_min": 2,
+    "weight_max": 5,
     "id": "tang",
     "name": "Turkish Angora",
     "cfa_url": "http://cfa.org/Breeds/BreedsSthruT/TurkishAngora.aspx",
@@ -2428,7 +2557,8 @@
     "country_codes": "TR",
     "country_code": "TR",
     "description": "This is a smart and intelligent cat which bonds well with humans. With its affectionate and playful personality the Angora is a top choice for families. The Angora gets along great with other pets in the home, but it will make clear who is in charge, and who the house belongs to",
-    "life_span": "15 - 18",
+    "life_span_min": 15,
+    "life_span_max": 18,
     "indoor": 0,
     "alt_names": "Ankara",
     "adaptability": 5,
@@ -2455,7 +2585,8 @@
     "reference_image_id": "7CGV6WVXq"
   },
   {
-    "weight": "3 - 9",
+    "weight_min": 3,
+    "weight_max": 9,
     "id": "tvan",
     "name": "Turkish Van",
     "cfa_url": "http://cfa.org/Breeds/BreedsSthruT/TurkishVan.aspx",
@@ -2466,7 +2597,8 @@
     "country_codes": "TR",
     "country_code": "TR",
     "description": "While the Turkish Van loves to jump and climb, play with toys, retrieve and play chase, she is is big and ungainly; this is one cat who doesn’t always land on his feet. While not much of a lap cat, the Van will be happy to cuddle next to you and sleep in your bed. ",
-    "life_span": "12 - 17",
+    "life_span_min":  12,
+    "life_span_max":  17,
     "indoor": 0,
     "alt_names": "Turkish Cat, Swimming cat",
     "adaptability": 5,
@@ -2493,7 +2625,8 @@
     "reference_image_id": "sxIXJax6h"
   },
   {
-    "weight": "5 - 8",
+    "weight_min": 5,
+    "weight_max": 8,
     "id": "ycho",
     "name": "York Chocolate",
     "temperament": "Playful, Social, Intelligent, Curious, Friendly",
@@ -2501,7 +2634,8 @@
     "country_codes": "US",
     "country_code": "US",
     "description": "York Chocolate cats are known to be true lap cats with a sweet temperament. They love to be cuddled and petted. Their curious nature makes them follow you all the time and participate in almost everything you do, even if it's related to water: unlike many other cats, York Chocolates love it.",
-    "life_span": "13 - 15",
+    "life_span_min": 13,
+    "life_span_max": 15,
     "indoor": 0,
     "lap": 1,
     "alt_names": "York",
