@@ -5,7 +5,8 @@ const initialState = {
     filter_bigger_number:[],
     filter_temperament:[],
     filter_country:[],
-    filter_country_codes:[]
+    filter_country_codes:[],
+    search:""
 }
 
 const filterSlice = createSlice({
@@ -20,9 +21,13 @@ const filterSlice = createSlice({
             state.filter_country = action.payload.filter_country;
             state.filter_country_codes = action.payload.filter_country_codes;
         },
+        setSearch: (state, action) => {
+            console.log(action.payload)
+            state.search = action.payload;
+        }
 
     }
 })
 
-export const {updateFilter, increment} = filterSlice.actions;
+export const {updateFilter, setSearch} = filterSlice.actions;
 export default filterSlice.reducer;

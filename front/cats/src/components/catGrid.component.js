@@ -18,26 +18,22 @@ const CatGridComponent = () => {
     const [isDataLoading, setIsDataLoading] = useState(true);
 
     const fetchData = async () => {
-        try {
-            const breedsResponse = await axios.get("http://localhost:1240/api/breeds");
-            console.log("Breeds data:", breedsResponse);
-            setCatData(breedsResponse.data);
+        axios.get("http://localhost:1240/api/breeds", {
+            headers: {
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+            }
+        })
+            .then(res => {
+                console.log(res);
+                setCatData(res.data)
+                setIsDataLoading(true)
+            })
 
-            const usersResponse = await axios.get("http://localhost:1240/api/users");
-            console.log("Users data:", usersResponse);
-            setUsersData(usersResponse.data);
-
-            const eventsResponse = await axios.get("http://localhost:1240/api/events");
-            console.log("Events data:", eventsResponse);
-            setEventsData(eventsResponse.data);
-
-            setIsDataLoading(true);
-
-        } catch (err) {
-            console.error("Error fetching data:", err);
-        }
+            .catch(err => {
+                console.error("error fetching data", err)
+            });
     }
-
     useEffect(() => {
         fetchData();
     }, []);
