@@ -13,10 +13,17 @@ const CatGridComponent = () => {
     let filter_data = useSelector(state => state.filter);
 
     const [catData, setCatData] = useState(null);
-    const [isDataLoading, setIsDataLoading] = useState(false);
+    const [usersData, setUsersData] = useState(null);
+    const [eventsData, setEventsData] = useState(null);
+    const [isDataLoading, setIsDataLoading] = useState(true);
+
     const fetchData = async () => {
-        axios.get("https://api.thecatapi.com/v1/breeds?limit=100",
-            catOptions)
+        axios.get("http://localhost:1240/api/breeds", {
+            headers: {
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+            }
+        })
             .then(res => {
                 console.log(res);
                 setCatData(res.data)
@@ -40,7 +47,7 @@ const CatGridComponent = () => {
         return (
             <div>
                 {JSON.stringify(filter_data)}
-                {data}
+                {/*{data}*/}
             </div>
         )
     } else {

@@ -19,15 +19,15 @@ services:
     networks:
       - app-network
 
-  client:
-    build: ./front
-    container_name: client_frontend
-    ports:
-      - '3000:3000'
-    stdin_open: true
-    tty: true
-    networks:
-      - app-network
+  # client:
+  #    build: ./front
+  #    container_name: client_frontend
+  #    ports:
+  #      - '3000:3000'
+  #    stdin_open: true
+  #    tty: true
+  #    networks:
+  #      - app-network
 
 networks:
   app-network:
