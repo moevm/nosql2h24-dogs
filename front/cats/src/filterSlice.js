@@ -2,8 +2,10 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     filter_number:[],
-    filter_string:[],
-    filter_list:[]
+    filter_bigger_number:[],
+    filter_temperament:[],
+    filter_country:[],
+    filter_country_codes:[]
 }
 
 const filterSlice = createSlice({
@@ -13,8 +15,10 @@ const filterSlice = createSlice({
         updateFilter: (state, action) => {
             console.log(action.payload)
             state.filter_number = action.payload.filter_number;
-            state.filter_string = action.payload.filter_string;
-            state.filter_list = action.payload.filter_list;
+            state.filter_bigger_number = action.payload.filter_bigger_number;
+            state.filter_temperament = action.payload.filter_temperament;
+            state.filter_country = action.payload.filter_country;
+            state.filter_country_codes = action.payload.filter_country_codes;
         },
 
     }

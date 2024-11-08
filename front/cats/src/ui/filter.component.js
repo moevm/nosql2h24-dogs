@@ -9,52 +9,32 @@ export const FilterComponent = () => {
     let dispatch = useDispatch();
 
     const filter_data_numbers = [
-        {id: "1", value: "indoorMin", from: 0, to: 0},
-        {id: "2", value: "indoorMax", from: 0, to: 0},
-        {id: "3", value: "adaptabilityMin", from: 0, to: 0},
-        {id: "4", value: "adaptabilityMax", from: 0, to: 0},
-        {id: "5", value: "affectionLevelMin", from: 0, to: 0},
-        {id: "6", value: "affectionLevelMax", from: 0, to: 0},
-        {id: "7", value: "childFriendlyMin", from: 0, to: 0},
-        {id: "8", value: "childFriendlyMax", from: 0, to: 0},
-        {id: "9", value: "dogFriendlyMin", from: 0, to: 0},
-        {id: "10", value: "dogFriendlyMax", from: 0, to: 0},
-        {id: "11", value: "energyLevelMin", from: 0, to: 0},
-        {id: "12", value: "energyLevelMax", from: 0, to: 0},
-        {id: "13", value: "groomingMin", from: 0, to: 0},
-        {id: "14", value: "groomingMax", from: 0, to: 0},
-        {id: "15", value: "healthIssuesMin", from: 0, to: 0},
-        {id: "16", value: "healthIssuesMax", from: 0, to: 0},
-        {id: "17", value: "intelligenceMin", from: 0, to: 0},
-        {id: "18", value: "intelligenceMax", from: 0, to: 0},
-        {id: "19", value: "sheddingLevelMin", from: 0, to: 0},
-        {id: "20", value: "sheddingLevelMax", from: 0, to: 0},
-        {id: "21", value: "socialNeedsMin", from: 0, to: 0},
-        {id: "22", value: "socialNeedsMax", from: 0, to: 0},
-        {id: "23", value: "strangerFriendlyMin", from: 0, to: 0},
-        {id: "24", value: "strangerFriendlyMax", from: 0, to: 0},
-        {id: "25", value: "vocalisationMin", from: 0, to: 0},
-        {id: "26", value: "vocalisationMax", from: 0, to: 0},
-        {id: "27", value: "experimentalMin", from: 0, to: 0},
-        {id: "28", value: "experimentalMax", from: 0, to: 0},
-        {id: "29", value: "hairlessMin", from: 0, to: 0},
-        {id: "30", value: "hairlessMax", from: 0, to: 0},
-        {id: "31", value: "naturalMin", from: 0, to: 0},
-        {id: "32", value: "naturalMax", from: 0, to: 0},
-        {id: "33", value: "rareMin", from: 0, to: 0},
-        {id: "34", value: "rareMax", from: 0, to: 0},
-        {id: "35", value: "rexMin", from: 0, to: 0},
-        {id: "36", value: "rexMax", from: 0, to: 0},
-        {id: "37", value: "suppressedTailMin", from: 0, to: 0},
-        {id: "38", value: "suppressedTailMax", from: 0, to: 0},
-        {id: "39", value: "shortLegsMin", from: 0, to: 0},
-        {id: "40", value: "shortLegsMax", from: 0, to: 0},
-        {id: "41", value: "hypoallergenicMin", from: 0, to: 0},
-        {id: "42", value: "hypoallergenicMax", from: 0, to: 0},
-        {id: "43", value: "weightMin", from: 0, to: 0},
-        {id: "44", value: "weightMax", from: 0, to: 0},
-        {id: "45", value: "lifeSpanMin", from: 0, to: 0},
-        {id: "46", value: "lifeSpanMax", from: 0, to: 0}
+        {id: "1", value: "adaptability", from: 0, to: 0},
+        {id: "2", value: "affection_level", from: 0, to: 0},
+        {id: "3", value: "childFriendly", from: 0, to: 0},
+        {id: "4", value: "dogFriendly", from: 0, to: 0},
+        {id: "5", value: "energyLevel", from: 0, to: 0},
+        {id: "6", value: "grooming", from: 0, to: 0},
+        {id: "7", value: "healthIssues", from: 0, to: 0},
+        {id: "8", value: "intelligence", from: 0, to: 0},
+        {id: "9", value: "sheddingLevel", from: 0, to: 0},
+        {id: "10", value: "socialNeeds", from: 0, to: 0},
+        {id: "11", value: "strangerFriendly", from: 0, to: 0},
+        {id: "12", value: "vocalisation", from: 0, to: 0},
+        {id: "13", value: "hairless", from: 0, to: 0},
+        {id: "14", value: "experimental", from: 0, to: 0},
+        {id: "15", value: "natural", from: 0, to: 0},
+        {id: "16", value: "rare", from: 0, to: 0},
+        {id: "17", value: "rex", from: 0, to: 0},
+        {id: "18", value: "suppressedTail", from: 0, to: 0},
+        {id: "19", value: "shortLegs", from: 0, to: 0},
+        {id: "20", value: "hypoallergenic", from: 0, to: 0},
+        {id: "21", value: "indoor", from: 0, to: 0},
+        {id: "22", value: "lap", from: 0, to: 0},
+    ]
+    const filter_data_string_numbers=[
+        {id: "1", value: "weight", from: 0, to: 0},
+        {id: "2", value: "lifeSpin", from: 0, to: 0},
     ]
     
     const filter_data_country_codes = [
@@ -154,27 +134,35 @@ export const FilterComponent = () => {
     ]
 
     const [checkedNumbers, setCheckedNumbers] = useState([])
-    const [checkedString, setCheckedString] = useState([])
+    const [checkedStringNumbers, setCheckedStringNumbers] = useState([])
     const [isTemperamentChecked, setIsTemperamentChecked] = useState(false)
     const [isCountryCodesChecked, setIsCountryCodesChecked] = useState(false)
+    const [isCountryChecked, setIsCountryChecked] = useState(false)
     const [checkedTemperament, setCheckedTemperament] = useState([])
+    const [checkedCountry, setCheckedCountry] = useState([])
+    const [checkedCountryCodes, setCheckedCountryCodes] = useState([])
     return (
         <div>
             <Button onClick={() => {
 
                 const filter_data = {
                     filter_number: JSON.parse(JSON.stringify(checkedNumbers)),
-                    filter_string: JSON.parse(JSON.stringify(checkedString)),
-                    filter_list: [],
+                    filter_bigger_number:JSON.parse(JSON.stringify(checkedStringNumbers)),
+                    filter_temperament:[],
+                    filter_country:[],
+                    filter_country_codes:[]
                 }
                 if (isTemperamentChecked)
-                    filter_data.filter_list = JSON.parse(JSON.stringify(checkedTemperament))
-
+                    filter_data.filter_temperament = JSON.parse(JSON.stringify(checkedTemperament))
+                if (isCountryChecked)
+                    filter_data.filter_country = JSON.parse(JSON.stringify(checkedCountry))
+                if (isCountryCodesChecked)
+                    filter_data.filter_country_codes = JSON.parse(JSON.stringify(checkedCountryCodes))
                 dispatch(updateFilter(filter_data))
             }}> Filter Data</Button>
             <Button onClick={() => {
                 setCheckedNumbers([])
-                setCheckedString([])
+                //setCheckedString([])
                 window.location.reload();
             }}> сброс </Button>
             {filter_data_numbers.map((item) => {
@@ -249,35 +237,60 @@ export const FilterComponent = () => {
                         <input type="checkbox"
                                value={item.id}
                                id={item.id}
+                               style={{marginLeft: 30}}
                                onChange={(e) => {
                                    const isChecked = e.target.checked
                                    const value = filter_data_country_codes[Number(e.target.value) - 1]
 
 
                                    if (isChecked) {
-                                       setCheckedString([...checkedString, value])
+                                       setCheckedCountryCodes([...checkedCountryCodes, value])
 
                                    } else {
-                                       const filtered = checkedString.filter(item => item.id !== value.id);
-                                       setCheckedString(filtered)
+                                       const filtered = checkedCountryCodes.filter(item => item.id !== value.id);
+                                       setCheckedCountryCodes(filtered)
                                    }
 
 
                                }}
                         />
                         <label htmlFor={item.id}>{item.value}</label>
+                    </div>
+                )
+            })}
+            <input type="checkbox"
+                   value="temp"
+                   id="temp"
+                   onChange={(e) => {
+                       const isChecked = e.target.checked
+                       setIsCountryChecked(isChecked)
+                   }}
+            />
+            <label htmlFor="temp">country</label>
+            {filter_data_country.map((item) => {
+                return (
+                    <div key={item.id}>
+                        <input type="checkbox"
+                               value={item.id}
+                               id={item.id}
+                               style={{marginLeft: 30}}
+                               onChange={(e) => {
+                                   const isChecked = e.target.checked
+                                   const value = filter_data_country[Number(e.target.value) - 1]
 
 
-                        <input type="string" onChange={(e) => {
+                                   if (isChecked) {
+                                       setCheckedCountry([...checkedCountry, value])
 
-                            const index = checkedString.findIndex(itemm => itemm.id === item.id);
-                            if (index !== -1) {
-                                checkedString[index].string = e.target.value;
-                            }
-                            filter_data_country_codes[Number(item.id) - 1].string = e.target.value;
+                                   } else {
+                                       const filtered = checkedCountry.filter(item => item.id !== value.id);
+                                       setCheckedCountry(filtered)
+                                   }
 
-                        }}/>
 
+                               }}
+                        />
+                        <label htmlFor={item.id}>{item.value}</label>
                     </div>
                 )
             })}

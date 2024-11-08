@@ -15,7 +15,7 @@ const CatGridComponent = () => {
     const [catData, setCatData] = useState(null);
     const [usersData, setUsersData] = useState(null);
     const [eventsData, setEventsData] = useState(null);
-    const [isDataLoading, setIsDataLoading] = useState(false);
+    const [isDataLoading, setIsDataLoading] = useState(true);
 
     const fetchData = async () => {
         try {
@@ -51,7 +51,7 @@ const CatGridComponent = () => {
         return (
             <div>
                 {JSON.stringify(filter_data)}
-                {data}
+                {/*{data}*/}
             </div>
         )
     } else {
