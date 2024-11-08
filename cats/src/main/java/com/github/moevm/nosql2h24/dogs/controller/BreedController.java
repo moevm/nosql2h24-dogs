@@ -1,9 +1,10 @@
 package com.github.moevm.nosql2h24.dogs.controller;
 
+import com.github.moevm.nosql2h24.dogs.controller.model.request.Filter;
 import com.github.moevm.nosql2h24.dogs.database.document.Breed;
 import com.github.moevm.nosql2h24.dogs.database.repository.BreedRepository;
 import com.github.moevm.nosql2h24.dogs.dto.BreedInfo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.github.moevm.nosql2h24.dogs.service.FilterBreedService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,8 +13,13 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/breeds")
 public class BreedController {
-    @Autowired
-    private BreedRepository breedRepository;
+    private final BreedRepository breedRepository;
+    private final FilterBreedService filterBreedService;
+
+    public BreedController(BreedRepository breedRepository, FilterBreedService filterBreedService) {
+        this.breedRepository = breedRepository;
+        this.filterBreedService = filterBreedService;
+    }
 
     @GetMapping("")
     public List<Breed> getAllBreeds() {
@@ -37,6 +43,62 @@ public class BreedController {
             return new BreedInfo(breed);
         }
         return null;
+    }
+
+
+    @PostMapping("bodySearch")
+    public List<Breed> bodySearchBreed(@RequestBody Filter filter) {
+        String partName = filter.getPartName();
+        Integer indoorMin = filterBreedService.findMinValueByName(filter, "indoor");
+        Integer indoorMax = filterBreedService.findMaxValueByName(filter, "indoor");
+        Integer adaptabilityMin = filterBreedService.findMinValueByName(filter, "adaptability");
+        Integer adaptabilityMax = filterBreedService.findMaxValueByName(filter, "adaptability");
+        Integer affectionLevelMin = filterBreedService.findMinValueByName(filter, "affectionLevel");
+        Integer affectionLevelMax = filterBreedService.findMaxValueByName(filter, "affectionLevel");
+        Integer childFriendlyMin = filterBreedService.findMinValueByName(filter, "childFriendly");
+        Integer childFriendlyMax = filterBreedService.findMaxValueByName(filter, "childFriendly");
+        Integer dogFriendlyMin = filterBreedService.findMinValueByName(filter, "dogFriendly");
+        Integer dogFriendlyMax = filterBreedService.findMaxValueByName(filter, "dogFriendly");
+        Integer energyLevelMin = filterBreedService.findMinValueByName(filter, "energyLevel");
+        Integer energyLevelMax = filterBreedService.findMaxValueByName(filter, "energyLevel");
+        Integer groomingMin = filterBreedService.findMinValueByName(filter, "grooming");
+        Integer groomingMax = filterBreedService.findMaxValueByName(filter, "grooming");
+        Integer healthIssuesMin = filterBreedService.findMinValueByName(filter, "healthIssues");
+        Integer healthIssuesMax = filterBreedService.findMaxValueByName(filter, "healthIssues");
+        Integer intelligenceMin = filterBreedService.findMinValueByName(filter, "intelligence");
+        Integer intelligenceMax = filterBreedService.findMaxValueByName(filter, "intelligence");
+        Integer sheddingLevelMin = filterBreedService.findMinValueByName(filter, "sheddingLevel");
+        Integer sheddingLevelMax = filterBreedService.findMaxValueByName(filter, "sheddingLevel");
+        Integer socialNeedsMin = filterBreedService.findMinValueByName(filter, "socialNeeds");
+        Integer socialNeedsMax = filterBreedService.findMaxValueByName(filter, "socialNeeds");
+        Integer strangerFriendlyMin = filterBreedService.findMinValueByName(filter, "strangerFriendly");
+        Integer strangerFriendlyMax = filterBreedService.findMaxValueByName(filter, "strangerFriendly");
+        Integer vocalisationMin = filterBreedService.findMinValueByName(filter, "vocalisation");
+        Integer vocalisationMax = filterBreedService.findMaxValueByName(filter, "vocalisation");
+        Integer experimentalMin = filterBreedService.findMinValueByName(filter, "experimental");
+        Integer experimentalMax = filterBreedService.findMaxValueByName(filter, "experimental");
+        Integer hairlessMin = filterBreedService.findMinValueByName(filter, "hairless");
+        Integer hairlessMax = filterBreedService.findMaxValueByName(filter, "hairless");
+        Integer naturalMin = filterBreedService.findMinValueByName(filter, "natural");
+        Integer naturalMax = filterBreedService.findMaxValueByName(filter, "natural");
+        Integer rareMin = filterBreedService.findMinValueByName(filter, "rare");
+        Integer rareMax = filterBreedService.findMaxValueByName(filter, "rare");
+        Integer rexMin = filterBreedService.findMinValueByName(filter, "rex");
+        Integer rexMax = filterBreedService.findMaxValueByName(filter, "rex");
+        Integer suppressedTailMin = filterBreedService.findMinValueByName(filter, "suppressedTail");
+        Integer suppressedTailMax = filterBreedService.findMaxValueByName(filter, "suppressedTail");
+        Integer shortLegsMin = filterBreedService.findMinValueByName(filter, "shortLegs");
+        Integer shortLegsMax = filterBreedService.findMaxValueByName(filter, "shortLegs");
+        Integer hypoallergenicMin = filterBreedService.findMinValueByName(filter, "hypoallergenic");
+        Integer hypoallergenicMax = filterBreedService.findMaxValueByName(filter, "hypoallergenic");
+        List<String> countryCode = filter.getFilterCountryCodes() == null ? null : filter.getFilterCountryCodes().stream().map(Filter.IdValue::getValue).toList();
+        List<String> origin = filter.getFilterCountry() == null ? null : filter.getFilterCountry().stream().map(Filter.IdValue::getValue).toList();
+        List<String> temperament = filter.getFilterTemperament() == null ? null : filter.getFilterTemperament().stream().map(Filter.IdValue::getValue).toList();
+        Integer weightMin = filterBreedService.findMinBigValueByName(filter, "weight");
+        Integer weightMax = filterBreedService.findMaxBigValueByName(filter, "weight");
+        Integer lifeSpanMin = filterBreedService.findMinBigValueByName(filter, "lifeSpan");
+        Integer lifeSpanMax = filterBreedService.findMaxBigValueByName(filter, "lifeSpan");
+        return searchBreeds(partName, indoorMin, indoorMax, adaptabilityMin, adaptabilityMax, affectionLevelMin, affectionLevelMax, childFriendlyMin, childFriendlyMax, dogFriendlyMin, dogFriendlyMax, energyLevelMin, energyLevelMax, groomingMin, groomingMax, healthIssuesMin, healthIssuesMax, intelligenceMin, intelligenceMax, sheddingLevelMin, sheddingLevelMax, socialNeedsMin, socialNeedsMax, strangerFriendlyMin, strangerFriendlyMax, vocalisationMin, vocalisationMax, experimentalMin, experimentalMax, hairlessMin, hairlessMax, naturalMin, naturalMax, rareMin, rareMax, rexMin, rexMax, suppressedTailMin, suppressedTailMax, shortLegsMin, shortLegsMax, hypoallergenicMin, hypoallergenicMax, countryCode, origin, temperament, weightMin, weightMax, lifeSpanMin, lifeSpanMax);
     }
 
     @GetMapping("/search")

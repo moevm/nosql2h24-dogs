@@ -17,9 +17,9 @@ public class Nosql2h24DogsApplication {
 
         BreedRepository breedRepository = app.getBean(BreedRepository.class);
         List<Breed> allBreeds = breedRepository.findAll();
-        HashSet<String> allTemperaments = new HashSet<>();
-        allBreeds.forEach(breed -> allTemperaments.addAll(breed.getTemperament()));
-        System.out.println(allTemperaments);
+        HashSet<String> allOrigins = new HashSet<>();
+        allBreeds.forEach(breed -> allOrigins.add(breed.getCountryCodes()));
+        System.out.println(allOrigins);
 
     }
 }
