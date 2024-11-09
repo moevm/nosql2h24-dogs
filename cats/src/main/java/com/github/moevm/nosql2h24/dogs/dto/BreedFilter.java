@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class BreedFilter {
-
     private Integer indoor;
     private Integer adaptability;
     private Integer affectionLevel;
