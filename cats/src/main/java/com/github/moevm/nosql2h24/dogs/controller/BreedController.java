@@ -91,9 +91,9 @@ public class BreedController {
         Integer shortLegsMax = filterBreedService.findMaxValueByName(filter, "shortLegs");
         Integer hypoallergenicMin = filterBreedService.findMinValueByName(filter, "hypoallergenic");
         Integer hypoallergenicMax = filterBreedService.findMaxValueByName(filter, "hypoallergenic");
-        List<String> countryCode = filter.getFilterCountryCodes() == null ? null : filter.getFilterCountryCodes().stream().map(Filter.IdValue::getValue).toList();
-        List<String> origin = filter.getFilterCountry() == null ? null : filter.getFilterCountry().stream().map(Filter.IdValue::getValue).toList();
-        List<String> temperament = filter.getFilterTemperament() == null ? null : filter.getFilterTemperament().stream().map(Filter.IdValue::getValue).toList();
+        List<String> countryCode = filter.getFilterCountryCodes() == null || filter.getFilterCountryCodes().isEmpty() ? null : filter.getFilterCountryCodes().stream().map(Filter.IdValue::getValue).toList();
+        List<String> origin = filter.getFilterCountry() == null || filter.getFilterCountry().isEmpty() ? null : filter.getFilterCountry().stream().map(Filter.IdValue::getValue).toList();
+        List<String> temperament = filter.getFilterTemperament() == null || filter.getFilterTemperament().isEmpty() ? null : filter.getFilterTemperament().stream().map(Filter.IdValue::getValue).toList();
         Integer weightMin = filterBreedService.findMinBigValueByName(filter, "weight");
         Integer weightMax = filterBreedService.findMaxBigValueByName(filter, "weight");
         Integer lifeSpanMin = filterBreedService.findMinBigValueByName(filter, "lifeSpan");

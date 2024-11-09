@@ -20,7 +20,7 @@ public class Filter {
     private List<IdValue> filterTemperament;
     @JsonProperty("filter_country")
     private List<IdValue> filterCountry;
-    @JsonProperty("filter_countryCodes")
+    @JsonProperty("filter_country_codes")
     private List<IdValue> filterCountryCodes;
 
     @Setter
