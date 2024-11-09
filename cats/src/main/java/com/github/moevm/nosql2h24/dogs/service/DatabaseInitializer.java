@@ -47,9 +47,9 @@ public class DatabaseInitializer {
     public void initUsers() {
         if (userRepository.count() == 0) {
             // добавляем пользователей
-            userRepository.saveUser(new UserDto("Sasha", 21, "sasha", "image1"));
-            userRepository.saveAdmin(new UserDto("Margo", 21, "margo", "image2"));
-            userRepository.saveAdmin(new UserDto("Karim", 21, "karim", "image3"));
+            userRepository.saveUser(new UserDto("Sasha", 21, "111111", "image1"));
+            userRepository.saveAdmin(new UserDto("Margo", 21, "222222", "image2"));
+            userRepository.saveAdmin(new UserDto("Karim", 21, "222222", "image3"));
         }
     }
 
