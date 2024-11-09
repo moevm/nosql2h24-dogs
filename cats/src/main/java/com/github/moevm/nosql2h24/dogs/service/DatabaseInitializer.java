@@ -3,6 +3,7 @@ package com.github.moevm.nosql2h24.dogs.service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.moevm.nosql2h24.dogs.database.document.Breed;
+import com.github.moevm.nosql2h24.dogs.database.document.Comment;
 import com.github.moevm.nosql2h24.dogs.database.document.Event;
 import com.github.moevm.nosql2h24.dogs.database.document.User;
 import com.github.moevm.nosql2h24.dogs.database.repository.BreedRepository;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -41,6 +43,7 @@ public class DatabaseInitializer {
         initBreeds();
         initEvents();
     }
+
     public void initUsers() {
         if (userRepository.count() == 0) {
             // добавляем пользователей
@@ -51,13 +54,18 @@ public class DatabaseInitializer {
     }
 
     public void initBreeds() {
+        breedRepository.deleteAll();
         if (breedRepository.count() == 0) {
             try {
                 ObjectMapper mapper = new ObjectMapper();
                 List<Breed> breeds = mapper.readValue(BREEDS_JSON.toFile(), new TypeReference<>() {
                 });
+                User user = userRepository.findAll().get(0);
+                Breed breed = breeds.get(0);
+                breed.setComments(List.of(Comment.builder().author(user.getName()).date(new Date()).text("My favorite!").likesUsersId(new HashSet<>() {{
+                    add(user.getName());
+                }}).build()));
                 breedRepository.saveAll(breeds);
-
             } catch (IOException e) {
                 throw new RuntimeException("Ошибка чтения файла пород", e);
             }
@@ -66,7 +74,7 @@ public class DatabaseInitializer {
 
     public void initEvents() {
         if (eventRepository.count() == 0) {
-            if(userRepository.count() == 0 || breedRepository.count() == 0) {
+            if (userRepository.count() == 0 || breedRepository.count() == 0) {
                 return;
             }
             User user = userRepository.findAll().get(0);

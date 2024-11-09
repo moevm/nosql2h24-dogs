@@ -2,6 +2,7 @@ package com.github.moevm.nosql2h24.dogs;
 
 import com.github.moevm.nosql2h24.dogs.database.document.Breed;
 import com.github.moevm.nosql2h24.dogs.database.repository.BreedRepository;
+import com.github.moevm.nosql2h24.dogs.database.repository.EventRepository;
 import com.github.moevm.nosql2h24.dogs.database.repository.UserRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,6 +21,8 @@ public class Nosql2h24DogsApplication {
         HashSet<String> allOrigins = new HashSet<>();
         allBreeds.forEach(breed -> allOrigins.add(breed.getCountryCodes()));
         System.out.println(allOrigins);
+        EventRepository eventRepository = app.getBean(EventRepository.class);
+
 
     }
 }
