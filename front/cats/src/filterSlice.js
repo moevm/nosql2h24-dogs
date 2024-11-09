@@ -6,7 +6,7 @@ const initialState = {
     filter_temperament:[],
     filter_country:[],
     filter_country_codes:[],
-    search:""
+    part_name:""
 }
 
 const filterSlice = createSlice({
@@ -23,7 +23,7 @@ const filterSlice = createSlice({
         },
         setSearch: (state, action) => {
             console.log(action.payload)
-            state.search = action.payload;
+            state.part_name = action.payload;
         }
 
     }

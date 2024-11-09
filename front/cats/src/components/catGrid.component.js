@@ -15,17 +15,25 @@ const CatGridComponent = () => {
     const [catData, setCatData] = useState(null);
     const [usersData, setUsersData] = useState(null);
     const [eventsData, setEventsData] = useState(null);
-    const [isDataLoading, setIsDataLoading] = useState(true);
+    const [isDataLoading, setIsDataLoading] = useState(false);
 
     const fetchData = async () => {
-        axios.get("http://localhost:1240/api/breeds", {
+
+        axios.post("http://localhost:1240/api/breeds/bodySearch", {
             headers: {
                 'Access-Control-Allow-Origin' : '*',
                 'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-            }
+            },
+            part_name: filter_data.part_name,
+            filter_number: filter_data.filter_number,
+            filter_bigger_number:filter_data.filter_bigger_number,
+            filter_temperament:filter_data.filter_temperament,
+            filter_country: filter_data.filter_country,
+            filter_country_codes:filter_data.filter_country_codes,
+            data: filter_data
         })
             .then(res => {
-                console.log(res);
+                console.log(res.data);
                 setCatData(res.data)
                 setIsDataLoading(true)
             })
@@ -35,8 +43,10 @@ const CatGridComponent = () => {
             });
     }
     useEffect(() => {
+        setIsDataLoading(false)
+        //alert(JSON.stringify(filter_data));
         fetchData();
-    }, []);
+    }, [filter_data]);
     const data = catData?.map(cat =>
         <div>
             <CardComponent name={cat.name} img={cat.reference_image_id}
@@ -46,8 +56,8 @@ const CatGridComponent = () => {
     if (isDataLoading) {
         return (
             <div>
-                {JSON.stringify(filter_data)}
-                {/*{data}*/}
+                {/*{JSON.stringify(filter_data)}*/}
+                {data}
             </div>
         )
     } else {
