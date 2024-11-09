@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Data
 public class Filter {
-    @JsonProperty("partName")
+    @JsonProperty("part_name")
     private String partName;
     @JsonProperty("filter_number")
     private List<FilterNumber> filterNumber;
