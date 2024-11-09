@@ -62,7 +62,7 @@ public class DatabaseInitializer {
                 });
                 User user = userRepository.findAll().get(0);
                 Breed breed = breeds.get(0);
-                breed.setComments(List.of(Comment.builder().author(user.getName()).date(new Date()).text("My favorite!").likesUsersId(new HashSet<>() {{
+                breed.setComments(List.of(Comment.builder().id("1").author(user.getName()).date(new Date()).text("My favorite!").likesUsersId(new HashSet<>() {{
                     add(user.getName());
                 }}).build()));
                 breedRepository.saveAll(breeds);
