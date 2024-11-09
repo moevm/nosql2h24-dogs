@@ -5,6 +5,7 @@ import com.github.moevm.nosql2h24.dogs.database.document.Breed;
 import com.github.moevm.nosql2h24.dogs.database.repository.BreedRepository;
 import com.github.moevm.nosql2h24.dogs.dto.BreedInfo;
 import com.github.moevm.nosql2h24.dogs.service.FilterBreedService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/breeds")
+@Slf4j
 public class BreedController {
     private final BreedRepository breedRepository;
     private final FilterBreedService filterBreedService;
@@ -23,21 +25,25 @@ public class BreedController {
 
     @GetMapping("")
     public List<Breed> getAllBreeds() {
+        log.info("Get all Breeds was called");
         return breedRepository.findAll();
     }
 
     @GetMapping("/info")
     public List<BreedInfo> getAllBreedInfo() {
+        log.info("Get all BreedInfo was called");
         return breedRepository.findAll().stream().map(BreedInfo::new).toList();
     }
 
     @GetMapping("/{id}")
     public Breed getBreedById(@PathVariable String id) {
+        log.info("Get Breed by id was called with id: {}", id);
         return breedRepository.findById(id).orElse(null);
     }
 
     @GetMapping("/{id}/info")
     public BreedInfo getBreedInfoById(@PathVariable String id) {
+        log.info("Get BreedInfo by id was called with id: {}", id);
         Breed breed = breedRepository.findById(id).orElse(null);
         if (breed != null) {
             return new BreedInfo(breed);
@@ -48,6 +54,7 @@ public class BreedController {
 
     @PostMapping("bodySearch")
     public List<Breed> bodySearchBreed(@RequestBody Filter filter) {
+        log.info("Body Search Breed was called with filter: {}", filter);
         String partName = filter.getPartName();
         Integer indoorMin = filterBreedService.findMinValueByName(filter, "indoor");
         Integer indoorMax = filterBreedService.findMaxValueByName(filter, "indoor");
