@@ -53,7 +53,7 @@ public class BreedController {
 
 
     @PostMapping("bodySearch")
-    public List<Breed> bodySearchBreed(@RequestBody Filter filter) {
+    public List<BreedInfo> bodySearchBreed(@RequestBody Filter filter) {
         log.info("Body Search Breed was called with filter: {}", filter);
         String partName = filter.getPartName();
         Integer indoorMin = filterBreedService.findMinValueByName(filter, "indoor");
@@ -109,7 +109,7 @@ public class BreedController {
     }
 
     @GetMapping("/search")
-    public List<Breed> searchBreeds(
+    public List<BreedInfo> searchBreeds(
             @RequestParam(required = false) String partName,
             @RequestParam(required = false) Integer indoorMin,
             @RequestParam(required = false) Integer indoorMax,
@@ -188,6 +188,6 @@ public class BreedController {
                 .filter(breed -> (temperament == null || breed.getTemperament().containsAll(temperament)))
                 .filter(breed -> ((lifeSpanMin == null || lifeSpanMin <= breed.getLifeSpanMax()) && (lifeSpanMax == null || lifeSpanMax >= breed.getLifeSpanMin())))
                 .filter(breed -> (weightMin == null || weightMin <= breed.getWeightMax()) && (weightMax == null || weightMax >= breed.getWeightMin()))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()).stream().map(BreedInfo::new).toList();
     }
 }
