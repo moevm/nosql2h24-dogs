@@ -1,11 +1,16 @@
 [
   {
-    "name": "Mike",
+    "name": "Sasha",
     "password": 111111,
     "isAdmin": false
   },
   {
-    "name": "Eva",
+    "name": "Margo",
+    "password": 222222,
+    "isAdmin": true
+  },
+  {
+    "name": "Karim",
     "password": 222222,
     "isAdmin": true
   }

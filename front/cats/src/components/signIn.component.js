@@ -14,7 +14,7 @@ export const SignInComponent = () => {
                 <input value={userName} onChange={(e) => setUserName(e.target.value)}/>
             </div>
             <div>
-                <input type="number" value={password} onChange={(e) => setPassword(Number(e.target.value))}/>
+                <input type="password" value={password} onChange={(e) => setPassword(Number(e.target.value))}/>
             </div>
             <div>
                 <button onClick={() => {
