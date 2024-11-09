@@ -60,11 +60,14 @@ public class DatabaseInitializer {
                 ObjectMapper mapper = new ObjectMapper();
                 List<Breed> breeds = mapper.readValue(BREEDS_JSON.toFile(), new TypeReference<>() {
                 });
-                User user = userRepository.findAll().get(0);
-                Breed breed = breeds.get(0);
-                breed.setComments(List.of(Comment.builder().id("1").author(user.getName()).date(new Date()).text("My favorite!").likesUsersId(new HashSet<>() {{
-                    add(user.getName());
-                }}).build()));
+                if(userRepository.count()!=0) {
+
+                    User user = userRepository.findAll().get(0);
+                    Breed breed = breeds.get(0);
+                    breed.setComments(List.of(Comment.builder().id("1").author(user.getName()).date(new Date()).text("My favorite!").likesUsersId(new HashSet<>() {{
+                        add(user.getName());
+                    }}).build()));
+                }
                 breedRepository.saveAll(breeds);
             } catch (IOException e) {
                 throw new RuntimeException("Ошибка чтения файла пород", e);
