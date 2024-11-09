@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface BreedRepository extends MongoRepository<Breed, String> {
     List<Breed> findByName(String name);
-
-
 }
