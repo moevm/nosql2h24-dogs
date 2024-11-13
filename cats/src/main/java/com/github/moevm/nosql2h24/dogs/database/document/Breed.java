@@ -174,4 +174,11 @@ public class Breed {
     @Field("comments")
     private List<Comment> comments;
 
+    public void addComment(Comment comment) {
+        if (comments == null) {
+            comments = List.of(comment);
+        } else {
+            comments.add(comment);
+        }
+    }
 }
