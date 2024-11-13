@@ -19,7 +19,7 @@ const CatGridComponent = () => {
 
     const fetchData = async () => {
 
-        axios.post("http://localhost:1240/api/breeds/bodySearch", {
+        axios.post("http://backend:1240/api/breeds/bodySearch", {
             headers: {
                 'Access-Control-Allow-Origin' : '*',
                 'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'

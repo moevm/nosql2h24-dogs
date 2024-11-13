@@ -16,6 +16,10 @@ services:
       - 'MONGO_INITDB_DATABASE=cats'
       - 'MONGO_INITDB_ROOT_PASSWORD=secret'
       - 'MONGO_INITDB_ROOT_USERNAME=root'
+    volumes:
+      - mongodb_data:/data/db
+    expose:
+      - 27017
     networks:
       - app-network
 
@@ -32,3 +36,6 @@ services:
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  mongodb_data:

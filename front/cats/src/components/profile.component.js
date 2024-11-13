@@ -7,7 +7,7 @@ const ProfileComponent = () => {
     const navigate = useNavigate();
     const [userData, setUserData] = useState(null);
     const fetchData = async () => {
-        axios.get("http://localhost:1240/api/users", {
+        axios.get("http://backend:1240/api/users", {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
