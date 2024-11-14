@@ -1,6 +1,9 @@
 import {useState} from "react";
 import data from '../profiles.json';
 import {Link, useNavigate} from "react-router-dom";
+import {color_light_purple, color_purple} from "../Themes.js"
+import "../style.css"
+import {Input} from "@mui/material";
 export const SignInComponent = () => {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState(0);
@@ -8,10 +11,10 @@ export const SignInComponent = () => {
     const navigate = useNavigate();
 
     return(
-        <div>
-            <h3>SignIn</h3>
-            <div>
-                <input value={userName} onChange={(e) => setUserName(e.target.value)}/>
+        <div className="input_box">
+            <h3 className="big_text">Sign In</h3>
+            <div className="input_div">
+                <Input className = "input"value={userName} onChange={(e) => setUserName(e.target.value)}/>
             </div>
             <div>
                 <input type="password" value={password} onChange={(e) => setPassword(Number(e.target.value))}/>

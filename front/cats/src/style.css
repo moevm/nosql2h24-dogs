@@ -1,0 +1,31 @@
+:root{
+    --color-purple:#E5D4E8;
+    --color-light-purple:#F6EAF8;
+}
+.input{
+    font-size: 40px;
+
+}
+.input_div{
+    width: 540px;
+    height: 80px;
+    background-color: var(--color-purple) ;
+    align-content: center;
+}
+
+.input_box{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.big_text{
+    font-size: 48px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
