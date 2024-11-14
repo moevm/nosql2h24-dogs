@@ -4,6 +4,7 @@ import com.github.moevm.nosql2h24.dogs.database.document.Breed;
 import com.github.moevm.nosql2h24.dogs.database.repository.BreedRepository;
 import com.github.moevm.nosql2h24.dogs.database.repository.EventRepository;
 import com.github.moevm.nosql2h24.dogs.database.repository.UserRepository;
+import com.github.moevm.nosql2h24.dogs.service.CommentsService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -20,9 +21,12 @@ public class Nosql2h24DogsApplication {
         List<Breed> allBreeds = breedRepository.findAll();
         HashSet<String> allOrigins = new HashSet<>();
         allBreeds.forEach(breed -> allOrigins.add(breed.getCountryCodes()));
-        System.out.println(allOrigins);
         EventRepository eventRepository = app.getBean(EventRepository.class);
+        UserRepository userRepository = app.getBean(UserRepository.class);
 
+        CommentsService commentsService = app.getBean(CommentsService.class);
+        commentsService.addComment("Sasha", "abob", "my comment");
+        System.out.println(allOrigins);
 
     }
 }

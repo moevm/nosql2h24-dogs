@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -60,13 +59,11 @@ public class DatabaseInitializer {
                 ObjectMapper mapper = new ObjectMapper();
                 List<Breed> breeds = mapper.readValue(BREEDS_JSON.toFile(), new TypeReference<>() {
                 });
-                if(userRepository.count()!=0) {
+                if (userRepository.count() != 0) {
 
                     User user = userRepository.findAll().get(0);
                     Breed breed = breeds.get(0);
-                    breed.setComments(List.of(Comment.builder().id("1").author(user.getName()).date(new Date()).text("My favorite!").likesUsersId(new HashSet<>() {{
-                        add(user.getName());
-                    }}).build()));
+                    breed.setComments(List.of(new Comment("1", user.getName(), new Date(), "My favorite!")));
                 }
                 breedRepository.saveAll(breeds);
             } catch (IOException e) {
