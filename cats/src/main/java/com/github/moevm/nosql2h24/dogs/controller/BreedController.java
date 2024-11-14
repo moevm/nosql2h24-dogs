@@ -1,9 +1,9 @@
 package com.github.moevm.nosql2h24.dogs.controller;
 
-import com.github.moevm.nosql2h24.dogs.controller.model.request.Filter;
+import com.github.moevm.nosql2h24.dogs.model.controller.request.Filter;
 import com.github.moevm.nosql2h24.dogs.database.document.Breed;
 import com.github.moevm.nosql2h24.dogs.database.repository.BreedRepository;
-import com.github.moevm.nosql2h24.dogs.dto.BreedInfo;
+import com.github.moevm.nosql2h24.dogs.model.controller.response.BreedInfo;
 import com.github.moevm.nosql2h24.dogs.service.FilterBreedService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

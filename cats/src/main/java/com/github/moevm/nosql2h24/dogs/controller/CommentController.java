@@ -1,7 +1,7 @@
 package com.github.moevm.nosql2h24.dogs.controller;
 
 
-import com.github.moevm.nosql2h24.dogs.controller.model.request.Comment;
+import com.github.moevm.nosql2h24.dogs.model.controller.request.Comment;
 import com.github.moevm.nosql2h24.dogs.service.CommentsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

@@ -23,9 +23,6 @@ public class Nosql2h24DogsApplication {
         allBreeds.forEach(breed -> allOrigins.add(breed.getCountryCodes()));
         EventRepository eventRepository = app.getBean(EventRepository.class);
         UserRepository userRepository = app.getBean(UserRepository.class);
-
-        CommentsService commentsService = app.getBean(CommentsService.class);
-        commentsService.addComment("Sasha", "abob", "my comment");
         System.out.println(allOrigins);
 
     }

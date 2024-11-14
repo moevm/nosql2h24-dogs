@@ -1,4 +1,4 @@
-package com.github.moevm.nosql2h24.dogs.controller.model.request;
+package com.github.moevm.nosql2h24.dogs.model.controller.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+
 @Setter
 @Getter
 @Data
@@ -31,6 +32,7 @@ public class Filter {
         private int from;
         private int to;
     }
+
     @Setter
     @Getter
     public static class IdValue {

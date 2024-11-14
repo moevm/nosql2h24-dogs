@@ -1,4 +1,4 @@
-package com.github.moevm.nosql2h24.dogs.controller.model.response;
+package com.github.moevm.nosql2h24.dogs.model.controller;
 
 import com.github.moevm.nosql2h24.dogs.database.document.Breed;
 import com.github.moevm.nosql2h24.dogs.database.document.Event;

@@ -9,7 +9,7 @@ import com.github.moevm.nosql2h24.dogs.database.document.User;
 import com.github.moevm.nosql2h24.dogs.database.repository.BreedRepository;
 import com.github.moevm.nosql2h24.dogs.database.repository.EventRepository;
 import com.github.moevm.nosql2h24.dogs.database.repository.UserRepository;
-import com.github.moevm.nosql2h24.dogs.dto.UserDto;
+import com.github.moevm.nosql2h24.dogs.model.UserDto;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

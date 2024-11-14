@@ -2,7 +2,7 @@ package com.github.moevm.nosql2h24.dogs.controller;
 
 import com.github.moevm.nosql2h24.dogs.database.document.User;
 import com.github.moevm.nosql2h24.dogs.database.repository.UserRepository;
-import com.github.moevm.nosql2h24.dogs.dto.UserDto;
+import com.github.moevm.nosql2h24.dogs.model.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package com.github.moevm.nosql2h24.dogs.dto;
+package com.github.moevm.nosql2h24.dogs.model.controller.response;
 
 import com.github.moevm.nosql2h24.dogs.database.document.Breed;
 

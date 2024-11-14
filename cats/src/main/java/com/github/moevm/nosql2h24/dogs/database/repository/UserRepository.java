@@ -1,7 +1,7 @@
 package com.github.moevm.nosql2h24.dogs.database.repository;
 
 import com.github.moevm.nosql2h24.dogs.database.document.User;
-import com.github.moevm.nosql2h24.dogs.dto.UserDto;
+import com.github.moevm.nosql2h24.dogs.model.UserDto;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.time.Instant;
