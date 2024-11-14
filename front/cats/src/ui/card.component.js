@@ -13,7 +13,7 @@ const CardComponent = (props) => {
         }}>
             <div>
                 {/*{props.img.toString()}*/}
-                <img src={"https://cdn2.thecatapi.com/images/"+props.img+".jpg"} width="200" height="170" alt="lorem"/>
+                <img src={"https://cdn2.thecatapi.com/images/"+props.img+".jpg"} width="200" height="170" alt={props.img}/>
             </div>
             <div>{props.name}</div>
         </div>
