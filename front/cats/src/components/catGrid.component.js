@@ -43,6 +43,7 @@ const CatGridComponent = () => {
             });
     }
     useEffect(() => {
+
         setIsDataLoading(false)
         //alert(JSON.stringify(filter_data));
         fetchData();
