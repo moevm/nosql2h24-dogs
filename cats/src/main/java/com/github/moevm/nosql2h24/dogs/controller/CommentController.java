@@ -1,7 +1,7 @@
 package com.github.moevm.nosql2h24.dogs.controller;
 
 
-import com.github.moevm.nosql2h24.dogs.dto.CommentDto;
+import com.github.moevm.nosql2h24.dogs.controller.model.request.Comment;
 import com.github.moevm.nosql2h24.dogs.service.CommentsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -18,8 +18,8 @@ public class CommentController {
     }
 
     @PostMapping("")
-    public String addComment(@RequestBody CommentDto commentDto) {
-        return commentsService.addComment(commentDto.userId(), commentDto.breedId(), commentDto.text(), commentDto.parentCommentId());
+    public String addComment(@RequestBody Comment comment) {
+        return commentsService.addComment(comment.userId(), comment.breedId(), comment.text(), comment.parentCommentId());
     }
 
     @PutMapping("/like/{userId}/{breedId}/{commentId}")
