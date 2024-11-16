@@ -3,42 +3,35 @@ import axios from 'axios';
 
 const ImpExpComponent = () => {
     const [file, setFile] = useState(null);
+    const [loading, setLoading] = useState(false);
 
-    // Handle file selection for import
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
     };
 
-    // Upload the file for import
     const handleImport = async () => {
         if (!file) {
             alert('Please select a file to import.');
             return;
         }
-
+    
         const formData = new FormData();
         formData.append('file', file);
-
+    
         try {
-            await axios.post('/api/import', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
+            await axios.post('http://localhost:1240/api/import', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
             });
             alert('Import successful!');
         } catch (error) {
-            console.error('Import failed:', error);
+            console.error('Import failed:', error.response?.data || error.message);
             alert('Failed to import data.');
         }
     };
 
-    // Download the exported data
     const handleExport = async () => {
         try {
-            const response = await axios.get('/api/export', {
-                responseType: 'blob',
-            });
-
+            const response = await axios.get('http://localhost:1240/api/export', { responseType: 'blob' });
             const blob = new Blob([response.data], { type: 'application/json' });
             const url = window.URL.createObjectURL(blob);
             const link = document.createElement('a');
@@ -48,7 +41,7 @@ const ImpExpComponent = () => {
             link.click();
             link.remove();
         } catch (error) {
-            console.error('Export failed:', error);
+            console.error('Export failed:', error.response?.data || error.message);
             alert('Failed to export data.');
         }
     };
@@ -60,14 +53,18 @@ const ImpExpComponent = () => {
             {/* Import Section */}
             <div>
                 <h2>Import Data</h2>
-                <input type="file" onChange={handleFileChange} />
-                <button onClick={handleImport}>Import</button>
+                <input type="file" accept=".json" onChange={handleFileChange} />
+                <button onClick={handleImport} disabled={loading}>
+                    {loading ? 'Importing...' : 'Import'}
+                </button>
             </div>
 
             {/* Export Section */}
             <div>
                 <h2>Export Data</h2>
-                <button onClick={handleExport}>Export</button>
+                <button onClick={handleExport} disabled={loading}>
+                    {loading ? 'Exporting...' : 'Export'}
+                </button>
             </div>
         </div>
     );
