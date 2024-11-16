@@ -5,7 +5,7 @@ import MainComponent from "./components/main.component";
 import ProfileComponent from "./components/profile.component";
 import SignInComponent from "./components/signIn.component";
 import SignUpComponent from "./components/signUp.component";
-import ImpExpComponent from "./components/ImpExpComponent";
+import ImpExpComponent from "./components/ImpExp.Component";
 
 function App() {
   return (
