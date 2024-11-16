@@ -24,7 +24,7 @@ public class ImportExportController {
         this.importExportService = importExportService;
     }
 
-    @GetMapping("/export")
+    @GetMapping(value = "/export", produces = MediaType.APPLICATION_JSON_VALUE)
     public Db exportDb() {
         return importExportService.getImportExport();
     }
@@ -35,8 +35,8 @@ public class ImportExportController {
             importExportService.importDbFromFile(file);
             return HttpStatus.OK;
         } catch (Exception e) {
-            log.error("File import failed: {}", e.getMessage());
-            return HttpStatus.BAD_REQUEST;
+            log.error("Failed to import data", e);
+            return HttpStatus.INTERNAL_SERVER_ERROR;
         }
     }
 }
