@@ -31,7 +31,7 @@ export const SignInComponent = () => {
 
             <CustomTextField value={password}
                              onChange={(e) => {
-                                 if (/^\d+$/.test(e.target.value)) {
+                                 if (/^\d+$/.test(e.target.value) || e.target.value === "") {
                                      setPassword(e.target.value)
                                  }
 

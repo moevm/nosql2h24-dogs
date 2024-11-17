@@ -1,6 +1,7 @@
 import {useState} from "react";
 import data from '../profiles.json';
 import {Link, useNavigate} from "react-router-dom";
+import CustomTextField from "../ui/customTextField.component";
 
 const SignUpComponent = () => {
     const [userName, setUserName] = useState("");
@@ -9,19 +10,36 @@ const SignUpComponent = () => {
     const navigate = useNavigate();
 
     return(
-        <div>
-            <h3>SignUp</h3>
-            <div>
-                <input value={userName} onChange={(e) => setUserName(e.target.value)}/>
-            </div>
-            <div>
-                <input type="password" value={password} onChange={(e) => setPassword(Number(e.target.value))}/>
-            </div>
-            <div>
-                <input type="password" value={password2} onChange={(e) => setPassword2(Number(e.target.value))}/>
-            </div>
-            <div>
-                <button onClick={()=>{
+        <div className="input_box">
+            <h3 className="big_text">Sign Up</h3>
+            <CustomTextField value={userName}
+                             onChange={(e) => setUserName(e.target.value)}
+                             placeholder="name"
+            ></CustomTextField>
+
+            <CustomTextField value={password}
+                             onChange={(e) => {
+                                 if (/^\d+$/.test(e.target.value) || e.target.value === "") {
+                                     setPassword(e.target.value)
+                                 }
+
+                             }
+                             }
+                             placeholder="password"
+            ></CustomTextField>
+
+            <CustomTextField value={password2}
+                             onChange={(e) => {
+                                 if (/^\d+$/.test(e.target.value) || e.target.value === "") {
+                                     setPassword2(e.target.value)
+                                 }
+
+                             }
+                             }
+                             placeholder="password"
+            ></CustomTextField>
+
+                <button className="button" onClick={()=>{
                     if(password===password2){
                         //Todo
                         // post request to db
@@ -32,11 +50,10 @@ const SignUpComponent = () => {
                     }else{
                        alert("passwords doesn't match!");
                     }
-                }}>{"Click Here"}</button>
-            </div>
-            <div>
-                <Link to={"/sign_in"}>Sign In</Link>
-            </div>
+                }}>{"sign up"}</button>
+
+                <Link className="link_text" to={"/sign_in"}>sign in</Link>
+
 
         </div>
     )
