@@ -29,6 +29,7 @@ export const SignInComponent = () => {
             }
         })
             .then(res => {
+
                 console.log(res.data);
                 if (res.data.name) {
                     dispatch(setUserData(res.data))
@@ -37,6 +38,10 @@ export const SignInComponent = () => {
             })
 
             .catch(err => {
+                if(err.status === 500){
+                    alert("Check your data")
+                }
+
                 console.error("error fetching data", err)
             });
     }
@@ -57,10 +62,7 @@ export const SignInComponent = () => {
 
             <CustomTextField value={password}
                              onChange={(e) => {
-                                 if (/^\d+$/.test(e.target.value) || e.target.value === "") {
-                                     setPassword(e.target.value)
-                                 }
-
+                                 setPassword(e.target.value)
                              }
                              }
                              placeholder="password"

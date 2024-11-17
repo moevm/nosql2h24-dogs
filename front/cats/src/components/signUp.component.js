@@ -15,15 +15,15 @@ const SignUpComponent = () => {
     let dispatch = useDispatch();
     const fetchData = async () => {
 
-        axios.post(BASE_URL+"/users", {
+        axios.post(BASE_URL + "/users", {
             headers: {
-                'Access-Control-Allow-Origin' : '*',
-                'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
             },
-            name:userName,
-            age:20,
-            passwordHash:password,
-            image:""
+            name: userName,
+            age: 20,
+            passwordHash: password,
+            image: ""
         })
             .then(res => {
                 console.log(res.data);
@@ -38,7 +38,7 @@ const SignUpComponent = () => {
             });
     }
 
-    return(
+    return (
         <div className="input_box">
             <h3 className="big_text">Sign Up</h3>
             <CustomTextField value={userName}
@@ -48,10 +48,7 @@ const SignUpComponent = () => {
 
             <CustomTextField value={password}
                              onChange={(e) => {
-                                 if (/^\d+$/.test(e.target.value) || e.target.value === "") {
-                                     setPassword(e.target.value)
-                                 }
-
+                                 setPassword(e.target.value)
                              }
                              }
                              placeholder="password"
@@ -59,24 +56,21 @@ const SignUpComponent = () => {
 
             <CustomTextField value={password2}
                              onChange={(e) => {
-                                 if (/^\d+$/.test(e.target.value) || e.target.value === "") {
-                                     setPassword2(e.target.value)
-                                 }
-
+                                 setPassword2(e.target.value)
                              }
                              }
                              placeholder="password"
             ></CustomTextField>
 
-                <button className="button" onClick={()=>{
-                    if(password===password2){
-                        fetchData()
-                    }else{
-                       alert("passwords doesn't match!");
-                    }
-                }}>{"sign up"}</button>
+            <button className="button" onClick={() => {
+                if (password === password2) {
+                    fetchData()
+                } else {
+                    alert("passwords doesn't match!");
+                }
+            }}>{"sign up"}</button>
 
-                <Link className="link_text" to={"/sign_in"}>sign in</Link>
+            <Link className="link_text" to={"/sign_in"}>sign in</Link>
 
 
         </div>
