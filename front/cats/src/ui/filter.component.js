@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {Button, Input, InputLabel} from "@mui/material";
 import {useDispatch} from "react-redux";
-import {increment, updateFilter} from "../filterSlice.js";
+import {updateFilter} from "../filterSlice.js";
 import {tab} from "@testing-library/user-event/dist/tab";
 
 export const FilterComponent = () => {

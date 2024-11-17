@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import data from '../profiles.json';
 import {Link, useNavigate} from "react-router-dom";
 import {text_input} from "../Themes.js"
@@ -7,14 +7,43 @@ import {IconButton, Input, InputAdornment, TextField} from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import CustomTextField from "../ui/customTextField.component";
-
-
+import {useDispatch} from "react-redux";
+import {setUserData} from "../userSlice.js";
+import axios from "axios";
+import {BASE_URL} from "../options.js";
 export const SignInComponent = () => {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
 
+    let dispatch = useDispatch();
 
     const navigate = useNavigate();
+
+    const fetchData = async () => {
+
+        axios.post(BASE_URL+"/users", {
+            headers: {
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+            },
+            name:userName,
+            age:20,
+            passwordHash:password,
+            image:""
+        })
+            .then(res => {
+                console.log(res.data);
+                if (res.data.name) {
+                    dispatch(setUserData(res.data))
+                    navigate("/main");
+                }
+            })
+
+            .catch(err => {
+                console.error("error fetching data", err)
+            });
+    }
+
 
     return (
         <div className="input_box">
@@ -42,16 +71,7 @@ export const SignInComponent = () => {
 
 
             <button className="button" onClick={() => {
-                alert("here")
-                alert(userName)
-                if (data.some(item => item.name === userName && item.password === password)) {
-                    //Todo
-                    // change to id
-
-                    localStorage.setItem("currentUserId", userName);
-                    navigate("/main");
-                }
-
+                fetchData();
             }}>{"sign in"}</button>
 
             <Link className="link_text" to={"/sign_up"}>sign up</Link>
