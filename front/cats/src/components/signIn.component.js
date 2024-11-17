@@ -10,18 +10,9 @@ import CustomTextField from "../ui/customTextField.component";
 
 
 export const SignInComponent = () => {
-    const [userName, setUserName] = useState("hehe");
-    const [password, setPassword] = useState(0);
-    const [showPassword, setShowPassword] = useState(false);
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const [userName, setUserName] = useState("");
+    const [password, setPassword] = useState("");
 
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
-
-    const handleMouseUpPassword = (event) => {
-        event.preventDefault();
-    };
 
     const navigate = useNavigate();
 
@@ -30,48 +21,34 @@ export const SignInComponent = () => {
             <h3 className="big_text">Sign In</h3>
             <div>
                 <CustomTextField value={userName}
-                                 onChange = {(e)=>{setUserName(e.target.value)}}
+                                 onChange={(e) => {
+                                     setUserName(e.target.value)
+                                 }}
+                                 placeholder="name"
                 ></CustomTextField>
-                {/*<TextField className="input"*/}
-                {/*           placeholder="name"*/}
-                {/*           variant="standard"*/}
-                {/*           type={showPassword ? 'password':'text'}*/}
-                {/*           InputProps={{*/}
-                {/*               disableUnderline: true,*/}
-                {/*               endAdornment:*/}
-                {/*                   <InputAdornment position="end" >*/}
-                {/*                       <IconButton*/}
-                {/*                           onClick={handleClickShowPassword}*/}
-                {/*                           onMouseDown={handleMouseDownPassword}*/}
-                {/*                           onMouseUp={handleMouseUpPassword}*/}
-                {/*                           edge="end"*/}
-                {/*                           style={{*/}
-                {/*                               marginRight:10,*/}
-                {/*                           }}*/}
-                {/*                           size="large"*/}
-                {/*                       >*/}
-                {/*                           {showPassword ? <VisibilityOff/> : <Visibility/>}*/}
-                {/*                       </IconButton>*/}
-                {/*                   </InputAdornment>*/}
-
-                {/*           }}*/}
-                {/*           sx={text_input}*/}
-                {/*           value={userName}*/}
-                {/*           onChange={(e) => setUserName(e.target.value)}*/}
-
-                {/*/>*/}
 
             </div>
             <div>
-                <input type="password" value={password} onChange={(e) => setPassword(Number(e.target.value))}/>
+                <CustomTextField value={password}
+                                 onChange={(e) => {
+                                     if(/^\d+$/.test(e.target.value)) {
+                                         setPassword(e.target.value)
+                                     }
+
+                                    }
+                                 }
+                                 placeholder="password"
+                ></CustomTextField>
+
             </div>
             <div>
                 <button onClick={() => {
+                    alert("here")
+                    alert(userName)
                     if (data.some(item => item.name === userName && item.password === password)) {
                         //Todo
                         // change to id
-                        alert("here")
-                        alert(userName)
+
                         localStorage.setItem("currentUserId", userName);
                         navigate("/main");
                     }

@@ -21,9 +21,9 @@ const CustomTextField = (props) => {
     };
     return (
         <TextField className="input"
-                   placeholder="name"
+                   placeholder={props.placeholder}
                    variant="standard"
-                   type={showPassword ? 'password':'text'}
+                   type={showPassword ? 'text':'password'}
                    InputProps={{
                        disableUnderline: true,
                        endAdornment:
