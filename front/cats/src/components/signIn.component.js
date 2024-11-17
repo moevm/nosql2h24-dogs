@@ -19,45 +19,43 @@ export const SignInComponent = () => {
     return (
         <div className="input_box">
             <h3 className="big_text">Sign In</h3>
-            <div>
-                <CustomTextField value={userName}
-                                 onChange={(e) => {
-                                     setUserName(e.target.value)
-                                 }}
-                                 placeholder="name"
-                ></CustomTextField>
 
-            </div>
-            <div>
-                <CustomTextField value={password}
-                                 onChange={(e) => {
-                                     if(/^\d+$/.test(e.target.value)) {
-                                         setPassword(e.target.value)
-                                     }
 
-                                    }
+            <CustomTextField value={userName}
+                             onChange={(e) => {
+                                 setUserName(e.target.value)
+                             }}
+                             placeholder="name"
+            ></CustomTextField>
+
+
+            <CustomTextField value={password}
+                             onChange={(e) => {
+                                 if (/^\d+$/.test(e.target.value)) {
+                                     setPassword(e.target.value)
                                  }
-                                 placeholder="password"
-                ></CustomTextField>
 
-            </div>
-            <div>
-                <button onClick={() => {
-                    alert("here")
-                    alert(userName)
-                    if (data.some(item => item.name === userName && item.password === password)) {
-                        //Todo
-                        // change to id
+                             }
+                             }
+                             placeholder="password"
+            ></CustomTextField>
 
-                        localStorage.setItem("currentUserId", userName);
-                        navigate("/main");
-                    }
 
-                }}>{"Click Here"}</button>
-            </div>
-            <div>
-                <Link to={"/sign_up"}>Sign Up</Link>
-            </div>
+            <button className="button" onClick={() => {
+                alert("here")
+                alert(userName)
+                if (data.some(item => item.name === userName && item.password === password)) {
+                    //Todo
+                    // change to id
+
+                    localStorage.setItem("currentUserId", userName);
+                    navigate("/main");
+                }
+
+            }}>{"sign in"}</button>
+
+            <Link className="link_text" to={"/sign_up"}>sign up</Link>
+
         </div>
     )
 }
