@@ -20,16 +20,13 @@ export const SignInComponent = () => {
     const navigate = useNavigate();
 
     const fetchData = async () => {
+        const url = BASE_URL+"/users/"+userName+"/"+password
 
-        axios.post(BASE_URL+"/users", {
+        axios.get(url, {
             headers: {
                 'Access-Control-Allow-Origin' : '*',
                 'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-            },
-            name:userName,
-            age:20,
-            passwordHash:password,
-            image:""
+            }
         })
             .then(res => {
                 console.log(res.data);
