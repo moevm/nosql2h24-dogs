@@ -5,19 +5,30 @@ import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {BASE_URL} from "../options.js";
 import {ArrowBack, Equalizer, Face, Settings} from "@mui/icons-material";
-import FavoriteCardComponent from "../ui/favoriteCard.component";
+import SmallCatCardComponent from "../ui/smallCatCard.component";
+import NotificationCardComponent from "../ui/notificationCard.component";
 
 const ProfileComponent = () => {
     let user_data = useSelector(state => state.user);
     const favorites = [
         {name:"1",img:"0XYvRd7oD"},
-        {name:"2",img:"ozEvzdVM-"},
+        {name:"2",img:"ozEvzdVM"},
         {name:"1",img:"0XYvRd7oD"},
         {name:"2",img:"ozEvzdVM-"},
         {name:"1",img:"0XYvRd7oD"},
         {name:"2",img:"ozEvzdVM-"},
         {name:"1",img:"0XYvRd7oD"},
         {name:"2",img:"ozEvzdVM-"},
+    ]
+    const notifications = [
+        {name:"1",comment:"0XYvRd7oD"},
+        {name:"2",comment:"ozEvzdVM"},
+        {name:"3",comment:"0XYvRd7oD"},
+        {name:"4",comment:"ozEvzdVM-"},
+        {name:"1",comment:"0XYvRd7oD"},
+        {name:"2",comment:"ozEvzdVM-"},
+        {name:"1",comment:"0XYvRd7oD"},
+        {name:"2",comment:"ozEvzdVM-"},
     ]
     const navigate = useNavigate();
     const [userData, setUserData] = useState(null);
@@ -45,8 +56,15 @@ const ProfileComponent = () => {
 
     const favorite_data = favorites?.map(cat =>
         <div>
-            <FavoriteCardComponent name={cat.name} img={cat.img}
-            ></FavoriteCardComponent>
+            <SmallCatCardComponent name={cat.name} img={cat.img}
+            ></SmallCatCardComponent>
+        </div>
+    )
+
+    const notifications_data = notifications?.map(cat =>
+        <div>
+            <NotificationCardComponent name={cat.name} comment={cat.comment}
+            ></NotificationCardComponent>
         </div>
     )
 
@@ -86,14 +104,17 @@ const ProfileComponent = () => {
                 Statistics
             </Button>
 
-            <h4>Favorites</h4>
-            <div className="favorite_card_box">
+            <label className="medium_text">Favorites</label>
+            <div className="card_row">
                 {favorite_data}
             </div>
 
-            <h4>Notifications</h4>
-            <h4>Comments</h4>
-            <h4>Likes</h4>
+            <label className="medium_text">Notifications</label>
+            <div className="card_row">
+                {notifications_data}
+            </div>
+            <label className="medium_text">Comments</label>
+            <label className="medium_text">Likes</label>
         </div>
     )
 }
