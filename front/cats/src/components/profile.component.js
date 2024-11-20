@@ -4,13 +4,16 @@ import {Button, IconButton} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {BASE_URL} from "../options.js";
+import {useDispatch} from "react-redux";
 import {ArrowBack, Equalizer, Face, Settings} from "@mui/icons-material";
 import SmallCatCardComponent from "../ui/smallCatCard.component";
 import NotificationCardComponent from "../ui/notificationCard.component";
 import CommentCardComponent from "../ui/commentCard.component";
 import LikeCardComponent from "../ui/likeCard.component";
+import {clearUserData} from "../userSlice";
 
 const ProfileComponent = () => {
+    let dispatch = useDispatch();
     let user_data = useSelector(state => state.user);
     const favorites = [
         {name: "1", img: "0XYvRd7oD"},
@@ -91,51 +94,59 @@ const ProfileComponent = () => {
     )
     const comments_data = comments?.map(cat =>
         <div>
-            <CommentCardComponent type={cat.name} comment={cat.comment} author = {cat.author}
+            <CommentCardComponent type={cat.name} comment={cat.comment} author={cat.author}
             ></CommentCardComponent>
         </div>
     )
     const liked_data = liked?.map(cat =>
         <div>
-            <LikeCardComponent author = {cat.author}
+            <LikeCardComponent author={cat.author}
             ></LikeCardComponent>
         </div>
     )
+
     return (
         <div className="profile_box">
             <div className="profile_app_bar">
-                <IconButton onClick={() => {
-                    alert("back")
-                }
-                }>
-                    <ArrowBack/>
-                </IconButton>
-                <IconButton className="profile_app_bar_icon_right">
-                    <Equalizer/>
-                </IconButton>
-                <IconButton className="profile_app_bar_icon_right">
-                    <Settings/>
-                </IconButton>
+                <div>
+                    <IconButton onClick={() => {
+                        navigate("/main")
+                    }
+                    }
 
-                <label className="profile_app_bar_icon_right"> Log out</label>
+                    >
+                        <ArrowBack className="profile_app_bar_icon"/>
+                    </IconButton>
+                </div>
+                <div>
+
+                    <IconButton>
+                        <Equalizer className="profile_app_bar_icon" onClick={() => {
+                            navigate("/statistic")
+                        }}/>
+                    </IconButton>
+                    <IconButton>
+                        <Settings className="profile_app_bar_icon"/>
+                    </IconButton>
+
+                    <label className="medium_text" onClick={()=>{
+                        dispatch(clearUserData())
+                        navigate("/sign_in")
+                    }}> Log out</label>
+                </div>
             </div>
+
             <div className="profile_data_row">
                 <img src={"../cats/resource/profile.png"} width="300" height="300" alt={
                     <Face/>
                 }/>
                 <div className="profile_data_column">
-                    <div className="big_text">Name</div>
-                    <div className="small_text">Age:</div>
-                    <div className="small_text">Creation date:</div>
-                    <div className="small_text">Last edit date:</div>
+                    <div className="big_text">{user_data.name}</div>
+                    <div className="small_text">Age: {user_data.age}</div>
+                    <div className="small_text">Creation date: {user_data.creationDate}</div>
+                    <div className="small_text">Last edit date: {user_data.lastDate}</div>
                 </div>
             </div>
-            {JSON.stringify(user_data)}
-            <Button onClick={() => {
-                navigate("/statistic")
-            }}>
-                Statistics
-            </Button>
 
             <label className="medium_text">Favorites</label>
             <div className="card_row">
