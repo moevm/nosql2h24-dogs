@@ -8,3 +8,4 @@ export const text_input = {
         lineHeight: 48,
     }
 }
+export const dark_purple_color = "#9C5CA7"

@@ -7,33 +7,44 @@ import {BASE_URL} from "../options.js";
 import {ArrowBack, Equalizer, Face, Settings} from "@mui/icons-material";
 import SmallCatCardComponent from "../ui/smallCatCard.component";
 import NotificationCardComponent from "../ui/notificationCard.component";
+import CommentCardComponent from "../ui/commentCard.component";
 
 const ProfileComponent = () => {
     let user_data = useSelector(state => state.user);
     const favorites = [
-        {name:"1",img:"0XYvRd7oD"},
-        {name:"2",img:"ozEvzdVM"},
-        {name:"1",img:"0XYvRd7oD"},
-        {name:"2",img:"ozEvzdVM-"},
-        {name:"1",img:"0XYvRd7oD"},
-        {name:"2",img:"ozEvzdVM-"},
-        {name:"1",img:"0XYvRd7oD"},
-        {name:"2",img:"ozEvzdVM-"},
+        {name: "1", img: "0XYvRd7oD"},
+        {name: "2", img: "ozEvzdVM"},
+        {name: "1", img: "0XYvRd7oD"},
+        {name: "2", img: "ozEvzdVM-"},
+        {name: "1", img: "0XYvRd7oD"},
+        {name: "2", img: "ozEvzdVM-"},
+        {name: "1", img: "0XYvRd7oD"},
+        {name: "2", img: "ozEvzdVM-"},
     ]
     const notifications = [
-        {name:"1",comment:"0XYvRd7oD"},
-        {name:"2",comment:"ozEvzdVM"},
-        {name:"3",comment:"0XYvRd7oD"},
-        {name:"4",comment:"ozEvzdVM-"},
-        {name:"1",comment:"0XYvRd7oD"},
-        {name:"2",comment:"ozEvzdVM-"},
-        {name:"1",comment:"0XYvRd7oD"},
-        {name:"2",comment:"ozEvzdVM-"},
+        {name: "1", comment: "0XYvRd7oD"},
+        {name: "2", comment: "ozEvzdVM"},
+        {name: "3", comment: "0XYvRd7oD"},
+        {name: "4", comment: "ozEvzdVM-"},
+        {name: "1", comment: "0XYvRd7oD"},
+        {name: "2", comment: "ozEvzdVM-"},
+        {name: "1", comment: "0XYvRd7oD"},
+        {name: "2", comment: "ozEvzdVM-"},
+    ]
+    const comments = [
+        {name: "1", comment: "0XYvRd7oD", author: "me"},
+        {name: "2", comment: "ozEvzdVM", author: "me"},
+        {name: "3", comment: "0XYvRd7oD", author: "me"},
+        {name: "4", comment: "ozEvzdVM-", author: "me"},
+        {name: "1", comment: "0XYvRd7oD", author: "me"},
+        {name: "2", comment: "ozEvzdVM-", author: "me"},
+        {name: "1", comment: "0XYvRd7oD", author: "me"},
+        {name: "2", comment: "ozEvzdVM-", author: "me"},
     ]
     const navigate = useNavigate();
     const [userData, setUserData] = useState(null);
     const fetchData = async () => {
-        axios.get(BASE_URL+"/users", {
+        axios.get(BASE_URL + "/users", {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
@@ -67,24 +78,29 @@ const ProfileComponent = () => {
             ></NotificationCardComponent>
         </div>
     )
-
+    const comments_data = comments?.map(cat =>
+        <div>
+            <CommentCardComponent type={cat.name} comment={cat.comment} author = {cat.author}
+            ></CommentCardComponent>
+        </div>
+    )
     return (
         <div className="profile_box">
             <div className="profile_app_bar">
-                <IconButton onClick={()=>{
+                <IconButton onClick={() => {
                     alert("back")
-                    }
+                }
                 }>
                     <ArrowBack/>
                 </IconButton>
-                <IconButton className = "profile_app_bar_icon_right">
-                    <Equalizer />
+                <IconButton className="profile_app_bar_icon_right">
+                    <Equalizer/>
                 </IconButton>
-                <IconButton className = "profile_app_bar_icon_right">
-                    <Settings />
+                <IconButton className="profile_app_bar_icon_right">
+                    <Settings/>
                 </IconButton>
 
-                <label className = "profile_app_bar_icon_right" > Log out</label>
+                <label className="profile_app_bar_icon_right"> Log out</label>
             </div>
             <div className="profile_data_row">
                 <img src={"../cats/resource/profile.png"} width="300" height="300" alt={
@@ -98,7 +114,7 @@ const ProfileComponent = () => {
                 </div>
             </div>
             {JSON.stringify(user_data)}
-            <Button onClick={()=>{
+            <Button onClick={() => {
                 navigate("/statistic")
             }}>
                 Statistics
@@ -114,6 +130,9 @@ const ProfileComponent = () => {
                 {notifications_data}
             </div>
             <label className="medium_text">Comments</label>
+            <div className="card_row">
+                {comments_data}
+            </div>
             <label className="medium_text">Likes</label>
         </div>
     )

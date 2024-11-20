@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import data from '../profiles.json';
 import {Link, useNavigate} from "react-router-dom";
 import {text_input} from "../Themes.js"
-import "../style.css"
+import "../style/style.css"
 import {IconButton, Input, InputAdornment, TextField} from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -11,6 +11,8 @@ import {useDispatch} from "react-redux";
 import {setUserData} from "../userSlice.js";
 import axios from "axios";
 import {BASE_URL} from "../options.js";
+import "../style/text.css"
+
 export const SignInComponent = () => {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");

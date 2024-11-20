@@ -9,24 +9,15 @@ body {
 }
 
 .input {
-
     width: 100%;
     height: 80px;
     background-color: var(--color-purple);
     align-content: center;
     justify-content: center;
     margin: 10px;
-
 }
 
-.input_text {
-    font-family: 'Inter', serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 48px;
-    line-height: 48px;
-    margin-left: 27px;
-}
+
 
 .input_box {
     height: 100%;
@@ -52,11 +43,6 @@ body {
     border: none;
 }
 
-.big_text {
-    font-size: 48px;
-    font-weight: bold;
-    font-family: sans-serif;
-}
 
 .link_text {
     align-self: end;
@@ -101,11 +87,7 @@ body {
     flex-direction: column;
 }
 
-.small_text {
-    font-size: 24px;
-    font-weight: normal;
-    font-family: sans-serif;
-}
+
 
 .favorite_card {
     background-color: var(--color-purple);
@@ -144,8 +126,15 @@ body {
     grid-gap: 10px;
 }
 
-.medium_text {
-    font-size: 40px;
-    font-weight: 400;
-    font-family: sans-serif;
+.comment_card{
+    background-color: var(--color-purple);
+    border-radius: 10px;
+    width: 400px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    grid-gap: 10px;
+    padding-left: 20px;
 }
