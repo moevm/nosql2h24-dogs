@@ -11,7 +11,8 @@ import NotificationCardComponent from "../ui/notificationCard.component";
 import CommentCardComponent from "../ui/commentCard.component";
 import LikeCardComponent from "../ui/likeCard.component";
 import {clearUserData} from "../userSlice";
-
+import "../style/profile.css"
+import "../style/small_cards.css"
 const ProfileComponent = () => {
     let dispatch = useDispatch();
     let user_data = useSelector(state => state.user);
