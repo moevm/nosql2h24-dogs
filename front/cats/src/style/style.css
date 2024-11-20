@@ -138,3 +138,15 @@ body {
     grid-gap: 10px;
     padding-left: 20px;
 }
+
+.like_card{
+    background-color: var(--color-purple);
+    border-radius: 10px;
+    width: 300px;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding-left: 20px;
+}

@@ -8,6 +8,7 @@ import {ArrowBack, Equalizer, Face, Settings} from "@mui/icons-material";
 import SmallCatCardComponent from "../ui/smallCatCard.component";
 import NotificationCardComponent from "../ui/notificationCard.component";
 import CommentCardComponent from "../ui/commentCard.component";
+import LikeCardComponent from "../ui/likeCard.component";
 
 const ProfileComponent = () => {
     let user_data = useSelector(state => state.user);
@@ -33,6 +34,16 @@ const ProfileComponent = () => {
     ]
     const comments = [
         {name: "1", comment: "0XYvRd7oD", author: "me"},
+        {name: "2", comment: "ozEvzdVM", author: "me"},
+        {name: "3", comment: "0XYvRd7oD", author: "me"},
+        {name: "4", comment: "ozEvzdVM-", author: "me"},
+        {name: "1", comment: "0XYvRd7oD", author: "me"},
+        {name: "2", comment: "ozEvzdVM-", author: "me"},
+        {name: "1", comment: "0XYvRd7oD", author: "me"},
+        {name: "2", comment: "ozEvzdVM-", author: "me"},
+    ]
+    const liked = [
+        {name: "1", comment: "0XYvRd7oD", author: "not me"},
         {name: "2", comment: "ozEvzdVM", author: "me"},
         {name: "3", comment: "0XYvRd7oD", author: "me"},
         {name: "4", comment: "ozEvzdVM-", author: "me"},
@@ -82,6 +93,12 @@ const ProfileComponent = () => {
         <div>
             <CommentCardComponent type={cat.name} comment={cat.comment} author = {cat.author}
             ></CommentCardComponent>
+        </div>
+    )
+    const liked_data = liked?.map(cat =>
+        <div>
+            <LikeCardComponent author = {cat.author}
+            ></LikeCardComponent>
         </div>
     )
     return (
@@ -134,6 +151,9 @@ const ProfileComponent = () => {
                 {comments_data}
             </div>
             <label className="medium_text">Likes</label>
+            <div className="card_row">
+                {liked_data}
+            </div>
         </div>
     )
 }
