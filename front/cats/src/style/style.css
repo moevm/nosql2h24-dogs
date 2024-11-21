@@ -67,6 +67,7 @@ body {
 
 .main_main_box{
     width:100%;
+    margin-top: 30px;
     display: flex;
     flex-direction: row;
 }
@@ -83,6 +84,11 @@ body {
 }
 .filter_box{
     width:30%;
+    background-color: var(--color-purple);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+
 }
 .search_input{
     width: 80%;
@@ -92,4 +98,17 @@ body {
     justify-content: center;
     margin: 10px;
     border-radius: 10px;
+}
+.filter_check_box{
+    width:20px;
+    height: 20px;
+
+}
+.filter_row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
 }

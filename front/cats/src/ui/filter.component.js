@@ -143,81 +143,89 @@ export const FilterComponent = () => {
     const [checkedCountryCodes, setCheckedCountryCodes] = useState([])
     return (
         <div className="filter_box">
-            <Button onClick={() => {
+            <div>
+                <Button onClick={() => {
 
-                const filter_data = {
-                    filter_number: JSON.parse(JSON.stringify(checkedNumbers)),
-                    filter_bigger_number:JSON.parse(JSON.stringify(checkedStringNumbers)),
-                    filter_temperament:[],
-                    filter_country:[],
-                    filter_country_codes:[]
-                }
-                if (isTemperamentChecked)
-                    filter_data.filter_temperament = JSON.parse(JSON.stringify(checkedTemperament))
-                if (isCountryChecked)
-                    filter_data.filter_country = JSON.parse(JSON.stringify(checkedCountry))
-                if (isCountryCodesChecked)
-                    filter_data.filter_country_codes = JSON.parse(JSON.stringify(checkedCountryCodes))
-                dispatch(updateFilter(filter_data))
-            }}> Filter Data</Button>
-            <Button onClick={() => {
-                setCheckedNumbers([])
-                //setCheckedString([])
-                window.location.reload();
-            }}> сброс </Button>
+                    const filter_data = {
+                        filter_number: JSON.parse(JSON.stringify(checkedNumbers)),
+                        filter_bigger_number:JSON.parse(JSON.stringify(checkedStringNumbers)),
+                        filter_temperament:[],
+                        filter_country:[],
+                        filter_country_codes:[]
+                    }
+                    if (isTemperamentChecked)
+                        filter_data.filter_temperament = JSON.parse(JSON.stringify(checkedTemperament))
+                    if (isCountryChecked)
+                        filter_data.filter_country = JSON.parse(JSON.stringify(checkedCountry))
+                    if (isCountryCodesChecked)
+                        filter_data.filter_country_codes = JSON.parse(JSON.stringify(checkedCountryCodes))
+                    dispatch(updateFilter(filter_data))
+                }}> Filter Data</Button>
+                <Button onClick={() => {
+                    setCheckedNumbers([])
+                    //setCheckedString([])
+                    window.location.reload();
+                }}> сброс </Button>
+            </div>
+
             {filter_data_numbers.map((item) => {
                 return (
 
-                    <div key={item.id}>
-                        <input type="checkbox"
-                               value={item.id}
-                               id={item.id}
-
-                               onChange={(e) => {
-                                   const isChecked = e.target.checked
-                                   //filter_data_numbers[Number(e.target.value) - 1].isChecked = isChecked;
-                                   const value = filter_data_numbers[Number(e.target.value) - 1]
-
-
-                                   if (isChecked) {
-                                       setCheckedNumbers([...checkedNumbers, value])
-
-                                   } else {
-                                       const filtered = checkedNumbers.filter(item => item.id !== value.id);
-                                       setCheckedNumbers(filtered)
-                                   }
+                    <div key={item.id} className="filter_row">
+                        <div >
+                            <input type="checkbox"
+                                   value={item.id}
+                                   id={item.id}
+                                    className="filter_check_box"
+                                   onChange={(e) => {
+                                       const isChecked = e.target.checked
+                                       //filter_data_numbers[Number(e.target.value) - 1].isChecked = isChecked;
+                                       const value = filter_data_numbers[Number(e.target.value) - 1]
 
 
-                               }}
-                        />
-                        <label htmlFor={item.id}>{item.value}</label>
+                                       if (isChecked) {
+                                           setCheckedNumbers([...checkedNumbers, value])
+
+                                       } else {
+                                           const filtered = checkedNumbers.filter(item => item.id !== value.id);
+                                           setCheckedNumbers(filtered)
+                                       }
 
 
-                        <label> from</label>
-                        <input type="number" min="0" max="5" onChange={(e) => {
-                            if (Number(e.target.value) > 5 || Number(e.target.value) < 0) {
-                                e.target.value = "0"
-                            } else {
-                                const index = checkedNumbers.findIndex(itemm => itemm.id === item.id);
-                                if (index !== -1) {
-                                    //alert(JSON.stringify(checkedNumbers[index]))
-                                    checkedNumbers[index].from = Number(e.target.value);
+                                   }}
+                            />
+                            <label className="filter_text" htmlFor={item.id} >{item.value}</label>
+                        </div>
+
+                        <div>
+                            <label className="filter_text"> from</label>
+                            <input type="number" min="0" max="5" onChange={(e) => {
+                                if (Number(e.target.value) > 5 || Number(e.target.value) < 0) {
+                                    e.target.value = "0"
+                                } else {
+                                    const index = checkedNumbers.findIndex(itemm => itemm.id === item.id);
+                                    if (index !== -1) {
+                                        //alert(JSON.stringify(checkedNumbers[index]))
+                                        checkedNumbers[index].from = Number(e.target.value);
+                                    }
+                                    filter_data_numbers[Number(item.id) - 1].from = Number(e.target.value);
                                 }
-                                filter_data_numbers[Number(item.id) - 1].from = Number(e.target.value);
-                            }
-                        }}/>
-                        <label> to</label>
-                        <input type="number" min="0" max="5" onChange={(e) => {
-                            if (Number(e.target.value) > 5 || Number(e.target.value) < 0) {
-                                e.target.value = "0"
-                            } else {
-                                const index = checkedNumbers.findIndex(itemm => itemm.id === item.id);
-                                if (index !== -1) {
-                                    checkedNumbers[index].to = Number(e.target.value);
+                            }}/>
+                            <label className="filter_text"> to</label>
+                            <input type="number" min="0" max="5" onChange={(e) => {
+                                if (Number(e.target.value) > 5 || Number(e.target.value) < 0) {
+                                    e.target.value = "0"
+                                } else {
+                                    const index = checkedNumbers.findIndex(itemm => itemm.id === item.id);
+                                    if (index !== -1) {
+                                        checkedNumbers[index].to = Number(e.target.value);
+                                    }
+                                    filter_data_numbers[Number(item.id) - 1].to = Number(e.target.value);
                                 }
-                                filter_data_numbers[Number(item.id) - 1].to = Number(e.target.value);
-                            }
-                        }}/>
+                            }}/>
+                        </div>
+
+
                     </div>
 
                 )
