@@ -142,7 +142,7 @@ export const FilterComponent = () => {
     const [checkedCountry, setCheckedCountry] = useState([])
     const [checkedCountryCodes, setCheckedCountryCodes] = useState([])
     return (
-        <div>
+        <div className="filter_box">
             <Button onClick={() => {
 
                 const filter_data = {
