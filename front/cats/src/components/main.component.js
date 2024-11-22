@@ -5,25 +5,32 @@ import CardComponent from "../ui/card.component";
 import data from "../profiles.json";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import {Button} from "@mui/material";
+import {Button, IconButton} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import SearchComponent from "../ui/search.component";
 import CatGridComponent from "./catGrid.component";
 import FilterComponent from "../ui/filter.component";
+import {ArrowBack, PersonOutline} from "@mui/icons-material";
 
 export const MainComponent = () => {
 
     const navigate = useNavigate();
     return (
-        <div>
-            <div>Main
-                <Button onClick={() => {
+        <div className="main_box">
+            <div className="main_app_bar">
+                <SearchComponent></SearchComponent>
+                <IconButton onClick={() => {
                     navigate("/profile")
-                }}> Profile</Button></div>
+                    }}>
+                    <PersonOutline className="profile_app_bar_icon"/>
+                </IconButton>
+            </div>
 
-            <SearchComponent></SearchComponent>
-            <FilterComponent></FilterComponent>
-            <CatGridComponent></CatGridComponent>
+            <div className="main_main_box">
+                <CatGridComponent></CatGridComponent>
+                <FilterComponent></FilterComponent>
+            </div>
+
         </div>
     )
 
