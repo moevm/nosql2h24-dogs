@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Button, Input, InputLabel} from "@mui/material";
+import {Autocomplete, Button, Input, InputLabel, TextField} from "@mui/material";
 import {useDispatch} from "react-redux";
 import {updateFilter} from "../filterSlice.js";
 import {tab} from "@testing-library/user-event/dist/tab";
@@ -230,6 +230,24 @@ export const FilterComponent = () => {
 
                 )
             })}
+
+            <Autocomplete
+                sx={{ m: 1, width: 500 }}
+                multiple
+                options={filter_data_country_codes.map(function(item) {
+                    return item['value'];
+                })}
+                getOptionLabel={(option) => option}
+                disableCloseOnSelect
+                renderInput={(params) => (
+                    <TextField
+                        {...params}
+                        variant="outlined"
+                        label="Multiple Autocomplete"
+                        placeholder="Multiple Autocomplete"
+                    />
+                )}
+            />
             <input type="checkbox"
                    value="temp"
                    id="temp"
@@ -239,6 +257,8 @@ export const FilterComponent = () => {
                    }}
             />
             <label htmlFor="temp">country codes</label>
+
+
             {filter_data_country_codes.map((item) => {
                 return (
                     <div key={item.id}>

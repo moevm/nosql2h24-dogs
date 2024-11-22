@@ -8,6 +8,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import CardComponent from "../ui/card.component";
 
 import {useSelector} from "react-redux";
+import SmallCatCardComponent from "../ui/smallCatCard.component";
 
 const CatGridComponent = () => {
     let filter_data = useSelector(state => state.filter);
@@ -16,10 +17,11 @@ const CatGridComponent = () => {
     const [usersData, setUsersData] = useState(null);
     const [eventsData, setEventsData] = useState(null);
     const [isDataLoading, setIsDataLoading] = useState(false);
-
+    const amountOfCatsOnPage = 16;
+    let page = 1;
     const fetchData = async () => {
 
-        axios.post("http://localhost:1240/api/breeds/bodySearch", {
+        axios.post("http://localhost:1240/api/breeds/bodySearch/"+amountOfCatsOnPage+"/"+page, {
             headers: {
                 'Access-Control-Allow-Origin' : '*',
                 'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
@@ -49,10 +51,9 @@ const CatGridComponent = () => {
         fetchData();
     }, [filter_data]);
     const data = catData?.map(cat =>
-        <div>
-            <CardComponent name={cat.name} img={cat.referenceImageId}
-            ></CardComponent>
-        </div>
+            <SmallCatCardComponent name={cat.name} img={cat.referenceImageId}
+            ></SmallCatCardComponent>
+
     )
     if (isDataLoading) {
         return (

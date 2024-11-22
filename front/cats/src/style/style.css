@@ -72,8 +72,11 @@ body {
     flex-direction: row;
 }
 .cat_grid{
-    width:70%;
-
+    width:70vw;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    column-gap: 20px;
+    row-gap: 20px;
 }
 .cat_grid_progress_bar{
     width: 70%;
