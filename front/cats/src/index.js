@@ -8,12 +8,14 @@ import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
 import {createSlice} from "@reduxjs/toolkit";
 import filterReducer from "./filterSlice.js";
+import userReducer from "./userSlice.js";
 
 
 
 const store = configureStore({
     reducer: {
-        filter: filterReducer
+        filter: filterReducer,
+        user: userReducer
     }
 });
 

@@ -2,8 +2,11 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {Button} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const ProfileComponent = () => {
+    let user_data = useSelector(state => state.user);
+
     const navigate = useNavigate();
     const [userData, setUserData] = useState(null);
     const fetchData = async () => {
@@ -31,7 +34,7 @@ const ProfileComponent = () => {
     return (
         <div>
             <h3>Profile</h3>
-            {JSON.stringify(userData)}
+            {JSON.stringify(user_data)}
             <Button onClick={()=>{
                 navigate("/statistic")
             }}>
