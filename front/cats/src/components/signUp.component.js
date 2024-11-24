@@ -59,7 +59,7 @@ const SignUpComponent = () => {
                                  setPassword2(e.target.value)
                              }
                              }
-                             placeholder="password"
+                             placeholder="password again"
             ></CustomTextField>
 
             <button className="button" onClick={() => {

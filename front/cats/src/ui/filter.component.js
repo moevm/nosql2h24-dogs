@@ -35,7 +35,7 @@ export const FilterComponent = () => {
     ]
     const filter_data_string_numbers=[
         {id: "1", value: "weight", from: 0, to: 0},
-        {id: "2", value: "lifeSpin", from: 0, to: 0},
+        {id: "2", value: "lifeSpan", from: 0, to: 0},
     ]
     
     const filter_data_country_codes = [
@@ -154,7 +154,7 @@ export const FilterComponent = () => {
                         filter_country:JSON.parse(JSON.stringify(checkedCountry)),
                         filter_country_codes:JSON.parse(JSON.stringify(checkedCountryCodes))
                     }
-
+                    console.log(JSON.stringify(filter_data))
                     dispatch(updateFilter(filter_data))
                 }}> Filter Data</Button>
                 <Button onClick={() => {

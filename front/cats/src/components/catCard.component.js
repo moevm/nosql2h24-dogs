@@ -79,15 +79,18 @@ const CatCardComponent = () => {
         return (
             <div className="cat_card_box">
                 <div className="cat_card_appbar">
-                    <IconButton onClick={() => {navigate("/main")}}>
+                    <IconButton onClick={() => {
+                        navigate("/main")
+                    }}>
                         <ArrowBack className="profile_app_bar_icon"/>
                     </IconButton>
-                    <IconButton onClick={() => {}}>
+                    <IconButton onClick={() => {
+                    }}>
                         <FavoriteBorder className="profile_app_bar_icon"/>
                     </IconButton>
                 </div>
                 <div className="cat_card_data_row">
-                    <img src={"https://cdn2.thecatapi.com/images/"+catData.reference_image_id +".jpg"}
+                    <img src={"https://cdn2.thecatapi.com/images/" + catData.reference_image_id + ".jpg"}
                          width="300" height="360"
                     ></img>
                     <div className="cat_card_data_column">
@@ -100,12 +103,15 @@ const CatCardComponent = () => {
                 </div>
                 <BarChart className="chart"
                           dataset={fullChartData}
-                    xAxis={[{ scaleType: 'band', dataKey:"value" }]}
-                          series={[{ dataKey: 'data' }]}
-                    width={1000}
-                    height={500}
+                          xAxis={[{scaleType: 'band', dataKey: "value"}]}
+                          series={[{dataKey: 'data'}]}
+                          width={1000}
+                          height={500}
                 />
                 <label className="middle_text">Links:</label>
+                <label className="small_text"> </label>
+                <label className="small_text"> </label>
+                <label className="small_text"> </label>
                 <label className="small_text"> </label>
                 <h3>{JSON.stringify(fullChartData)}</h3>
                 <div>{JSON.stringify(catData)}</div>
