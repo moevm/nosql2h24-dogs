@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import {catOptions} from "../options";
+import {BASE_URL, catOptions} from "../options";
 import SearchComponent from "../ui/search.component";
 import {Button} from "@mui/material";
 import Box from "@mui/material/Box";
@@ -21,7 +21,7 @@ const CatGridComponent = () => {
     let page = 1;
     const fetchData = async () => {
 
-        axios.post("http://localhost:1240/api/breeds/bodySearch"/*"+amountOfCatsOnPage+"/"+page*/, {
+        axios.post(BASE_URL+"/breeds/bodySearch"/*"+amountOfCatsOnPage+"/"+page*/, {
             headers: {
                 'Access-Control-Allow-Origin' : '*',
                 'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'

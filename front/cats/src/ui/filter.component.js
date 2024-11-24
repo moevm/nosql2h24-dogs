@@ -11,7 +11,7 @@ export const FilterComponent = () => {
 
     const filter_data_numbers = [
         {id: "1", value: "adaptability", from: 0, to: 0},
-        {id: "2", value: "affection_level", from: 0, to: 0},
+        {id: "2", value: "affectionLevel", from: 0, to: 0},
         {id: "3", value: "childFriendly", from: 0, to: 0},
         {id: "4", value: "dogFriendly", from: 0, to: 0},
         {id: "5", value: "energyLevel", from: 0, to: 0},
