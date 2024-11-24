@@ -3,6 +3,7 @@ import {Autocomplete, Button, Input, InputLabel, TextField} from "@mui/material"
 import {useDispatch} from "react-redux";
 import {updateFilter} from "../filterSlice.js";
 import {tab} from "@testing-library/user-event/dist/tab";
+import {dark_purple_color, text_input} from "../Themes";
 
 export const FilterComponent = () => {
 
@@ -135,12 +136,13 @@ export const FilterComponent = () => {
 
     const [checkedNumbers, setCheckedNumbers] = useState([])
     const [checkedStringNumbers, setCheckedStringNumbers] = useState([])
-    const [isTemperamentChecked, setIsTemperamentChecked] = useState(false)
-    const [isCountryCodesChecked, setIsCountryCodesChecked] = useState(false)
-    const [isCountryChecked, setIsCountryChecked] = useState(false)
+
     const [checkedTemperament, setCheckedTemperament] = useState([])
     const [checkedCountry, setCheckedCountry] = useState([])
     const [checkedCountryCodes, setCheckedCountryCodes] = useState([])
+
+    const [value, setValue] = useState([]);
+
     return (
         <div className="filter_box">
             <div>
@@ -149,16 +151,11 @@ export const FilterComponent = () => {
                     const filter_data = {
                         filter_number: JSON.parse(JSON.stringify(checkedNumbers)),
                         filter_bigger_number:JSON.parse(JSON.stringify(checkedStringNumbers)),
-                        filter_temperament:[],
-                        filter_country:[],
-                        filter_country_codes:[]
+                        filter_temperament:JSON.parse(JSON.stringify(checkedTemperament)),
+                        filter_country:JSON.parse(JSON.stringify(checkedCountry)),
+                        filter_country_codes:JSON.parse(JSON.stringify(checkedCountryCodes))
                     }
-                    if (isTemperamentChecked)
-                        filter_data.filter_temperament = JSON.parse(JSON.stringify(checkedTemperament))
-                    if (isCountryChecked)
-                        filter_data.filter_country = JSON.parse(JSON.stringify(checkedCountry))
-                    if (isCountryCodesChecked)
-                        filter_data.filter_country_codes = JSON.parse(JSON.stringify(checkedCountryCodes))
+
                     dispatch(updateFilter(filter_data))
                 }}> Filter Data</Button>
                 <Button onClick={() => {
@@ -231,135 +228,61 @@ export const FilterComponent = () => {
                 )
             })}
 
-            <Autocomplete
-                sx={{ m: 1, width: 500 }}
+
+            <Autocomplete className="autocomplete"
+
                 multiple
-                options={filter_data_country_codes.map(function(item) {
-                    return item['value'];
-                })}
-                getOptionLabel={(option) => option}
+                options={filter_data_country_codes}
+                onChange={(event, newValue) => {
+                    setCheckedCountryCodes(newValue);
+                }}
+                getOptionLabel={(option) => option.value}
                 disableCloseOnSelect
                 renderInput={(params) => (
-                    <TextField
+                    <TextField className="autocomplete_text"
                         {...params}
                         variant="outlined"
-                        label="Multiple Autocomplete"
-                        placeholder="Multiple Autocomplete"
+                        label="Country Codes"
+
                     />
                 )}
             />
-            <input type="checkbox"
-                   value="temp"
-                   id="temp"
-                   onChange={(e) => {
-                       const isChecked = e.target.checked
-                       setIsCountryCodesChecked(isChecked)
-                   }}
+            <Autocomplete className="autocomplete"
+                multiple
+                options={filter_data_country}
+                onChange={(event, newValue) => {
+                    setCheckedCountry(newValue);
+                }}
+                getOptionLabel={(option) => option.value}
+                disableCloseOnSelect
+                renderInput={(params) => (
+                    <TextField className="autocomplete_text"
+                        {...params}
+                        variant="outlined"
+                        label="Country"
+                    />
+                )}
             />
-            <label htmlFor="temp">country codes</label>
 
+            <Autocomplete className="autocomplete"
+                multiple
+                options={filter_data_temperament}
+                onChange={(event, newValue) => {
+                    setCheckedTemperament(newValue);
+                }}
+                getOptionLabel={(option) => option.value}
+                disableCloseOnSelect
+                renderInput={(params) => (
+                    <TextField className="autocomplete_text"
+                        {...params}
+                        variant="outlined"
+                        label="Temperament"
 
-            {filter_data_country_codes.map((item) => {
-                return (
-                    <div key={item.id}>
-                        <input type="checkbox"
-                               value={item.id}
-                               id={item.id}
-                               style={{marginLeft: 30}}
-                               onChange={(e) => {
-                                   const isChecked = e.target.checked
-                                   const value = filter_data_country_codes[Number(e.target.value) - 1]
-
-
-                                   if (isChecked) {
-                                       setCheckedCountryCodes([...checkedCountryCodes, value])
-
-                                   } else {
-                                       const filtered = checkedCountryCodes.filter(item => item.id !== value.id);
-                                       setCheckedCountryCodes(filtered)
-                                   }
-
-
-                               }}
-                        />
-                        <label htmlFor={item.id}>{item.value}</label>
-                    </div>
-                )
-            })}
-            <input type="checkbox"
-                   value="temp"
-                   id="temp"
-                   onChange={(e) => {
-                       const isChecked = e.target.checked
-                       setIsCountryChecked(isChecked)
-                   }}
+                    />
+                )}
             />
-            <label htmlFor="temp">country</label>
-            {filter_data_country.map((item) => {
-                return (
-                    <div key={item.id}>
-                        <input type="checkbox"
-                               value={item.id}
-                               id={item.id}
-                               style={{marginLeft: 30}}
-                               onChange={(e) => {
-                                   const isChecked = e.target.checked
-                                   const value = filter_data_country[Number(e.target.value) - 1]
 
 
-                                   if (isChecked) {
-                                       setCheckedCountry([...checkedCountry, value])
-
-                                   } else {
-                                       const filtered = checkedCountry.filter(item => item.id !== value.id);
-                                       setCheckedCountry(filtered)
-                                   }
-
-
-                               }}
-                        />
-                        <label htmlFor={item.id}>{item.value}</label>
-                    </div>
-                )
-            })}
-            <input type="checkbox"
-                   value="temp"
-                   id="temp"
-                   onChange={(e) => {
-                       const isChecked = e.target.checked
-                       setIsTemperamentChecked(isChecked)
-                   }}
-            />
-            <label htmlFor="temp">temperament</label>
-            {filter_data_temperament.map((item) => {
-                return (
-                    <div key={item.id}>
-
-                        <input type="checkbox"
-                               value={item.id}
-                               id={item.id}
-                               style={{marginLeft: 30}}
-                               onChange={(e) => {
-                                   const isChecked = e.target.checked
-                                   const value = filter_data_temperament[Number(e.target.value) - 1]
-
-
-                                   if (isChecked) {
-                                       setCheckedTemperament([...checkedTemperament, value])
-
-                                   } else {
-                                       const filtered = checkedTemperament.filter(item => item.id !== value.id);
-                                       setCheckedTemperament(filtered)
-                                   }
-
-
-                               }}
-                        />
-                        <label htmlFor={item.id}>{item.value}</label>
-
-                    </div>
-                )
-            })}
         </div>
     )
 }

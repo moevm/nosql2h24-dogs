@@ -21,7 +21,7 @@ const CatGridComponent = () => {
     let page = 1;
     const fetchData = async () => {
 
-        axios.post("http://localhost:1240/api/breeds/bodySearch/"+amountOfCatsOnPage+"/"+page, {
+        axios.post("http://localhost:1240/api/breeds/bodySearch"/*"+amountOfCatsOnPage+"/"+page*/, {
             headers: {
                 'Access-Control-Allow-Origin' : '*',
                 'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'

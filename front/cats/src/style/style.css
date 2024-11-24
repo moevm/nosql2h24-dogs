@@ -2,6 +2,7 @@
     --color-purple: #E5D4E8;
     --color-light-purple: #F6EAF8;
     --color-black: #000000;
+    --color-dark-purple: #9C5CA7;
 }
 
 body {
@@ -114,4 +115,19 @@ body {
     align-content: center;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.autocomplete{
+    padding: 10px;
+
+}
+.autocomplete_text .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: var(--color-dark-purple);
+}
+.autocomplete_text .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: var(--color-dark-purple);
+}
+
+.autocomplete_text .MuiInputLabel-root.Mui-focused{
+    color: var(--color-dark-purple);
 }
