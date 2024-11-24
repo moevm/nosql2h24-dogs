@@ -7,15 +7,17 @@ import {configureStore} from "@reduxjs/toolkit";
 //import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
 import {createSlice} from "@reduxjs/toolkit";
-import filterReducer from "./filterSlice.js";
-import userReducer from "./userSlice.js";
+import filterReducer from "./slice/filterSlice.js";
+import userReducer from "./slice/userSlice.js";
+import dataSlice from "./slice/dataSlice";
 
 
 
 const store = configureStore({
     reducer: {
         filter: filterReducer,
-        user: userReducer
+        user: userReducer,
+        data: dataSlice,
     }
 });
 

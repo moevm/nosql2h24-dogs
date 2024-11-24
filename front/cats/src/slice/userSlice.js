@@ -25,10 +25,20 @@ const userSlice = createSlice({
             state.lastDate = action.payload.lastDate;
             state.favorites = action.payload.favorites;
             state.admin = action.payload.admin;
+        },
+        clearUserData: (state) => {
+            state.name = "";
+            state.age = "";
+            state.passwordHash = "";
+            state.image = "";
+            state.creationDate = "";
+            state.lastDate = "";
+            state.favorites = "";
+            state.admin = "";
         }
 
     }
 })
 
-export const {setUserData} = userSlice.actions;
+export const {setUserData, clearUserData} = userSlice.actions;
 export default userSlice.reducer;

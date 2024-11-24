@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import {catOptions} from "../options";
+import {BASE_URL, catOptions} from "../options";
 import SearchComponent from "../ui/search.component";
 import {Button} from "@mui/material";
 import Box from "@mui/material/Box";
@@ -8,6 +8,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import CardComponent from "../ui/card.component";
 
 import {useSelector} from "react-redux";
+import SmallCatCardComponent from "../ui/smallCatCard.component";
 
 const CatGridComponent = () => {
     let filter_data = useSelector(state => state.filter);
@@ -16,10 +17,11 @@ const CatGridComponent = () => {
     const [usersData, setUsersData] = useState(null);
     const [eventsData, setEventsData] = useState(null);
     const [isDataLoading, setIsDataLoading] = useState(false);
-
+    const amountOfCatsOnPage = 16;
+    let page = 1;
     const fetchData = async () => {
 
-        axios.post("http://localhost:1240/api/breeds/bodySearch", {
+        axios.post(BASE_URL+"/breeds/bodySearch"/*"+amountOfCatsOnPage+"/"+page*/, {
             headers: {
                 'Access-Control-Allow-Origin' : '*',
                 'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
@@ -49,21 +51,20 @@ const CatGridComponent = () => {
         fetchData();
     }, [filter_data]);
     const data = catData?.map(cat =>
-        <div>
-            <CardComponent name={cat.name} img={cat.referenceImageId}
-            ></CardComponent>
-        </div>
+            <SmallCatCardComponent name={cat.name} img={cat.referenceImageId} id={cat.id}
+            ></SmallCatCardComponent>
+
     )
     if (isDataLoading) {
         return (
-            <div>
+            <div className="cat_grid">
                 {/*{JSON.stringify(filter_data)}*/}
                 {data}
             </div>
         )
     } else {
         return (
-            <Box sx={{display: 'flex'}}>
+            <Box className="cat_grid_progress_bar">
                 <CircularProgress/>
             </Box>
         )

@@ -2,15 +2,17 @@ import {useEffect, useState} from "react";
 import data from '../profiles.json';
 import {Link, useNavigate} from "react-router-dom";
 import {text_input} from "../Themes.js"
-import "../style.css"
+import "../style/style.css"
 import {IconButton, Input, InputAdornment, TextField} from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import CustomTextField from "../ui/customTextField.component";
 import {useDispatch} from "react-redux";
-import {setUserData} from "../userSlice.js";
+import {setUserData} from "../slice/userSlice.js";
 import axios from "axios";
 import {BASE_URL} from "../options.js";
+import "../style/text.css"
+
 export const SignInComponent = () => {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
@@ -29,6 +31,7 @@ export const SignInComponent = () => {
             }
         })
             .then(res => {
+
                 console.log(res.data);
                 if (res.data.name) {
                     dispatch(setUserData(res.data))
@@ -37,6 +40,10 @@ export const SignInComponent = () => {
             })
 
             .catch(err => {
+                if(err.status === 500){
+                    alert("Check your data")
+                }
+
                 console.error("error fetching data", err)
             });
     }
@@ -57,10 +64,7 @@ export const SignInComponent = () => {
 
             <CustomTextField value={password}
                              onChange={(e) => {
-                                 if (/^\d+$/.test(e.target.value) || e.target.value === "") {
-                                     setPassword(e.target.value)
-                                 }
-
+                                 setPassword(e.target.value)
                              }
                              }
                              placeholder="password"
