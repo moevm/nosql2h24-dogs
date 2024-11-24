@@ -8,7 +8,7 @@ import {useDispatch} from "react-redux";
 import {ArrowBack, Equalizer, Face, Settings} from "@mui/icons-material";
 import SmallCatCardComponent from "../ui/smallCatCard.component";
 import NotificationCardComponent from "../ui/notificationCard.component";
-import CommentCardComponent from "../ui/commentCard.component";
+import CommentNotificationCardComponent from "../ui/commentNotificationCard.component";
 import LikeCardComponent from "../ui/likeCard.component";
 import {clearUserData} from "../slice/userSlice";
 import "../style/profile.css"
@@ -80,6 +80,8 @@ const ProfileComponent = () => {
         fetchData();
     }, []);
 
+    const creation_date =  new Date(user_data.creationDate);
+
     const favorite_data = favorites?.map(cat =>
         <div>
             <SmallCatCardComponent name={cat.name} img={cat.img}
@@ -95,8 +97,8 @@ const ProfileComponent = () => {
     )
     const comments_data = comments?.map(cat =>
         <div>
-            <CommentCardComponent type={cat.name} comment={cat.comment} author={cat.author}
-            ></CommentCardComponent>
+            <CommentNotificationCardComponent type={cat.name} comment={cat.comment} author={cat.author}
+            ></CommentNotificationCardComponent>
         </div>
     )
     const liked_data = liked?.map(cat =>
@@ -144,7 +146,7 @@ const ProfileComponent = () => {
                 <div className="profile_data_column">
                     <div className="big_text">{user_data.name}</div>
                     <div className="small_text">Age: {user_data.age}</div>
-                    <div className="small_text">Creation date: {user_data.creationDate}</div>
+                    <div className="small_text">Creation date: {creation_date.getMonth()}</div>
                     <div className="small_text">Last edit date: {user_data.lastDate}</div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import {dark_purple_color} from "../Themes.js"
-const CommentCardComponent=(props)=>{
+const CommentNotificationCardComponent=(props)=>{
 
     return(
         <div className="comment_card">
@@ -16,4 +16,4 @@ const CommentCardComponent=(props)=>{
         </div>
     )
 }
-export default CommentCardComponent
+export default CommentNotificationCardComponent
