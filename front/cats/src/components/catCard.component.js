@@ -9,7 +9,7 @@ import {IconButton} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {BarChart} from "@mui/x-charts";
 import SmallCatCardComponent from "../ui/smallCatCard.component";
-import {addFavorite, removeFavorite} from "../slice/userSlice";
+import {addFavorite, removeFavorite, setUserData} from "../slice/userSlice";
 
 const CatCardComponent = () => {
     let dispatch = useDispatch();
@@ -71,6 +71,38 @@ const CatCardComponent = () => {
                 console.error("error fetching data", err)
             });
     }
+    const addFavorite = async () => {
+
+        axios.put(BASE_URL + "/users/addFavorite/"+user.name+"/" + cat.cat_id, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+            }
+        })
+            .then(res => {
+                dispatch(setUserData(res.data))
+            })
+
+            .catch(err => {
+                console.error("error fetching data", err)
+            });
+    }
+    const deleteFavorite = async () => {
+
+        axios.put(BASE_URL + "/users/removeFavorite/"+user.name+"/" + cat.cat_id, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+            }
+        })
+            .then(res => {
+                dispatch(setUserData(res.data))
+            })
+
+            .catch(err => {
+                console.error("error fetching data", err)
+            });
+    }
     useEffect(() => {
 
         setIsDataLoading(false)
@@ -91,9 +123,11 @@ const CatCardComponent = () => {
 
                     <IconButton onClick={() => {
                         if(user.favorites.includes(cat.cat_id)) {
-                            dispatch(removeFavorite(cat.cat_id))
+                            //dispatch(removeFavorite(cat.cat_id))
+                            deleteFavorite().then()
                         }else{
-                            dispatch(addFavorite(cat.cat_id))
+                            addFavorite().then()
+                            //dispatch(addFavorite(cat.cat_id))
                         }
 
                     }}>

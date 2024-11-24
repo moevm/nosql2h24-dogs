@@ -35,19 +35,10 @@ const userSlice = createSlice({
             state.lastDate = "";
             state.favorites = "";
             state.admin = "";
-        },
-        addFavorite: (state, action) => {
-            state.favorites.push(action.payload);
-        },
-        removeFavorite(state, action) {
-            const index = state.favorites.indexOf(action.payload);
-            if (index > -1) {
-                state.favorites.splice(index, 1);
-            }
         }
 
     }
 })
 
-export const {setUserData, clearUserData, addFavorite,removeFavorite} = userSlice.actions;
+export const {setUserData, clearUserData} = userSlice.actions;
 export default userSlice.reducer;
