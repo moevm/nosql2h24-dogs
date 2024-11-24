@@ -8,7 +8,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import CustomTextField from "../ui/customTextField.component";
 import {useDispatch} from "react-redux";
-import {setUserData} from "../userSlice.js";
+import {setUserData} from "../slice/userSlice.js";
 import axios from "axios";
 import {BASE_URL} from "../options.js";
 import "../style/text.css"

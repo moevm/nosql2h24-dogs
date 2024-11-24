@@ -51,7 +51,7 @@ const CatGridComponent = () => {
         fetchData();
     }, [filter_data]);
     const data = catData?.map(cat =>
-            <SmallCatCardComponent name={cat.name} img={cat.referenceImageId}
+            <SmallCatCardComponent name={cat.name} img={cat.referenceImageId} id={cat.id}
             ></SmallCatCardComponent>
 
     )

@@ -1,7 +1,7 @@
 import {Input, Button, TextField, InputAdornment, IconButton} from "@mui/material";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {setSearch} from "../filterSlice.js";
+import {setSearch} from "../slice/filterSlice.js";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import {search_input, text_input} from "../Themes";

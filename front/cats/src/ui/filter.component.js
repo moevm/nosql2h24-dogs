@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {Autocomplete, Button, Input, InputLabel, TextField} from "@mui/material";
 import {useDispatch} from "react-redux";
-import {updateFilter} from "../filterSlice.js";
+import {updateFilter} from "../slice/filterSlice.js";
 import {tab} from "@testing-library/user-event/dist/tab";
 import {dark_purple_color, text_input} from "../Themes";
 
@@ -141,7 +141,6 @@ export const FilterComponent = () => {
     const [checkedCountry, setCheckedCountry] = useState([])
     const [checkedCountryCodes, setCheckedCountryCodes] = useState([])
 
-    const [value, setValue] = useState([]);
 
     return (
         <div className="filter_box">
@@ -218,6 +217,69 @@ export const FilterComponent = () => {
                                         checkedNumbers[index].to = Number(e.target.value);
                                     }
                                     filter_data_numbers[Number(item.id) - 1].to = Number(e.target.value);
+                                }
+                            }}/>
+                        </div>
+
+
+                    </div>
+
+                )
+            })}
+
+            {filter_data_string_numbers.map((item) => {
+                return (
+
+                    <div key={item.id} className="filter_row">
+                        <div >
+                            <input type="checkbox"
+                                   value={item.id}
+                                   id={item.id}
+                                   className="filter_check_box"
+                                   onChange={(e) => {
+                                       const isChecked = e.target.checked
+                                       //filter_data_numbers[Number(e.target.value) - 1].isChecked = isChecked;
+                                       const value = filter_data_string_numbers[Number(e.target.value) - 1]
+
+
+                                       if (isChecked) {
+                                           setCheckedStringNumbers([...checkedStringNumbers, value])
+
+                                       } else {
+                                           const filtered = checkedStringNumbers.filter(item => item.id !== value.id);
+                                           setCheckedStringNumbers(filtered)
+                                       }
+
+
+                                   }}
+                            />
+                            <label className="filter_text" htmlFor={item.id} >{item.value}</label>
+                        </div>
+
+                        <div>
+                            <label className="filter_text"> from</label>
+                            <input type="number" min="0" max="20" onChange={(e) => {
+                                if (Number(e.target.value) > 20 || Number(e.target.value) < 0) {
+                                    e.target.value = "0"
+                                } else {
+                                    const index = checkedStringNumbers.findIndex(itemm => itemm.id === item.id);
+                                    if (index !== -1) {
+                                        //alert(JSON.stringify(checkedNumbers[index]))
+                                        checkedStringNumbers[index].from = Number(e.target.value);
+                                    }
+                                    filter_data_string_numbers[Number(item.id) - 1].from = Number(e.target.value);
+                                }
+                            }}/>
+                            <label className="filter_text"> to</label>
+                            <input type="number" min="0" max="20" onChange={(e) => {
+                                if (Number(e.target.value) > 20 || Number(e.target.value) < 0) {
+                                    e.target.value = "0"
+                                } else {
+                                    const index = checkedStringNumbers.findIndex(itemm => itemm.id === item.id);
+                                    if (index !== -1) {
+                                        checkedStringNumbers[index].to = Number(e.target.value);
+                                    }
+                                    filter_data_string_numbers[Number(item.id) - 1].to = Number(e.target.value);
                                 }
                             }}/>
                         </div>

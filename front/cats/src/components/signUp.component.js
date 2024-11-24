@@ -4,7 +4,7 @@ import {Link, useNavigate} from "react-router-dom";
 import CustomTextField from "../ui/customTextField.component";
 import axios from "axios";
 import {BASE_URL} from "../options";
-import {setUserData} from "../userSlice";
+import {setUserData} from "../slice/userSlice";
 import {useDispatch} from "react-redux";
 
 const SignUpComponent = () => {

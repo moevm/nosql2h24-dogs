@@ -10,7 +10,7 @@ import SmallCatCardComponent from "../ui/smallCatCard.component";
 import NotificationCardComponent from "../ui/notificationCard.component";
 import CommentCardComponent from "../ui/commentCard.component";
 import LikeCardComponent from "../ui/likeCard.component";
-import {clearUserData} from "../userSlice";
+import {clearUserData} from "../slice/userSlice";
 import "../style/profile.css"
 import "../style/small_cards.css"
 const ProfileComponent = () => {
