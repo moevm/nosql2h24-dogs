@@ -5,7 +5,6 @@ import SearchComponent from "./search.component";
 import {Button} from "@mui/material";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
-import CardComponent from "./card.component";
 
 import {useSelector} from "react-redux";
 import SmallCatCardComponent from "./small_cards/smallCatCard.component";

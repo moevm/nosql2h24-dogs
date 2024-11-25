@@ -19,6 +19,7 @@ const ProfileComponent = () => {
     let dispatch = useDispatch();
     //let user_data = useSelector(state => state.user);
     let user_data = JSON.parse(localStorage.getItem("userData"));
+
     //alert(JSON.stringify(user_data))
     const favorites = user_data.favorites;
     const [favoritesData, setFavoritesData] = useState([]);
@@ -57,7 +58,10 @@ const ProfileComponent = () => {
     //const [catData, setCatData] = useState(null);
 
 
-
+    useEffect(()=>{
+        if(Object.keys(user_data).length === 0)
+            navigate("/sign_in")
+    });
 
 
     const creation_date =  new Date(user_data.creationDate);
@@ -116,7 +120,7 @@ const ProfileComponent = () => {
 
                     <label className="medium_text" onClick={()=>{
                         dispatch(clearUserData())
-                        localStorage.setItem("userData","")
+                        localStorage.setItem("userData","{}")
                         navigate("/sign_in")
                     }}> Log out</label>
                 </div>

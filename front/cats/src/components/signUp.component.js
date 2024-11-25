@@ -29,7 +29,7 @@ const SignUpComponent = () => {
                 console.log(res.data);
                 if (res.data.name) {
                     dispatch(setUserData(res.data))
-                    localStorage.setItem("userData","")
+                    localStorage.setItem("userData",JSON.stringify(res.data))
                     navigate("/main");
                 }
             })
