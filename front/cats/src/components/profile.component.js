@@ -54,53 +54,22 @@ const ProfileComponent = () => {
         {name: "2", comment: "ozEvzdVM-", author: "me"},
     ]
     const navigate = useNavigate();
-    const [catData, setCatData] = useState(null);
-    const [isFavoriteDataLoading, setIsFavoriteDataLoading] = useState(false);
+    //const [catData, setCatData] = useState(null);
 
 
-    const fetchData = async () => {
 
-        axios.post(BASE_URL+"/breeds/bodySearch"/*"+amountOfCatsOnPage+"/"+page*/, {
-            headers: {
-                'Access-Control-Allow-Origin' : '*',
-                'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-            }
-        })
-            .then(res => {
-                console.log(res.data);
-                setCatData(res.data)
-                let list=[]
-                res.data.map(el=>{
-                    if(favorites.includes(el.id)){
-                        list.push(el)
-                    }
-                })
-                setFavoritesData(list)
-                setIsFavoriteDataLoading(true)
-            })
-
-            .catch(err => {
-                console.error("error fetching data", err)
-            });
-    }
-    useEffect(() => {
-
-        setIsFavoriteDataLoading(false)
-        //alert(JSON.stringify(filter_data));
-        fetchData();
-    }, []);
 
 
     const creation_date =  new Date(user_data.creationDate);
 
 
-    const favorite_data = isFavoriteDataLoading?
-        favoritesData?.map(fav =>
+    const favorite_data =
+        favorites?.map(fav =>
             <div>
-                <SmallCatCardComponent name={fav.name} img={fav.referenceImageId} id={fav.id}
+                <SmallCatCardComponent id={fav}
                 ></SmallCatCardComponent>
             </div>
-        ):<CircularProgress/>
+        )
 
     const notifications_data = notifications?.map(cat =>
         <div>
