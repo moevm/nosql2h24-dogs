@@ -1,7 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-    cat_id:""
+    cat_id:"",
+    all_cats:[]
 }
 
 const dataSlice = createSlice({
@@ -11,10 +12,13 @@ const dataSlice = createSlice({
         setCatId: (state, action) => {
             console.log(action.payload)
             state.cat_id = action.payload;
+        },
+        setAllCats:(state,action)=>{
+            state.all_cats = action.payload;
         }
 
     }
 })
 
-export const {setCatId} = dataSlice.actions;
+export const {setCatId, setAllCats} = dataSlice.actions;
 export default dataSlice.reducer;

@@ -12,7 +12,7 @@ const SmallCatCardComponent=(props)=>{
         <div className="favorite_card" onClick={() => {
 
             dispatch(setCatId(props.id));
-            navigate("/cat_card");
+            navigate("/cat_card/"+props.id);
         }}>
             <img ref={imgRef}
                  src={"https://cdn2.thecatapi.com/images/"+props.img+".jpg"}

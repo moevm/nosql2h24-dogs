@@ -10,22 +10,19 @@ import SmallCatCardComponent from "../ui/smallCatCard.component";
 import NotificationCardComponent from "../ui/notificationCard.component";
 import CommentNotificationCardComponent from "../ui/commentNotificationCard.component";
 import LikeCardComponent from "../ui/likeCard.component";
-import {clearUserData} from "../slice/userSlice";
+import {clearUserData, setUserData} from "../slice/userSlice.js";
 import "../style/profile.css"
 import "../style/small_cards.css"
+import LoadingBar from "react-top-loading-bar";
+import CircularProgress from "@mui/material/CircularProgress";
 const ProfileComponent = () => {
     let dispatch = useDispatch();
-    let user_data = useSelector(state => state.user);
-    const favorites = [
-        {name: "1", img: "0XYvRd7oD"},
-        {name: "2", img: "ozEvzdVM"},
-        {name: "1", img: "0XYvRd7oD"},
-        {name: "2", img: "ozEvzdVM-"},
-        {name: "1", img: "0XYvRd7oD"},
-        {name: "2", img: "ozEvzdVM-"},
-        {name: "1", img: "0XYvRd7oD"},
-        {name: "2", img: "ozEvzdVM-"},
-    ]
+    //let user_data = useSelector(state => state.user);
+    let user_data = JSON.parse(localStorage.getItem("userData"));
+    //alert(JSON.stringify(user_data))
+    const favorites = user_data.favorites;
+    const [favoritesData, setFavoritesData] = useState([]);
+
     const notifications = [
         {name: "1", comment: "0XYvRd7oD"},
         {name: "2", comment: "ozEvzdVM"},
@@ -57,18 +54,29 @@ const ProfileComponent = () => {
         {name: "2", comment: "ozEvzdVM-", author: "me"},
     ]
     const navigate = useNavigate();
-    const [userData, setUserData] = useState(null);
+    const [catData, setCatData] = useState(null);
+    const [isFavoriteDataLoading, setIsFavoriteDataLoading] = useState(false);
+
+
     const fetchData = async () => {
-        axios.get(BASE_URL + "/users", {
+
+        axios.post(BASE_URL+"/breeds/bodySearch"/*"+amountOfCatsOnPage+"/"+page*/, {
             headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
             }
         })
             .then(res => {
                 console.log(res.data);
-                setUserData(res.data)
-
+                setCatData(res.data)
+                let list=[]
+                res.data.map(el=>{
+                    if(favorites.includes(el.id)){
+                        list.push(el)
+                    }
+                })
+                setFavoritesData(list)
+                setIsFavoriteDataLoading(true)
             })
 
             .catch(err => {
@@ -77,17 +85,22 @@ const ProfileComponent = () => {
     }
     useEffect(() => {
 
+        setIsFavoriteDataLoading(false)
+        //alert(JSON.stringify(filter_data));
         fetchData();
     }, []);
 
+
     const creation_date =  new Date(user_data.creationDate);
 
-    const favorite_data = favorites?.map(cat =>
-        <div>
-            <SmallCatCardComponent name={cat.name} img={cat.img}
-            ></SmallCatCardComponent>
-        </div>
-    )
+
+    const favorite_data = isFavoriteDataLoading?
+        favoritesData?.map(fav =>
+            <div>
+                <SmallCatCardComponent name={fav.name} img={fav.referenceImageId} id={fav.id}
+                ></SmallCatCardComponent>
+            </div>
+        ):<CircularProgress/>
 
     const notifications_data = notifications?.map(cat =>
         <div>
@@ -134,6 +147,7 @@ const ProfileComponent = () => {
 
                     <label className="medium_text" onClick={()=>{
                         dispatch(clearUserData())
+                        localStorage.setItem("userData","")
                         navigate("/sign_in")
                     }}> Log out</label>
                 </div>

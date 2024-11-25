@@ -12,7 +12,7 @@ function App() {
     <Router>
       <div>
         <Routes>
-          <Route exact path="/cat_card" element={<CatCardComponent />} />
+          <Route exact path="/cat_card/:id" element={<CatCardComponent />} />
           <Route exact path="/main" element={<MainComponent />} />
           <Route exact path="/profile" element={<ProfileComponent />} />
           <Route exact path="/sign_in" element={<SignInComponent />} />
