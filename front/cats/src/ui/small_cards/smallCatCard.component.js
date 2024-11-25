@@ -1,9 +1,9 @@
 import React, {useRef, useState,useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {setCatId} from "../slice/dataSlice";
+import {setCatId} from "../../slice/dataSlice";
 import axios from "axios";
-import {BASE_URL} from "../options.js";
+import {BASE_URL} from "../../options.js";
 
 import CircularProgress from "@mui/material/CircularProgress";
 

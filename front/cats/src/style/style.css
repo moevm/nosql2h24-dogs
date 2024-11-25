@@ -95,6 +95,7 @@ body {
 }
 .filter_box{
     width:30%;
+    height: fit-content;
     background-color: var(--color-purple);
     border-radius: 10px;
     display: flex;

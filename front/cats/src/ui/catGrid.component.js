@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {BASE_URL, catOptions} from "../options";
-import SearchComponent from "../ui/search.component";
+import SearchComponent from "./search.component";
 import {Button} from "@mui/material";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
-import CardComponent from "../ui/card.component";
+import CardComponent from "./card.component";
 
 import {useSelector} from "react-redux";
-import SmallCatCardComponent from "../ui/smallCatCard.component";
+import SmallCatCardComponent from "./small_cards/smallCatCard.component";
 
 const CatGridComponent = () => {
     let filter_data = useSelector(state => state.filter);

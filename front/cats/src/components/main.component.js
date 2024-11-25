@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {catOptions} from "../options";
-import CardComponent from "../ui/card.component";
 import data from "../profiles.json";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import {Button, IconButton} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import SearchComponent from "../ui/search.component";
-import CatGridComponent from "./catGrid.component";
+import CatGridComponent from "../ui/catGrid.component";
 import FilterComponent from "../ui/filter.component";
 import {ArrowBack, PersonOutline} from "@mui/icons-material";
 

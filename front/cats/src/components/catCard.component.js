@@ -8,7 +8,7 @@ import {ArrowBack, Favorite, FavoriteBorder} from "@mui/icons-material";
 import {IconButton} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {BarChart} from "@mui/x-charts";
-import SmallCatCardComponent from "../ui/smallCatCard.component";
+import SmallCatCardComponent from "../ui/small_cards/smallCatCard.component";
 import {addFavorite, removeFavorite, setUserData} from "../slice/userSlice";
 import {useParams} from "react-router";
 

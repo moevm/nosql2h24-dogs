@@ -6,10 +6,10 @@ import {useSelector} from "react-redux";
 import {BASE_URL} from "../options.js";
 import {useDispatch} from "react-redux";
 import {ArrowBack, Equalizer, Face, Settings} from "@mui/icons-material";
-import SmallCatCardComponent from "../ui/smallCatCard.component";
-import NotificationCardComponent from "../ui/notificationCard.component";
-import CommentNotificationCardComponent from "../ui/commentNotificationCard.component";
-import LikeCardComponent from "../ui/likeCard.component";
+import SmallCatCardComponent from "../ui/small_cards/smallCatCard.component";
+import NotificationCardComponent from "../ui/small_cards/notificationCard.component";
+import CommentNotificationCardComponent from "../ui/small_cards/commentNotificationCard.component";
+import LikeCardComponent from "../ui/small_cards/likeCard.component";
 import {clearUserData, setUserData} from "../slice/userSlice.js";
 import "../style/profile.css"
 import "../style/small_cards.css"

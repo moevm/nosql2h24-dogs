@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {dark_purple_color} from "../Themes.js"
+import {dark_purple_color} from "../../Themes.js"
 const CommentNotificationCardComponent=(props)=>{
 
     return(

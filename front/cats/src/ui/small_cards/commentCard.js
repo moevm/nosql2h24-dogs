@@ -18,7 +18,7 @@ const CommentCardComponent=(props)=>{
             <img ref={imgRef}
                  src={"https://cdn2.thecatapi.com/images/"+props.img+".jpg"}
                  width="100" height="100"
-                 onError={onImageError}
+                 //onError={onImageError}
             />
             <label className="small_text">{props.name}</label>
         </div>
