@@ -10,11 +10,13 @@ import {useNavigate} from "react-router-dom";
 import {BarChart} from "@mui/x-charts";
 import SmallCatCardComponent from "../ui/smallCatCard.component";
 import {addFavorite, removeFavorite, setUserData} from "../slice/userSlice";
+import {useParams} from "react-router";
 
 const CatCardComponent = () => {
     let dispatch = useDispatch();
-    let cat = useSelector(state => state.data);
-    let user = useSelector(state => state.user);
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("userData")));
+
+  //  let user = ;
     const [isDataLoading, setIsDataLoading] = useState(false);
     const [catData, setCatData] = useState(null);
     const [fullChartData, setFullChartData] = useState([]);
@@ -44,10 +46,11 @@ const CatCardComponent = () => {
         {id: "21", value: "indoor",  data:0},
         {id: "22", value: "lap",  data:0},
     ]
+    let { id } = useParams();
 
     const fetchData = async () => {
 
-        axios.get(BASE_URL + "/breeds/" + cat.cat_id, {
+        axios.get(BASE_URL + "/breeds/" + id, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
@@ -73,7 +76,7 @@ const CatCardComponent = () => {
     }
     const addFavorite = async () => {
 
-        axios.put(BASE_URL + "/users/addFavorite/"+user.name+"/" + cat.cat_id, {
+        axios.put(BASE_URL + "/users/addFavorite/"+user.name+"/" + id, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
@@ -82,6 +85,7 @@ const CatCardComponent = () => {
             .then(res => {
                 dispatch(setUserData(res.data))
                 localStorage.setItem("userData",JSON.stringify(res.data))
+                setUser(res.data)
             })
 
             .catch(err => {
@@ -90,7 +94,7 @@ const CatCardComponent = () => {
     }
     const deleteFavorite = async () => {
 
-        axios.put(BASE_URL + "/users/removeFavorite/"+user.name+"/" + cat.cat_id, {
+        axios.put(BASE_URL + "/users/removeFavorite/"+user.name+"/" + id, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
@@ -99,6 +103,7 @@ const CatCardComponent = () => {
             .then(res => {
                 dispatch(setUserData(res.data))
                 localStorage.setItem("userData",JSON.stringify(res.data))
+                setUser(res.data)
             })
 
             .catch(err => {
@@ -112,7 +117,7 @@ const CatCardComponent = () => {
         fetchData();
     }, []);
 
-    const FavoriteIcon = user.favorites.includes(cat.cat_id) ? <Favorite className="profile_app_bar_icon"/>:<FavoriteBorder className="profile_app_bar_icon"/>;
+    const FavoriteIcon = user.favorites.includes(id) ? <Favorite className="profile_app_bar_icon"/>:<FavoriteBorder className="profile_app_bar_icon"/>;
     if (isDataLoading) {
         return (
             <div className="cat_card_box">
@@ -124,7 +129,7 @@ const CatCardComponent = () => {
                     </IconButton>
 
                     <IconButton onClick={() => {
-                        if(user.favorites.includes(cat.cat_id)) {
+                        if(user.favorites.includes(id)) {
                             //dispatch(removeFavorite(cat.cat_id))
                             deleteFavorite().then()
                         }else{
