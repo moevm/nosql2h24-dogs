@@ -5,12 +5,12 @@ services:
     ports:
       - "1240:1240"
     depends_on:
-      - mongodb
+      - db
     restart: always
     networks:
       - app-network
 
-  mongodb:
+  db:
     image: 'mongo:7.0.14'
     environment:
       - 'MONGO_INITDB_DATABASE=cats'

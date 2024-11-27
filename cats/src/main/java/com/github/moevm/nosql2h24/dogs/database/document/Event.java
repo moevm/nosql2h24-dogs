@@ -27,8 +27,20 @@ public class Event {
     @Field("date")
     private Date date;
 
-    //TODO
+
     public enum Type {
-        LIKE, REPLY, COMMENT
+        LIKE, REPLY, COMMENT, REMOVE_LIKE;
+
+        public static boolean isLike(String type) {
+            return type.equals(LIKE.name()) || type.equals(REMOVE_LIKE.name());
+        }
+
+        public static boolean isNotification(String type) {
+            return type.equals(COMMENT.name());
+        }
+
+        public static boolean isReply(String type) {
+            return type.equals(REPLY.name());
+        }
     }
 }
