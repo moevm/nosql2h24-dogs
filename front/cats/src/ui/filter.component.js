@@ -1,8 +1,9 @@
 import {useState} from "react";
-import {Button, Input, InputLabel} from "@mui/material";
+import {Autocomplete, Button, Input, InputLabel, TextField} from "@mui/material";
 import {useDispatch} from "react-redux";
-import {updateFilter} from "../filterSlice.js";
+import {updateFilter} from "../slice/filterSlice.js";
 import {tab} from "@testing-library/user-event/dist/tab";
+import {dark_purple_color, text_input} from "../Themes";
 
 export const FilterComponent = () => {
 
@@ -10,7 +11,7 @@ export const FilterComponent = () => {
 
     const filter_data_numbers = [
         {id: "1", value: "adaptability", from: 0, to: 0},
-        {id: "2", value: "affection_level", from: 0, to: 0},
+        {id: "2", value: "affectionLevel", from: 0, to: 0},
         {id: "3", value: "childFriendly", from: 0, to: 0},
         {id: "4", value: "dogFriendly", from: 0, to: 0},
         {id: "5", value: "energyLevel", from: 0, to: 0},
@@ -34,7 +35,7 @@ export const FilterComponent = () => {
     ]
     const filter_data_string_numbers=[
         {id: "1", value: "weight", from: 0, to: 0},
-        {id: "2", value: "lifeSpin", from: 0, to: 0},
+        {id: "2", value: "lifeSpan", from: 0, to: 0},
     ]
     
     const filter_data_country_codes = [
@@ -135,203 +136,215 @@ export const FilterComponent = () => {
 
     const [checkedNumbers, setCheckedNumbers] = useState([])
     const [checkedStringNumbers, setCheckedStringNumbers] = useState([])
-    const [isTemperamentChecked, setIsTemperamentChecked] = useState(false)
-    const [isCountryCodesChecked, setIsCountryCodesChecked] = useState(false)
-    const [isCountryChecked, setIsCountryChecked] = useState(false)
+
     const [checkedTemperament, setCheckedTemperament] = useState([])
     const [checkedCountry, setCheckedCountry] = useState([])
     const [checkedCountryCodes, setCheckedCountryCodes] = useState([])
-    return (
-        <div>
-            <Button onClick={() => {
 
-                const filter_data = {
-                    filter_number: JSON.parse(JSON.stringify(checkedNumbers)),
-                    filter_bigger_number:JSON.parse(JSON.stringify(checkedStringNumbers)),
-                    filter_temperament:[],
-                    filter_country:[],
-                    filter_country_codes:[]
-                }
-                if (isTemperamentChecked)
-                    filter_data.filter_temperament = JSON.parse(JSON.stringify(checkedTemperament))
-                if (isCountryChecked)
-                    filter_data.filter_country = JSON.parse(JSON.stringify(checkedCountry))
-                if (isCountryCodesChecked)
-                    filter_data.filter_country_codes = JSON.parse(JSON.stringify(checkedCountryCodes))
-                dispatch(updateFilter(filter_data))
-            }}> Filter Data</Button>
-            <Button onClick={() => {
-                setCheckedNumbers([])
-                //setCheckedString([])
-                window.location.reload();
-            }}> сброс </Button>
+
+    return (
+        <div className="filter_box">
+            <div>
+                <Button onClick={() => {
+
+                    const filter_data = {
+                        filter_number: JSON.parse(JSON.stringify(checkedNumbers)),
+                        filter_bigger_number:JSON.parse(JSON.stringify(checkedStringNumbers)),
+                        filter_temperament:JSON.parse(JSON.stringify(checkedTemperament)),
+                        filter_country:JSON.parse(JSON.stringify(checkedCountry)),
+                        filter_country_codes:JSON.parse(JSON.stringify(checkedCountryCodes))
+                    }
+                    console.log(JSON.stringify(filter_data))
+                    dispatch(updateFilter(filter_data))
+                }}> Filter Data</Button>
+                <Button onClick={() => {
+                    setCheckedNumbers([])
+                    //setCheckedString([])
+                    window.location.reload();
+                }}> сброс </Button>
+            </div>
+
             {filter_data_numbers.map((item) => {
                 return (
 
-                    <div key={item.id}>
-                        <input type="checkbox"
-                               value={item.id}
-                               id={item.id}
-
-                               onChange={(e) => {
-                                   const isChecked = e.target.checked
-                                   //filter_data_numbers[Number(e.target.value) - 1].isChecked = isChecked;
-                                   const value = filter_data_numbers[Number(e.target.value) - 1]
-
-
-                                   if (isChecked) {
-                                       setCheckedNumbers([...checkedNumbers, value])
-
-                                   } else {
-                                       const filtered = checkedNumbers.filter(item => item.id !== value.id);
-                                       setCheckedNumbers(filtered)
-                                   }
+                    <div key={item.id} className="filter_row">
+                        <div >
+                            <input type="checkbox"
+                                   value={item.id}
+                                   id={item.id}
+                                    className="filter_check_box"
+                                   onChange={(e) => {
+                                       const isChecked = e.target.checked
+                                       //filter_data_numbers[Number(e.target.value) - 1].isChecked = isChecked;
+                                       const value = filter_data_numbers[Number(e.target.value) - 1]
 
 
-                               }}
-                        />
-                        <label htmlFor={item.id}>{item.value}</label>
+                                       if (isChecked) {
+                                           setCheckedNumbers([...checkedNumbers, value])
+
+                                       } else {
+                                           const filtered = checkedNumbers.filter(item => item.id !== value.id);
+                                           setCheckedNumbers(filtered)
+                                       }
 
 
-                        <label> from</label>
-                        <input type="number" min="0" max="5" onChange={(e) => {
-                            if (Number(e.target.value) > 5 || Number(e.target.value) < 0) {
-                                e.target.value = "0"
-                            } else {
-                                const index = checkedNumbers.findIndex(itemm => itemm.id === item.id);
-                                if (index !== -1) {
-                                    //alert(JSON.stringify(checkedNumbers[index]))
-                                    checkedNumbers[index].from = Number(e.target.value);
+                                   }}
+                            />
+                            <label className="filter_text" htmlFor={item.id} >{item.value}</label>
+                        </div>
+
+                        <div>
+                            <label className="filter_text"> from</label>
+                            <input type="number" min="0" max="5" onChange={(e) => {
+                                if (Number(e.target.value) > 5 || Number(e.target.value) < 0) {
+                                    e.target.value = "0"
+                                } else {
+                                    const index = checkedNumbers.findIndex(itemm => itemm.id === item.id);
+                                    if (index !== -1) {
+                                        //alert(JSON.stringify(checkedNumbers[index]))
+                                        checkedNumbers[index].from = Number(e.target.value);
+                                    }
+                                    filter_data_numbers[Number(item.id) - 1].from = Number(e.target.value);
                                 }
-                                filter_data_numbers[Number(item.id) - 1].from = Number(e.target.value);
-                            }
-                        }}/>
-                        <label> to</label>
-                        <input type="number" min="0" max="5" onChange={(e) => {
-                            if (Number(e.target.value) > 5 || Number(e.target.value) < 0) {
-                                e.target.value = "0"
-                            } else {
-                                const index = checkedNumbers.findIndex(itemm => itemm.id === item.id);
-                                if (index !== -1) {
-                                    checkedNumbers[index].to = Number(e.target.value);
+                            }}/>
+                            <label className="filter_text"> to</label>
+                            <input type="number" min="0" max="5" onChange={(e) => {
+                                if (Number(e.target.value) > 5 || Number(e.target.value) < 0) {
+                                    e.target.value = "0"
+                                } else {
+                                    const index = checkedNumbers.findIndex(itemm => itemm.id === item.id);
+                                    if (index !== -1) {
+                                        checkedNumbers[index].to = Number(e.target.value);
+                                    }
+                                    filter_data_numbers[Number(item.id) - 1].to = Number(e.target.value);
                                 }
-                                filter_data_numbers[Number(item.id) - 1].to = Number(e.target.value);
-                            }
-                        }}/>
+                            }}/>
+                        </div>
+
+
                     </div>
 
                 )
             })}
-            <input type="checkbox"
-                   value="temp"
-                   id="temp"
-                   onChange={(e) => {
-                       const isChecked = e.target.checked
-                       setIsCountryCodesChecked(isChecked)
-                   }}
-            />
-            <label htmlFor="temp">country codes</label>
-            {filter_data_country_codes.map((item) => {
+
+            {filter_data_string_numbers.map((item) => {
                 return (
-                    <div key={item.id}>
-                        <input type="checkbox"
-                               value={item.id}
-                               id={item.id}
-                               style={{marginLeft: 30}}
-                               onChange={(e) => {
-                                   const isChecked = e.target.checked
-                                   const value = filter_data_country_codes[Number(e.target.value) - 1]
+
+                    <div key={item.id} className="filter_row">
+                        <div >
+                            <input type="checkbox"
+                                   value={item.id}
+                                   id={item.id}
+                                   className="filter_check_box"
+                                   onChange={(e) => {
+                                       const isChecked = e.target.checked
+                                       //filter_data_numbers[Number(e.target.value) - 1].isChecked = isChecked;
+                                       const value = filter_data_string_numbers[Number(e.target.value) - 1]
 
 
-                                   if (isChecked) {
-                                       setCheckedCountryCodes([...checkedCountryCodes, value])
+                                       if (isChecked) {
+                                           setCheckedStringNumbers([...checkedStringNumbers, value])
 
-                                   } else {
-                                       const filtered = checkedCountryCodes.filter(item => item.id !== value.id);
-                                       setCheckedCountryCodes(filtered)
-                                   }
+                                       } else {
+                                           const filtered = checkedStringNumbers.filter(item => item.id !== value.id);
+                                           setCheckedStringNumbers(filtered)
+                                       }
 
 
-                               }}
-                        />
-                        <label htmlFor={item.id}>{item.value}</label>
+                                   }}
+                            />
+                            <label className="filter_text" htmlFor={item.id} >{item.value}</label>
+                        </div>
+
+                        <div>
+                            <label className="filter_text"> from</label>
+                            <input type="number" min="0" max="20" onChange={(e) => {
+                                if (Number(e.target.value) > 20 || Number(e.target.value) < 0) {
+                                    e.target.value = "0"
+                                } else {
+                                    const index = checkedStringNumbers.findIndex(itemm => itemm.id === item.id);
+                                    if (index !== -1) {
+                                        //alert(JSON.stringify(checkedNumbers[index]))
+                                        checkedStringNumbers[index].from = Number(e.target.value);
+                                    }
+                                    filter_data_string_numbers[Number(item.id) - 1].from = Number(e.target.value);
+                                }
+                            }}/>
+                            <label className="filter_text"> to</label>
+                            <input type="number" min="0" max="20" onChange={(e) => {
+                                if (Number(e.target.value) > 20 || Number(e.target.value) < 0) {
+                                    e.target.value = "0"
+                                } else {
+                                    const index = checkedStringNumbers.findIndex(itemm => itemm.id === item.id);
+                                    if (index !== -1) {
+                                        checkedStringNumbers[index].to = Number(e.target.value);
+                                    }
+                                    filter_data_string_numbers[Number(item.id) - 1].to = Number(e.target.value);
+                                }
+                            }}/>
+                        </div>
+
+
                     </div>
+
                 )
             })}
-            <input type="checkbox"
-                   value="temp"
-                   id="temp"
-                   onChange={(e) => {
-                       const isChecked = e.target.checked
-                       setIsCountryChecked(isChecked)
-                   }}
+
+
+            <Autocomplete className="autocomplete"
+
+                multiple
+                options={filter_data_country_codes}
+                onChange={(event, newValue) => {
+                    setCheckedCountryCodes(newValue);
+                }}
+                getOptionLabel={(option) => option.value}
+                disableCloseOnSelect
+                renderInput={(params) => (
+                    <TextField className="autocomplete_text"
+                        {...params}
+                        variant="outlined"
+                        label="Country Codes"
+
+                    />
+                )}
             />
-            <label htmlFor="temp">country</label>
-            {filter_data_country.map((item) => {
-                return (
-                    <div key={item.id}>
-                        <input type="checkbox"
-                               value={item.id}
-                               id={item.id}
-                               style={{marginLeft: 30}}
-                               onChange={(e) => {
-                                   const isChecked = e.target.checked
-                                   const value = filter_data_country[Number(e.target.value) - 1]
-
-
-                                   if (isChecked) {
-                                       setCheckedCountry([...checkedCountry, value])
-
-                                   } else {
-                                       const filtered = checkedCountry.filter(item => item.id !== value.id);
-                                       setCheckedCountry(filtered)
-                                   }
-
-
-                               }}
-                        />
-                        <label htmlFor={item.id}>{item.value}</label>
-                    </div>
-                )
-            })}
-            <input type="checkbox"
-                   value="temp"
-                   id="temp"
-                   onChange={(e) => {
-                       const isChecked = e.target.checked
-                       setIsTemperamentChecked(isChecked)
-                   }}
+            <Autocomplete className="autocomplete"
+                multiple
+                options={filter_data_country}
+                onChange={(event, newValue) => {
+                    setCheckedCountry(newValue);
+                }}
+                getOptionLabel={(option) => option.value}
+                disableCloseOnSelect
+                renderInput={(params) => (
+                    <TextField className="autocomplete_text"
+                        {...params}
+                        variant="outlined"
+                        label="Country"
+                    />
+                )}
             />
-            <label htmlFor="temp">temperament</label>
-            {filter_data_temperament.map((item) => {
-                return (
-                    <div key={item.id}>
 
-                        <input type="checkbox"
-                               value={item.id}
-                               id={item.id}
-                               style={{marginLeft: 30}}
-                               onChange={(e) => {
-                                   const isChecked = e.target.checked
-                                   const value = filter_data_temperament[Number(e.target.value) - 1]
+            <Autocomplete className="autocomplete"
+                multiple
+                options={filter_data_temperament}
+                onChange={(event, newValue) => {
+                    setCheckedTemperament(newValue);
+                }}
+                getOptionLabel={(option) => option.value}
+                disableCloseOnSelect
+                renderInput={(params) => (
+                    <TextField className="autocomplete_text"
+                        {...params}
+                        variant="outlined"
+                        label="Temperament"
 
-
-                                   if (isChecked) {
-                                       setCheckedTemperament([...checkedTemperament, value])
-
-                                   } else {
-                                       const filtered = checkedTemperament.filter(item => item.id !== value.id);
-                                       setCheckedTemperament(filtered)
-                                   }
+                    />
+                )}
+            />
 
 
-                               }}
-                        />
-                        <label htmlFor={item.id}>{item.value}</label>
-
-                    </div>
-                )
-            })}
         </div>
     )
 }
