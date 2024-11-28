@@ -4,7 +4,7 @@ import axios from "axios";
 const StatisticComponent = () => {
     const [eventData, setEventData] = useState(null);
     const fetchData = async () => {
-        axios.get("http://localhost:1240/api/events", {
+        axios.get("http://127.0.0.1:1240/api/events", {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'

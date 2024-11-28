@@ -19,7 +19,7 @@ const ImpExpComponent = () => {
         formData.append('file', file);
     
         try {
-            await axios.post('http://localhost:1240/api/import', formData, {
+            await axios.post('http://127.0.0.1:1240/api/import', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
             alert('Import successful!');
@@ -31,7 +31,7 @@ const ImpExpComponent = () => {
 
     const handleExport = async () => {
         try {
-            const response = await axios.get('http://localhost:1240/api/export', { responseType: 'blob' });
+            const response = await axios.get('http://127.0.0.1:1240/api/export', { responseType: 'blob' });
             const blob = new Blob([response.data], { type: 'application/json' });
             const url = window.URL.createObjectURL(blob);
             const link = document.createElement('a');
