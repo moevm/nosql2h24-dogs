@@ -11,6 +11,7 @@ import {BarChart} from "@mui/x-charts";
 import SmallCatCardComponent from "../ui/small_cards/smallCatCard.component";
 import {addFavorite, removeFavorite, setUserData} from "../slice/userSlice";
 import {useParams} from "react-router";
+import CommentComponent from "../ui/comment.component";
 
 const CatCardComponent = () => {
     let dispatch = useDispatch();
@@ -165,9 +166,7 @@ const CatCardComponent = () => {
                 <label className="small_text">{catData.vcahospitals_url}</label>
                 <label className="small_text">{catData.vetstreet_url}</label>
                 <label className="small_text">{catData.wikipedia_url}</label>
-                <div className="comment_box">
-
-                </div>
+                <CommentComponent comment={catData.comments}></CommentComponent>
             </div>
         )
     } else {

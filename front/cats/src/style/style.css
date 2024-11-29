@@ -168,7 +168,29 @@ body {
 }
 .comment_box{
     width: 100%;
+    min-height:150px;
+    background-color: var(--color-purple);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+.comment_text_filed{
+    width: 90%;
+    height: 70px;
+    background-color: white;
+    align-content: center;
+    justify-content: center;
+    margin: 10px;
+    border-radius: 10px;
+
+}
+.comment_bubble{
+    width:80%;
+    height:70px;
+    background-color: white;
+}
+
 img{
     object-fit: contain;
 
