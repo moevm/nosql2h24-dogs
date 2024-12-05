@@ -35,6 +35,7 @@ export const SignInComponent = () => {
                 console.log(res.data);
                 if (res.data.name) {
                     dispatch(setUserData(res.data))
+                    localStorage.setItem("userData",JSON.stringify(res.data))
                     navigate("/main");
                 }
             })
@@ -57,6 +58,7 @@ export const SignInComponent = () => {
             <CustomTextField value={userName}
                              onChange={(e) => {
                                  setUserName(e.target.value)
+
                              }}
                              placeholder="name"
             ></CustomTextField>
