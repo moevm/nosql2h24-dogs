@@ -4,7 +4,8 @@ const initialState = {
     cat_id:"",
     all_cats:[],
     commentsId:[],
-    commentAuthor:""
+    commentAuthor:"",
+    sendComment: false,
 }
 
 const dataSlice = createSlice({
@@ -23,10 +24,14 @@ const dataSlice = createSlice({
         },
         setAuthor:(state,action)=>{
             state.author = action.payload;
+        },
+        setSendComment:(state)=>{
+            state.sendComment = !state.sendComment;
         }
 
     }
 })
 
-export const {setCatId, setAllCats, addComment, setAuthor} = dataSlice.actions;
+export const {setCatId, setAllCats, addComment,
+    setAuthor, setSendComment} = dataSlice.actions;
 export default dataSlice.reducer;

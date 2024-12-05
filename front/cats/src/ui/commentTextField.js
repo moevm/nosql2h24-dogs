@@ -9,17 +9,18 @@ import {BASE_URL} from "../options";
 import {setUserData} from "../slice/userSlice";
 import {useParams} from "react-router";
 import {useDispatch, UseDispatch, useSelector} from "react-redux";
-import {addComment} from "../slice/dataSlice";
+import {addComment, setSendComment} from "../slice/dataSlice";
 
 
 const CommentTextField = (props) => {
     let data = useSelector(state => state.data);
+
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("userData")));
     let { id } = useParams();
     const [text,setText] = useState("");
 
     const postComment = async () => {
-        if(data.author == ""){
+        if(data.commentAuthor == ""){
             axios.post(BASE_URL + "/comments", {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
@@ -30,14 +31,16 @@ const CommentTextField = (props) => {
                 text:text,
             })
                 .then(res => {
+                    console.log(res.data);
                     dispatch(addComment(res.data))
+                    dispatch(setSendComment())
                 })
 
                 .catch(err => {
                     console.error("error fetching data", err)
                 });
         }else{
-
+            console.log(data.commentAuthor);
         }
 
     }
