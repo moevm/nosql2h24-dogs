@@ -65,7 +65,7 @@ const ProfileComponent = () => {
 
 
     const creation_date =  new Date(user_data.creationDate);
-
+    const last_date =  new Date(user_data.lastDate);
 
     const favorite_data =
         favorites?.map(fav =>
@@ -115,7 +115,9 @@ const ProfileComponent = () => {
                         }}/>
                     </IconButton>
                     <IconButton>
-                        <Settings className="profile_app_bar_icon"/>
+                        <Settings className="profile_app_bar_icon" onClick={()=>{
+                            navigate("/edit_profile")
+                        }}/>
                     </IconButton>
 
                     <label className="medium_text" onClick={()=>{
@@ -133,8 +135,8 @@ const ProfileComponent = () => {
                 <div className="profile_data_column">
                     <div className="big_text">{user_data.name}</div>
                     <div className="small_text">Age: {user_data.age}</div>
-                    <div className="small_text">Creation date: {creation_date.getMonth()}</div>
-                    <div className="small_text">Last edit date: {user_data.lastDate}</div>
+                    <div className="small_text">Creation date: {creation_date.getDate()}.{creation_date.getMonth()+1}.{creation_date.getFullYear()} {creation_date.getHours()}:{creation_date.getMinutes()}</div>
+                    <div className="small_text">Last edit date: {last_date.getDate()}.{last_date.getMonth()+1}.{last_date.getFullYear()} {last_date.getHours()}:{last_date.getMinutes()}</div>
                 </div>
             </div>
 
