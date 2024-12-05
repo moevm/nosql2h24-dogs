@@ -1,17 +1,23 @@
 import React, {useEffect, useState} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {BASE_URL} from "../options";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import axios from "axios";
-import {ArrowBack, FavoriteBorder} from "@mui/icons-material";
+import {ArrowBack, Favorite, FavoriteBorder} from "@mui/icons-material";
 import {IconButton} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {BarChart} from "@mui/x-charts";
+import SmallCatCardComponent from "../ui/small_cards/smallCatCard.component";
+import {addFavorite, removeFavorite, setUserData} from "../slice/userSlice";
+import {useParams} from "react-router";
+import CommentComponent from "../ui/comment.component";
 
 const CatCardComponent = () => {
+    let dispatch = useDispatch();
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("userData")));
 
-    let cat = useSelector(state => state.data);
+  //  let user = ;
     const [isDataLoading, setIsDataLoading] = useState(false);
     const [catData, setCatData] = useState(null);
     const [fullChartData, setFullChartData] = useState([]);
@@ -41,10 +47,11 @@ const CatCardComponent = () => {
         {id: "21", value: "indoor",  data:0},
         {id: "22", value: "lap",  data:0},
     ]
+    let { id } = useParams();
 
     const fetchData = async () => {
 
-        axios.get(BASE_URL + "/breeds/" + cat.cat_id, {
+        axios.get(BASE_URL + "/breeds/" + id, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
@@ -68,6 +75,42 @@ const CatCardComponent = () => {
                 console.error("error fetching data", err)
             });
     }
+    const addFavorite = async () => {
+
+        axios.put(BASE_URL + "/users/addFavorite/"+user.name+"/" + id, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+            }
+        })
+            .then(res => {
+                dispatch(setUserData(res.data))
+                localStorage.setItem("userData",JSON.stringify(res.data))
+                setUser(res.data)
+            })
+
+            .catch(err => {
+                console.error("error fetching data", err)
+            });
+    }
+    const deleteFavorite = async () => {
+
+        axios.put(BASE_URL + "/users/removeFavorite/"+user.name+"/" + id, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+            }
+        })
+            .then(res => {
+                dispatch(setUserData(res.data))
+                localStorage.setItem("userData",JSON.stringify(res.data))
+                setUser(res.data)
+            })
+
+            .catch(err => {
+                console.error("error fetching data", err)
+            });
+    }
     useEffect(() => {
 
         setIsDataLoading(false)
@@ -75,6 +118,7 @@ const CatCardComponent = () => {
         fetchData();
     }, []);
 
+    const FavoriteIcon = user.favorites.includes(id) ? <Favorite className="profile_app_bar_icon"/>:<FavoriteBorder className="profile_app_bar_icon"/>;
     if (isDataLoading) {
         return (
             <div className="cat_card_box">
@@ -84,9 +128,18 @@ const CatCardComponent = () => {
                     }}>
                         <ArrowBack className="profile_app_bar_icon"/>
                     </IconButton>
+
                     <IconButton onClick={() => {
+                        if(user.favorites.includes(id)) {
+                            //dispatch(removeFavorite(cat.cat_id))
+                            deleteFavorite().then()
+                        }else{
+                            addFavorite().then()
+                            //dispatch(addFavorite(cat.cat_id))
+                        }
+
                     }}>
-                        <FavoriteBorder className="profile_app_bar_icon"/>
+                        {FavoriteIcon}
                     </IconButton>
                 </div>
                 <div className="cat_card_data_row">
@@ -108,13 +161,12 @@ const CatCardComponent = () => {
                           width={1000}
                           height={500}
                 />
-                <label className="middle_text">Links:</label>
-                <label className="small_text"> </label>
-                <label className="small_text"> </label>
-                <label className="small_text"> </label>
-                <label className="small_text"> </label>
-                <h3>{JSON.stringify(fullChartData)}</h3>
-                <div>{JSON.stringify(catData)}</div>
+                <label className="big_text" style={{fontSize:24}}>Links:</label>
+                <label className="small_text">{catData.cfa_url}</label>
+                <label className="small_text">{catData.vcahospitals_url}</label>
+                <label className="small_text">{catData.vetstreet_url}</label>
+                <label className="small_text">{catData.wikipedia_url}</label>
+                <CommentComponent comment={catData.comments}></CommentComponent>
             </div>
         )
     } else {
