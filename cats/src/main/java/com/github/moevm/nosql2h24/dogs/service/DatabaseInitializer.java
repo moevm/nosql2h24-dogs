@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.moevm.nosql2h24.dogs.database.document.Breed;
 import com.github.moevm.nosql2h24.dogs.database.document.Comment;
-import com.github.moevm.nosql2h24.dogs.database.document.Event;
 import com.github.moevm.nosql2h24.dogs.database.document.User;
 import com.github.moevm.nosql2h24.dogs.database.repository.BreedRepository;
 import com.github.moevm.nosql2h24.dogs.database.repository.EventRepository;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -30,7 +28,7 @@ public class DatabaseInitializer {
     private final CommentsService commentsService;
 
     private final Path BREEDS_JSON;
-    private final boolean IS_ALWAYS = false;
+    private final boolean IS_ALWAYS = true;
 
     public DatabaseInitializer(UserRepository userRepository, BreedRepository breedRepository, EventRepository eventRepository, CommentsService commentsService, @Value("${breeds.json}") String breedsJson) {
         this.userRepository = userRepository;
@@ -65,12 +63,6 @@ public class DatabaseInitializer {
                 ObjectMapper mapper = new ObjectMapper();
                 List<Breed> breeds = mapper.readValue(BREEDS_JSON.toFile(), new TypeReference<>() {
                 });
-                if (userRepository.count() != 0) {
-
-                    User user = userRepository.findAll().get(0);
-                    Breed breed = breeds.get(0);
-                    breed.setComments(List.of(new Comment(user.getName(), null, new Date(), "My favorite!")));
-                }
                 breedRepository.saveAll(breeds);
             } catch (IOException e) {
                 throw new RuntimeException("Ошибка чтения файла пород", e);
@@ -96,13 +88,16 @@ public class DatabaseInitializer {
             }
             User user = userRepository.findAll().get(0);
             Breed breed = breedRepository.findAll().get(0);
-            Event event1 = Event.builder().receiverId(user.getName()).breedId(breed.getId()).type(Event.Type.LIKE.name()).date(new Date()).build();
-            Event event2 = Event.builder().receiverId(user.getName()).breedId(breed.getId()).type(Event.Type.COMMENT.name()).date(new Date()).build();
-            Event event3 = Event.builder().receiverId(user.getName()).breedId(breed.getId()).type(Event.Type.LIKE.name()).date(new Date()).build();
-            Event event4 = Event.builder().receiverId(user.getName()).breedId(breed.getId()).type(Event.Type.REMOVE_LIKE.name()).date(new Date()).build();
-            Event event5 = Event.builder().receiverId(user.getName()).breedId(breed.getId()).type(Event.Type.COMMENT.name()).date(new Date()).build();
-            Event event6 = Event.builder().receiverId(user.getName()).breedId(breed.getId()).type(Event.Type.REPLY.name()).date(new Date()).build();
-            eventRepository.saveAll(List.of(event1, event2, event3, event4, event5, event6));
+            User user2 = userRepository.findAll().get(1);
+            Breed breed2 = breedRepository.findAll().get(1);
+            commentsService.addComment(user.getName(), breed.getId(), "My favorite!", null);
+            Comment comment = breedRepository.findById(breed.getId()).get().getComments().get(0);
+            commentsService.addComment(user2.getName(), breed.getId(), "And my!", comment.getId());
+            commentsService.addComment(user2.getName(), breed2.getId(), "Pretty!", null);
+            commentsService.addLike(user.getName(), breed.getId(), comment.getId());
+            commentsService.addLike(user2.getName(), breed2.getId(), comment.getId());
+            commentsService.removeLike(user.getName(), breed.getId(), comment.getId());
+
         }
     }
 }

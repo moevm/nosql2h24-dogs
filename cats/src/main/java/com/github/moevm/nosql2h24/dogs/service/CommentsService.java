@@ -52,12 +52,12 @@ public class CommentsService {
         breed.addComment(comment);
         breedRepository.save(breed);
 
-        Event event = Event.builder().receiverId(userId).breedId(breedId).commentId(comment.getId()).
+        Event event = Event.builder().actorId(userId).breedId(breedId).commentId(comment.getId()).
                 commentText(text).type(Event.Type.COMMENT.name()).date(date).build();
         eventRepository.save(event);
 
         if (parentCommentId != null) {
-            Event parentEvent = Event.builder().receiverId(parentComment.getAuthor()).breedId(breedId).
+            Event parentEvent = Event.builder().recipientId(parentComment.getAuthor()).breedId(breedId).
                     commentId(comment.getId()).commentText(text)
                     .actorId(userId).type(Event.Type.REPLY.name()).date(date).build();
             eventRepository.save(parentEvent);
@@ -85,7 +85,7 @@ public class CommentsService {
         breedRepository.save(breed);
 
         Date date = Date.from(Instant.now());
-        Event event = Event.builder().receiverId(comment.getAuthor()).breedId(breedId)
+        Event event = Event.builder().recipientId(comment.getAuthor()).breedId(breedId)
                 .commentId(commentId).commentText(comment.getText())
                 .actorId(userId).type(Event.Type.LIKE.name()).date(date).build();
         eventRepository.save(event);
@@ -108,7 +108,7 @@ public class CommentsService {
         breedRepository.save(breed);
 
         Date date = Date.from(Instant.now());
-        Event event = Event.builder().receiverId(comment.getAuthor()).breedId(breedId)
+        Event event = Event.builder().recipientId(comment.getAuthor()).breedId(breedId)
                 .commentId(commentId).commentText(comment.getText())
                 .actorId(userId)
                 .type(Event.Type.REMOVE_LIKE.name()).date(date).build();
@@ -118,7 +118,7 @@ public class CommentsService {
 
 
     private Comment findCommentById(Breed breed, String commentId) {
-        if (breed == null || commentId == null) {
+        if (breed == null || commentId == null || breed.getComments() == null) {
             return null;
         }
         Comment comment = breed.getComments().stream().filter(c -> c.getId().equals(commentId)).findFirst().orElse(null);

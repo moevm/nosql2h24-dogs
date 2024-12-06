@@ -29,7 +29,7 @@ public class EventController {
 
     @GetMapping("/{userId}")
     public List<Event> getEventByUserId(@PathVariable String userId) {
-        return eventRepository.findByUserId(userId);
+        return eventRepository.findByRecipientId(userId);
     }
 
     @PostMapping("")
@@ -42,27 +42,22 @@ public class EventController {
         eventRepository.deleteById(id);
     }
 
-    /*
-    1. Пришёл лайк пользователю (предлагаю: айди породы, айди комментария, айди лайкнувшего)
-    2. Пришёл ответ на комментарий пользователю (предлагаю: айди породы, айди комментария, айди ответевшего)
-    3. Кто-то закомментил любимую породу (предлагаю: айди породы, айди комментария, текст комментария, айди написавшего (или могу имя, если удобно))
-     */
     @GetMapping("/likes/{id}")
     public List<LikeDto> getLikes(@PathVariable String id) {
         List<Event> events = eventRepository.findAll();
-        return events.stream().filter(e -> Event.Type.isLike(e.getType()) && e.getReceiverId().equals(id)).
+        return events.stream().filter(e -> Event.Type.isLike(e.getType()) && e.getRecipientId().equals(id)).
                 map(LikeDto::from).toList();
     }
 
     @GetMapping("/reply/{id}")
     public List<ReplyDto> getComments(@PathVariable String id) {
         List<Event> events = eventRepository.findAll();
-        return events.stream().filter(e -> Event.Type.isReply(e.getType()) && e.getReceiverId().equals(id)).
+        return events.stream().filter(e -> Event.Type.isReply(e.getType()) && e.getRecipientId().equals(id)).
                 map(ReplyDto::from).toList();
 
     }
 
-    @GetMapping("/BreedComments/{id}")
+    @GetMapping("/breed_comments/{id}")
     public List<BreedCommentDto> getNotifications(@PathVariable String id) {
         List<Event> events = eventRepository.findAll();
         HashSet<String> favoritesBreeds = userRepository.findById(id).orElseThrow().getFavorites();

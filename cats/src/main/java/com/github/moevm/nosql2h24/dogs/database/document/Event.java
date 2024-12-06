@@ -15,8 +15,8 @@ public class Event {
     @Id
     private String id;
 
-    @Field("receiver_user_id")
-    private String receiverId;
+    @Field("recipient_user_id")
+    private String recipientId;
 
     @Field("breed_id")
     private String breedId;
