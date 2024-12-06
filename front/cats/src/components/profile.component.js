@@ -19,7 +19,7 @@ const ProfileComponent = () => {
     let dispatch = useDispatch();
     //let user_data = useSelector(state => state.user);
     let user_data = JSON.parse(localStorage.getItem("userData"));
-
+    let user = useSelector(state => state.user);
     //alert(JSON.stringify(user_data))
     const favorites = user_data.favorites;
     const [favoritesData, setFavoritesData] = useState([]);
@@ -57,15 +57,68 @@ const ProfileComponent = () => {
     const navigate = useNavigate();
     //const [catData, setCatData] = useState(null);
 
+    const getNotifications = async () => {
+
+        axios.get(BASE_URL + "/events/notifications/"+user_data?.name, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+            }
+        })
+            .then(res => {
+                console.log(res.data);
+            })
+
+            .catch(err => {
+                console.error("error fetching data", err)
+            });
+    }
+    const getLikes = async () => {
+
+        axios.get(BASE_URL + "/events/likes/"+user_data?.name, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+            }
+        })
+            .then(res => {
+                console.log(res.data);
+            })
+
+            .catch(err => {
+                console.error("error fetching data", err)
+            });
+    }
+    const getComments = async () => {
+
+        axios.get(BASE_URL + "/events/comments/"+user_data?.name, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+            }
+        })
+            .then(res => {
+                console.log(res.data);
+            })
+
+            .catch(err => {
+                console.error("error fetching data", err)
+            });
+    }
 
     useEffect(()=>{
         if(Object.keys(user_data).length === 0)
             navigate("/sign_in")
-    });
+        dispatch(setUserData(user_data));
+        getNotifications()
+        getComments()
+        getLikes()
+
+    },[]);
 
 
-    const creation_date =  new Date(user_data.creationDate);
-    const last_date =  new Date(user_data.lastDate);
+    const creation_date =  new Date(user.creationDate);
+    const last_date =  new Date(user.lastDate);
 
     const favorite_data =
         favorites?.map(fav =>
@@ -133,8 +186,8 @@ const ProfileComponent = () => {
                     <Face/>
                 }/>
                 <div className="profile_data_column">
-                    <div className="big_text">{user_data.name}</div>
-                    <div className="small_text">Age: {user_data.age}</div>
+                    <div className="big_text">{user.name}</div>
+                    <div className="small_text">Age: {user.age}</div>
                     <div className="small_text">Creation date: {creation_date.getDate()}.{creation_date.getMonth()+1}.{creation_date.getFullYear()} {creation_date.getHours()}:{creation_date.getMinutes()}</div>
                     <div className="small_text">Last edit date: {last_date.getDate()}.{last_date.getMonth()+1}.{last_date.getFullYear()} {last_date.getHours()}:{last_date.getMinutes()}</div>
                 </div>
