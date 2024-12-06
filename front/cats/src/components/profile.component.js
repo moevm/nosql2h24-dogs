@@ -24,6 +24,7 @@ const ProfileComponent = () => {
     const favorites = user_data.favorites;
     const [favoritesData, setFavoritesData] = useState([]);
     const [liked, setLiked] = useState(null);
+    const [comments, setComments] = useState(null);
     const notifications = [
         {name: "1", comment: "0XYvRd7oD"},
         {name: "2", comment: "ozEvzdVM"},
@@ -34,16 +35,16 @@ const ProfileComponent = () => {
         {name: "1", comment: "0XYvRd7oD"},
         {name: "2", comment: "ozEvzdVM-"},
     ]
-    const comments = [
-        {name: "1", comment: "0XYvRd7oD", author: "me"},
-        {name: "2", comment: "ozEvzdVM", author: "me"},
-        {name: "3", comment: "0XYvRd7oD", author: "me"},
-        {name: "4", comment: "ozEvzdVM-", author: "me"},
-        {name: "1", comment: "0XYvRd7oD", author: "me"},
-        {name: "2", comment: "ozEvzdVM-", author: "me"},
-        {name: "1", comment: "0XYvRd7oD", author: "me"},
-        {name: "2", comment: "ozEvzdVM-", author: "me"},
-    ]
+    // const comments = [
+    //     {name: "1", comment: "0XYvRd7oD", author: "me"},
+    //     {name: "2", comment: "ozEvzdVM", author: "me"},
+    //     {name: "3", comment: "0XYvRd7oD", author: "me"},
+    //     {name: "4", comment: "ozEvzdVM-", author: "me"},
+    //     {name: "1", comment: "0XYvRd7oD", author: "me"},
+    //     {name: "2", comment: "ozEvzdVM-", author: "me"},
+    //     {name: "1", comment: "0XYvRd7oD", author: "me"},
+    //     {name: "2", comment: "ozEvzdVM-", author: "me"},
+    // ]
     // const liked = [
     //     {name: "1", comment: "0XYvRd7oD", author: "not me"},
     //     {name: "2", comment: "ozEvzdVM", author: "me"},
@@ -103,6 +104,7 @@ const ProfileComponent = () => {
             .then(res => {
                 console.log("comments:")
                 console.log(res.data);
+                setComments(res.data);
             })
 
             .catch(err => {
@@ -138,9 +140,9 @@ const ProfileComponent = () => {
             ></NotificationCardComponent>
         </div>
     )
-    const comments_data = comments?.map(cat =>
+    const comments_data = comments?.map(comment =>
         <div>
-            <CommentNotificationCardComponent type={cat.name} comment={cat.comment} author={cat.author}
+            <CommentNotificationCardComponent type={comment.type} author={comment.userId} breedId = {comment.breedId}
             ></CommentNotificationCardComponent>
         </div>
     )

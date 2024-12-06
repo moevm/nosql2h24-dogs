@@ -1,7 +1,9 @@
 import React, {useRef} from 'react';
 import {dark_purple_color} from "../../Themes.js"
+import {useNavigate} from "react-router-dom";
 
 const LikeCardComponent = (props) => {
+    const navigate = useNavigate();
     const text = props.type === "LIKE" ? <label className="small_bold_text">Liked comment (</label> :
         <label className="small_bold_text">Unliked comment (</label>
     return (

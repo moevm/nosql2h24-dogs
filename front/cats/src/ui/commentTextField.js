@@ -84,7 +84,10 @@ const CommentTextField = (props) => {
                                    onClick={()=>{
                                        postComment()
                                        setText("")
-
+                                       dispatch(setAuthor({
+                                           author:"",
+                                           commentId:0
+                                       }))
                                    }
                                    }
 
