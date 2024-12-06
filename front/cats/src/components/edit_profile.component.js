@@ -93,12 +93,12 @@ const EditProfileComponent=(props)=>{
                     <Face/>
                 }/>
                 <div className="profile_data_column">
-                    <TextField
-                        className="big_text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    ></TextField>
-
+                    {/*<TextField*/}
+                    {/*    className="big_text"*/}
+                    {/*    value={name}*/}
+                    {/*    onChange={(e) => setName(e.target.value)}*/}
+                    {/*></TextField>*/}
+                    <div className="big_text">{name}</div>
                     <div className="small_text">Age:
                         <TextField
                             className="big_text"
