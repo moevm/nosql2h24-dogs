@@ -14,8 +14,8 @@ const CommentComponent=(props)=>{
     let dispatch = useDispatch();
     let { id } = useParams();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("userData")));
-    const [likes,setLikes] = useState(props.likes);
-    let test = props.likes
+    const [likes,setLikes] = useState(props.likes?props.likes:[]);
+
     const addFavorite = async () => {
 
         axios.put(BASE_URL + "/comments/like/"+user.name+"/" + id + "/" + props.commentId, {
@@ -71,7 +71,14 @@ const CommentComponent=(props)=>{
 
     return(
         <div className="comment_bubble" onClick={()=>{
-            dispatch(setAuthor(props.author))
+            console.log(props.commentId);
+            dispatch(setAuthor(
+                {
+                    author: props.author,
+                    commentId: props.commentId,
+                }
+
+            ))
         }}>
             <div className="comment_bubble_author_text">
                 <label className="small_text">{props.author}: </label>

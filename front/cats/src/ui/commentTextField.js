@@ -9,7 +9,7 @@ import {BASE_URL} from "../options";
 import {setUserData} from "../slice/userSlice";
 import {useParams} from "react-router";
 import {useDispatch, UseDispatch, useSelector} from "react-redux";
-import {addComment, setSendComment} from "../slice/dataSlice";
+import {addComment, setAuthor, setSendComment} from "../slice/dataSlice";
 
 
 const CommentTextField = (props) => {
@@ -40,11 +40,30 @@ const CommentTextField = (props) => {
                     console.error("error fetching data", err)
                 });
         }else{
-            console.log(data.commentAuthor);
+            axios.post(BASE_URL + "/comments", {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+                },
+                userId:user.name,
+                breedId:id,
+                text:text,
+                parentCommentId:data.commentId
+            })
+                .then(res => {
+                    console.log(res.data);
+                    dispatch(addComment(res.data))
+                    dispatch(setSendComment())
+                })
+
+                .catch(err => {
+                    console.error("error fetching data", err)
+                })
         }
 
     }
     let dispatch = useDispatch();
+    const answer = data.commentAuthor? <div>Answer: {data.commentAuthor}</div>:<div></div>;
     return (
         <TextField className="comment_text_filed"
                    placeholder={props.placeholder}
@@ -52,6 +71,13 @@ const CommentTextField = (props) => {
                    type='text'
                    InputProps={{
                        disableUnderline: true,
+                       startAdornment:<div onClick={()=>{
+                           dispatch(setAuthor({
+                               author:"",
+                               commentId:0
+                           }))
+                       }
+                       }>{answer}</div>,
                        endAdornment:
                            <InputAdornment position="end" >
                                <IconButton

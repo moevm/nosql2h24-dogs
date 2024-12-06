@@ -5,6 +5,7 @@ const initialState = {
     all_cats:[],
     commentsId:[],
     commentAuthor:"",
+    commentId:0,
     sendComment: false,
 }
 
@@ -23,7 +24,9 @@ const dataSlice = createSlice({
             state.commentsId.push(action.payload)
         },
         setAuthor:(state,action)=>{
-            state.author = action.payload;
+            state.commentAuthor = action.payload.author;
+            state.commentId = action.payload.commentId;
+
         },
         setSendComment:(state)=>{
             state.sendComment = !state.sendComment;
