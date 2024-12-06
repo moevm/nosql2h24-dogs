@@ -70,18 +70,19 @@ const CommentComponent=(props)=>{
     const FavoriteIcon =  likes?.includes(user.name) ? <Favorite/>:<FavoriteBorder/>;
 
     return(
-        <div className="comment_bubble" onClick={()=>{
-            console.log(props.commentId);
-            dispatch(setAuthor(
-                {
-                    author: props.author,
-                    commentId: props.commentId,
-                }
-
-            ))
-        }}>
+        <div className="comment_bubble" >
             <div className="comment_bubble_author_text">
-                <label className="small_text">{props.author}: </label>
+                <label className="small_text"
+                       onClick={()=>{
+                    console.log(props.commentId);
+                    dispatch(setAuthor(
+                        {
+                            author: props.author,
+                            commentId: props.commentId,
+                        }
+
+                    ))
+                }}>{props.author}: </label>
                 <label className="small_text">{props.text}</label>
             </div>
 
