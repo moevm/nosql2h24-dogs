@@ -23,7 +23,7 @@ const ProfileComponent = () => {
     //alert(JSON.stringify(user_data))
     const favorites = user_data.favorites;
     const [favoritesData, setFavoritesData] = useState([]);
-
+    const [liked, setLiked] = useState(null);
     const notifications = [
         {name: "1", comment: "0XYvRd7oD"},
         {name: "2", comment: "ozEvzdVM"},
@@ -44,16 +44,16 @@ const ProfileComponent = () => {
         {name: "1", comment: "0XYvRd7oD", author: "me"},
         {name: "2", comment: "ozEvzdVM-", author: "me"},
     ]
-    const liked = [
-        {name: "1", comment: "0XYvRd7oD", author: "not me"},
-        {name: "2", comment: "ozEvzdVM", author: "me"},
-        {name: "3", comment: "0XYvRd7oD", author: "me"},
-        {name: "4", comment: "ozEvzdVM-", author: "me"},
-        {name: "1", comment: "0XYvRd7oD", author: "me"},
-        {name: "2", comment: "ozEvzdVM-", author: "me"},
-        {name: "1", comment: "0XYvRd7oD", author: "me"},
-        {name: "2", comment: "ozEvzdVM-", author: "me"},
-    ]
+    // const liked = [
+    //     {name: "1", comment: "0XYvRd7oD", author: "not me"},
+    //     {name: "2", comment: "ozEvzdVM", author: "me"},
+    //     {name: "3", comment: "0XYvRd7oD", author: "me"},
+    //     {name: "4", comment: "ozEvzdVM-", author: "me"},
+    //     {name: "1", comment: "0XYvRd7oD", author: "me"},
+    //     {name: "2", comment: "ozEvzdVM-", author: "me"},
+    //     {name: "1", comment: "0XYvRd7oD", author: "me"},
+    //     {name: "2", comment: "ozEvzdVM-", author: "me"},
+    // ]
     const navigate = useNavigate();
     //const [catData, setCatData] = useState(null);
 
@@ -66,6 +66,7 @@ const ProfileComponent = () => {
             }
         })
             .then(res => {
+                console.log("notofications:")
                 console.log(res.data);
             })
 
@@ -82,7 +83,9 @@ const ProfileComponent = () => {
             }
         })
             .then(res => {
+                console.log("likes:")
                 console.log(res.data);
+                setLiked(res.data);
             })
 
             .catch(err => {
@@ -98,6 +101,7 @@ const ProfileComponent = () => {
             }
         })
             .then(res => {
+                console.log("comments:")
                 console.log(res.data);
             })
 
@@ -140,9 +144,9 @@ const ProfileComponent = () => {
             ></CommentNotificationCardComponent>
         </div>
     )
-    const liked_data = liked?.map(cat =>
+    const liked_data = liked?.map(like =>
         <div>
-            <LikeCardComponent author={cat.author}
+            <LikeCardComponent author={like.userId} type={like.type} breedId = {like.breedId}
             ></LikeCardComponent>
         </div>
     )
