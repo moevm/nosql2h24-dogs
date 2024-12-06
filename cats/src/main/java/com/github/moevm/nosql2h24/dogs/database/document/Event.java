@@ -15,8 +15,8 @@ public class Event {
     @Id
     private String id;
 
-    @Field("user_id")
-    private String userId;
+    @Field("receiver_user_id")
+    private String receiverId;
 
     @Field("breed_id")
     private String breedId;
@@ -27,6 +27,14 @@ public class Event {
     @Field("date")
     private Date date;
 
+    @Field("comment_text")
+    private String commentText;
+
+    @Field("comment_id")
+    private String commentId;
+
+    @Field("actor_id")
+    private String actorId;
 
     public enum Type {
         LIKE, REPLY, COMMENT, REMOVE_LIKE;
@@ -35,7 +43,7 @@ public class Event {
             return type.equals(LIKE.name()) || type.equals(REMOVE_LIKE.name());
         }
 
-        public static boolean isNotification(String type) {
+        public static boolean isBreesComment(String type) {
             return type.equals(COMMENT.name());
         }
 

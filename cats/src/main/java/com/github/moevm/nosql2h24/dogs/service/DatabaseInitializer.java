@@ -30,7 +30,7 @@ public class DatabaseInitializer {
     private final CommentsService commentsService;
 
     private final Path BREEDS_JSON;
-    private final boolean IS_ALWAYS = true;
+    private final boolean IS_ALWAYS = false;
 
     public DatabaseInitializer(UserRepository userRepository, BreedRepository breedRepository, EventRepository eventRepository, CommentsService commentsService, @Value("${breeds.json}") String breedsJson) {
         this.userRepository = userRepository;
@@ -96,12 +96,12 @@ public class DatabaseInitializer {
             }
             User user = userRepository.findAll().get(0);
             Breed breed = breedRepository.findAll().get(0);
-            Event event1 = Event.builder().userId(user.getName()).breedId(breed.getId()).type(Event.Type.LIKE.name()).date(new Date()).build();
-            Event event2 = Event.builder().userId(user.getName()).breedId(breed.getId()).type(Event.Type.COMMENT.name()).date(new Date()).build();
-            Event event3 = Event.builder().userId(user.getName()).breedId(breed.getId()).type(Event.Type.LIKE.name()).date(new Date()).build();
-            Event event4 = Event.builder().userId(user.getName()).breedId(breed.getId()).type(Event.Type.REMOVE_LIKE.name()).date(new Date()).build();
-            Event event5 = Event.builder().userId(user.getName()).breedId(breed.getId()).type(Event.Type.COMMENT.name()).date(new Date()).build();
-            Event event6 = Event.builder().userId(user.getName()).breedId(breed.getId()).type(Event.Type.REPLY.name()).date(new Date()).build();
+            Event event1 = Event.builder().receiverId(user.getName()).breedId(breed.getId()).type(Event.Type.LIKE.name()).date(new Date()).build();
+            Event event2 = Event.builder().receiverId(user.getName()).breedId(breed.getId()).type(Event.Type.COMMENT.name()).date(new Date()).build();
+            Event event3 = Event.builder().receiverId(user.getName()).breedId(breed.getId()).type(Event.Type.LIKE.name()).date(new Date()).build();
+            Event event4 = Event.builder().receiverId(user.getName()).breedId(breed.getId()).type(Event.Type.REMOVE_LIKE.name()).date(new Date()).build();
+            Event event5 = Event.builder().receiverId(user.getName()).breedId(breed.getId()).type(Event.Type.COMMENT.name()).date(new Date()).build();
+            Event event6 = Event.builder().receiverId(user.getName()).breedId(breed.getId()).type(Event.Type.REPLY.name()).date(new Date()).build();
             eventRepository.saveAll(List.of(event1, event2, event3, event4, event5, event6));
         }
     }

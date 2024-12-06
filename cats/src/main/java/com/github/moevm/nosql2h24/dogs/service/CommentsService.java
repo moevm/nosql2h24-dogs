@@ -52,11 +52,14 @@ public class CommentsService {
         breed.addComment(comment);
         breedRepository.save(breed);
 
-        Event event = Event.builder().userId(userId).breedId(breedId).type(Event.Type.COMMENT.name()).date(date).build();
+        Event event = Event.builder().receiverId(userId).breedId(breedId).commentId(comment.getId()).
+                commentText(text).type(Event.Type.COMMENT.name()).date(date).build();
         eventRepository.save(event);
 
         if (parentCommentId != null) {
-            Event parentEvent = Event.builder().userId(parentComment.getAuthor()).breedId(breedId).type(Event.Type.REPLY.name()).date(date).build();
+            Event parentEvent = Event.builder().receiverId(parentComment.getAuthor()).breedId(breedId).
+                    commentId(comment.getId()).commentText(text)
+                    .actorId(userId).type(Event.Type.REPLY.name()).date(date).build();
             eventRepository.save(parentEvent);
         }
         return comment.getId();
@@ -82,7 +85,9 @@ public class CommentsService {
         breedRepository.save(breed);
 
         Date date = Date.from(Instant.now());
-        Event event = Event.builder().userId(userId).breedId(breedId).type(Event.Type.LIKE.name()).date(date).build();
+        Event event = Event.builder().receiverId(comment.getAuthor()).breedId(breedId)
+                .commentId(commentId).commentText(comment.getText())
+                .actorId(userId).type(Event.Type.LIKE.name()).date(date).build();
         eventRepository.save(event);
         return result;
     }
@@ -103,7 +108,10 @@ public class CommentsService {
         breedRepository.save(breed);
 
         Date date = Date.from(Instant.now());
-        Event event = Event.builder().userId(userId).breedId(breedId).type(Event.Type.REMOVE_LIKE.name()).date(date).build();
+        Event event = Event.builder().receiverId(comment.getAuthor()).breedId(breedId)
+                .commentId(commentId).commentText(comment.getText())
+                .actorId(userId)
+                .type(Event.Type.REMOVE_LIKE.name()).date(date).build();
         eventRepository.save(event);
         return result;
     }

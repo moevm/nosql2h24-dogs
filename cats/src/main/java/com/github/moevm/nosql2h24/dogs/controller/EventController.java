@@ -3,6 +3,9 @@ package com.github.moevm.nosql2h24.dogs.controller;
 import com.github.moevm.nosql2h24.dogs.database.document.Event;
 import com.github.moevm.nosql2h24.dogs.database.repository.EventRepository;
 import com.github.moevm.nosql2h24.dogs.database.repository.UserRepository;
+import com.github.moevm.nosql2h24.dogs.model.controller.request.events.BreedCommentDto;
+import com.github.moevm.nosql2h24.dogs.model.controller.request.events.LikeDto;
+import com.github.moevm.nosql2h24.dogs.model.controller.request.events.ReplyDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -39,22 +42,32 @@ public class EventController {
         eventRepository.deleteById(id);
     }
 
+    /*
+    1. Пришёл лайк пользователю (предлагаю: айди породы, айди комментария, айди лайкнувшего)
+    2. Пришёл ответ на комментарий пользователю (предлагаю: айди породы, айди комментария, айди ответевшего)
+    3. Кто-то закомментил любимую породу (предлагаю: айди породы, айди комментария, текст комментария, айди написавшего (или могу имя, если удобно))
+     */
     @GetMapping("/likes/{id}")
-    public List<Event> getLikes(@PathVariable String id) {
+    public List<LikeDto> getLikes(@PathVariable String id) {
         List<Event> events = eventRepository.findAll();
-        return events.stream().filter(e -> Event.Type.isLike(e.getType()) && e.getUserId().equals(id)).toList();
+        return events.stream().filter(e -> Event.Type.isLike(e.getType()) && e.getReceiverId().equals(id)).
+                map(LikeDto::from).toList();
     }
 
-    @GetMapping("/comments/{id}")
-    public List<Event> getComments(@PathVariable String id) {
+    @GetMapping("/reply/{id}")
+    public List<ReplyDto> getComments(@PathVariable String id) {
         List<Event> events = eventRepository.findAll();
-        return events.stream().filter(e -> Event.Type.isReply(e.getType()) && e.getUserId().equals(id)).toList();
+        return events.stream().filter(e -> Event.Type.isReply(e.getType()) && e.getReceiverId().equals(id)).
+                map(ReplyDto::from).toList();
+
     }
 
-    @GetMapping("/notifications/{id}")
-    public List<Event> getNotifications(@PathVariable String id) {
+    @GetMapping("/BreedComments/{id}")
+    public List<BreedCommentDto> getNotifications(@PathVariable String id) {
         List<Event> events = eventRepository.findAll();
         HashSet<String> favoritesBreeds = userRepository.findById(id).orElseThrow().getFavorites();
-        return events.stream().filter(e -> Event.Type.isNotification(e.getType()) && favoritesBreeds.contains(e.getBreedId())).toList();
+        return events.stream().filter(e -> Event.Type.isBreesComment(e.getType()) && favoritesBreeds.contains(e.getBreedId())).
+                map(BreedCommentDto::from).toList();
+
     }
 }
