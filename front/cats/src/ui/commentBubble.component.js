@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import CommentTextField from "./commentTextField.js";
 import {useDispatch} from "react-redux";
 import {setAuthor} from "../slice/dataSlice";
-import {Favorite} from "@mui/icons-material";
+import {Favorite, FavoriteBorder} from "@mui/icons-material";
 import {IconButton} from "@mui/material";
 import axios from "axios";
 import {BASE_URL} from "../options";
@@ -14,20 +14,27 @@ const CommentComponent=(props)=>{
     let dispatch = useDispatch();
     let { id } = useParams();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("userData")));
-
+    const [likes,setLikes] = useState(props.likes);
+    let test = props.likes
     const addFavorite = async () => {
 
-        axios.put(BASE_URL + "/comments/like/"+user.name+"/" + id + "/" + props.id, {
+        axios.put(BASE_URL + "/comments/like/"+user.name+"/" + id + "/" + props.commentId, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
             }
         })
             .then(res => {
-                console.log(res.data)
-                // dispatch(setUserData(res.data))
-                // localStorage.setItem("userData",JSON.stringify(res.data))
-                // setUser(res.data)
+
+
+                if(likes?.length){
+                    setLikes([...likes,user.name])
+                }
+                else{
+                    setLikes([user.name])
+                }
+
+
             })
 
             .catch(err => {
@@ -36,24 +43,31 @@ const CommentComponent=(props)=>{
     }
     const deleteFavorite = async () => {
 
-        axios.put(BASE_URL + "/comments/remove-like/"+user.name+"/" + id + "/" + props.id, {
+        axios.put(BASE_URL + "/comments/remove-like/"+user.name+"/" + id + "/" + props.commentId, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
             }
         })
             .then(res => {
-                console.log(res.data)
-                // dispatch(setUserData(res.data))
-                // localStorage.setItem("userData",JSON.stringify(res.data))
-                // setUser(res.data)
+
+                const newList = likes.filter((item) => item !== user.name);
+
+                setLikes(newList);
+                //alert("delete")
+                // const index = test.indexOf(user.name);
+                // console.log(index)
+                // if (index > -1) {
+                //     test = test.splice(index, 1);
+                // }
+                //console.log(likes)
             })
 
             .catch(err => {
                 console.error("error fetching data", err)
             });
     }
-
+    const FavoriteIcon =  likes?.includes(user.name) ? <Favorite/>:<FavoriteBorder/>;
 
     return(
         <div className="comment_bubble" onClick={()=>{
@@ -65,16 +79,23 @@ const CommentComponent=(props)=>{
             </div>
 
             <div className="comment_bubble_column">
-                <label>{creation_date.getDate()}.{creation_date.getMonth()+1}.{creation_date.getFullYear()}
-                    {creation_date.getHours()}:{creation_date.getMinutes()}</label>
+                <div>{creation_date.getDate()}.{creation_date.getMonth()+1}.{creation_date.getFullYear()} {creation_date.getHours()}:{creation_date.getMinutes()}</div>
                 <div className="comment_bubble_likes">
                     <IconButton onClick={()=>{
-                        addFavorite()
+
+                        if(likes?.includes(user.name)){
+                            deleteFavorite().then()
+                        }else {
+                            addFavorite().then()
+                        }
+
+
+
                     }}>
-                        <Favorite></Favorite>
+                        {FavoriteIcon}
                     </IconButton>
 
-                    <label>10</label>
+                    <label>{likes?.length}</label>
                 </div>
             </div>
 

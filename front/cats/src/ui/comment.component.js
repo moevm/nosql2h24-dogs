@@ -55,7 +55,8 @@ const CommentComponent=(props)=>{
             {/*</List>*/}
             <div className = "comment_bubble_list">
                 {comments?.map(comment=>
-                    <CommentBubbleComponent text ={comment.text} author = {comment.author} date = {comment.date}>
+                    <CommentBubbleComponent text ={comment.text} author = {comment.author} date = {comment.date}
+                                            commentId = {comment.id} likes = {comment.likes}>
                     </CommentBubbleComponent>
                 )}
             </div>
