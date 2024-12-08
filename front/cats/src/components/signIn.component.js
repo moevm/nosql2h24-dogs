@@ -60,7 +60,7 @@ export const SignInComponent = () => {
                                  setUserName(e.target.value)
 
                              }}
-                             placeholder="name"
+                             placeholder="login"
             ></CustomTextField>
 
 

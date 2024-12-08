@@ -44,7 +44,7 @@ const SignUpComponent = () => {
             <h3 className="big_text">Sign Up</h3>
             <CustomTextField value={userName}
                              onChange={(e) => setUserName(e.target.value)}
-                             placeholder="name"
+                             placeholder="login"
             ></CustomTextField>
 
             <CustomTextField value={password}
