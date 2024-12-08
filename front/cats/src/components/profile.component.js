@@ -13,14 +13,17 @@ import LikeCardComponent from "../ui/small_cards/likeCard.component";
 import {clearUserData, setUserData} from "../slice/userSlice.js";
 import "../style/profile.css"
 import "../style/small_cards.css"
+
 import LoadingBar from "react-top-loading-bar";
 import CircularProgress from "@mui/material/CircularProgress";
+import {decode as base64_decode, encode as base64_encode} from 'base-64';
 const ProfileComponent = () => {
     let dispatch = useDispatch();
     //let user_data = useSelector(state => state.user);
     let user_data = JSON.parse(localStorage.getItem("userData"));
     let user = useSelector(state => state.user);
     //alert(JSON.stringify(user_data))
+
     const favorites = user_data.favorites;
     const [favoritesData, setFavoritesData] = useState([]);
     const [liked, setLiked] = useState(null);
