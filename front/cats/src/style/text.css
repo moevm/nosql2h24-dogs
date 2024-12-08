@@ -33,3 +33,12 @@
     margin-left:3px;
     margin-right: 3px;
 }
+.text_overflow{
+    width: 100%;
+    font-size: 24px;
+    font-weight: normal;
+    font-family: sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

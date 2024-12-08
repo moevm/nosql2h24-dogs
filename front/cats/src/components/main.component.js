@@ -17,7 +17,7 @@ export const MainComponent = () => {
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("userData"));
     const imp = user.admin ? <ImpExpComponent></ImpExpComponent>:<></>
-    alert(JSON.stringify(user))
+
     return (
         <div className="main_box">
             <div className="main_app_bar">

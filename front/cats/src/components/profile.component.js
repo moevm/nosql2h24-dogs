@@ -25,17 +25,18 @@ const ProfileComponent = () => {
     const [favoritesData, setFavoritesData] = useState([]);
     const [liked, setLiked] = useState(null);
     const [comments, setComments] = useState(null);
+    const [notification, setNotification] = useState(null);
     const admin = user_data.admin?<StarBorder/>:<></>;
-    const notifications = [
-        {name: "1", comment: "0XYvRd7oD"},
-        {name: "2", comment: "ozEvzdVM"},
-        {name: "3", comment: "0XYvRd7oD"},
-        {name: "4", comment: "ozEvzdVM-"},
-        {name: "1", comment: "0XYvRd7oD"},
-        {name: "2", comment: "ozEvzdVM-"},
-        {name: "1", comment: "0XYvRd7oD"},
-        {name: "2", comment: "ozEvzdVM-"},
-    ]
+    // const notifications = [
+    //     {name: "1", comment: "0XYvRd7oD"},
+    //     {name: "2", comment: "ozEvzdVM"},
+    //     {name: "3", comment: "0XYvRd7oD"},
+    //     {name: "4", comment: "ozEvzdVM-"},
+    //     {name: "1", comment: "0XYvRd7oD"},
+    //     {name: "2", comment: "ozEvzdVM-"},
+    //     {name: "1", comment: "0XYvRd7oD"},
+    //     {name: "2", comment: "ozEvzdVM-"},
+    // ]
     // const comments = [
     //     {name: "1", comment: "0XYvRd7oD", author: "me"},
     //     {name: "2", comment: "ozEvzdVM", author: "me"},
@@ -61,7 +62,7 @@ const ProfileComponent = () => {
 
     const getNotifications = async () => {
 
-        axios.get(BASE_URL + "/events/notifications/"+user_data?.name, {
+        axios.get(BASE_URL + "/events/breed_comments/"+user_data?.name, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
@@ -70,6 +71,7 @@ const ProfileComponent = () => {
             .then(res => {
                 console.log("notofications:")
                 console.log(res.data);
+                setNotification(res.data)
             })
 
             .catch(err => {
@@ -96,7 +98,7 @@ const ProfileComponent = () => {
     }
     const getComments = async () => {
 
-        axios.get(BASE_URL + "/events/comments/"+user_data?.name, {
+        axios.get(BASE_URL + "/events/reply/"+user_data?.name, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
@@ -135,21 +137,23 @@ const ProfileComponent = () => {
             </div>
         )
 
-    const notifications_data = notifications?.map(cat =>
+    const notifications_data = notification?.map(comment =>
         <div>
-            <NotificationCardComponent name={cat.name} comment={cat.comment}
-            ></NotificationCardComponent>
+            <CommentNotificationCardComponent type="COMMENT" author={comment.commentingUserId} breedId = {comment.breedId}
+                                       commentId={comment.commentId} comment = {comment.text}
+            ></CommentNotificationCardComponent>
         </div>
     )
     const comments_data = comments?.map(comment =>
         <div>
-            <CommentNotificationCardComponent type={comment.type} author={comment.userId} breedId = {comment.breedId}
+            <CommentNotificationCardComponent type="REPLY" author={comment.replyingUserId} breedId = {comment.breedId}
+                                               commentId={comment.commentId} comment = {comment.text}
             ></CommentNotificationCardComponent>
         </div>
     )
     const liked_data = liked?.map(like =>
         <div>
-            <LikeCardComponent author={like.userId} type={like.type} breedId = {like.breedId}
+            <LikeCardComponent author={like.likingUserId} type={like.type} breedId = {like.breedId} comment = {like.commentId}
             ></LikeCardComponent>
         </div>
     )

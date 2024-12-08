@@ -18,7 +18,7 @@ const CommentNotificationCardComponent=(props)=> {
         }}>
             {label}
 
-            <label className="small_text">{props.comment}</label>
+            <div className="text_overflow">{props.comment}</div>
         </div>
     )
 }

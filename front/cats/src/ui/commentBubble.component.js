@@ -83,7 +83,7 @@ const CommentComponent=(props)=>{
 
                     ))
                 }}>{props.author}: </label>
-                <label className="small_text">{props.text}</label>
+                <div className="text_overflow">{props.text}</div>
             </div>
 
             <div className="comment_bubble_column">
