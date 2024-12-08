@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {BASE_URL} from "../options.js";
 import {useDispatch} from "react-redux";
-import {ArrowBack, Equalizer, Face, Settings} from "@mui/icons-material";
+import {ArrowBack, Equalizer, Face, Settings, StarBorder} from "@mui/icons-material";
 import SmallCatCardComponent from "../ui/small_cards/smallCatCard.component";
 import NotificationCardComponent from "../ui/small_cards/notificationCard.component";
 import CommentNotificationCardComponent from "../ui/small_cards/commentNotificationCard.component";
@@ -25,6 +25,7 @@ const ProfileComponent = () => {
     const [favoritesData, setFavoritesData] = useState([]);
     const [liked, setLiked] = useState(null);
     const [comments, setComments] = useState(null);
+    const admin = user_data.admin?<StarBorder/>:<></>;
     const notifications = [
         {name: "1", comment: "0XYvRd7oD"},
         {name: "2", comment: "ozEvzdVM"},
@@ -188,9 +189,13 @@ const ProfileComponent = () => {
             </div>
 
             <div className="profile_data_row">
-                <img src={"../cats/resource/profile.png"} width="300" height="300" alt={
-                    <Face/>
-                }/>
+                <div className="profile_img">
+                    {admin}
+                    <img src={"../cats/resource/profile.png"} width="300" height="300" alt={
+                        <Face/>
+                    }/>
+                </div>
+
                 <div className="profile_data_column">
                     <div className="big_text">{user.name}</div>
                     <div className="small_text">Age: {user.age}</div>
