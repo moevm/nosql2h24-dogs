@@ -77,7 +77,9 @@ const CommentTextField = (props) => {
                                commentId:0
                            }))
                        }
-                       }>{answer}</div>,
+                       }style={{
+                           padding:5
+                       }}>{answer}</div>,
                        endAdornment:
                            <InputAdornment position="end" >
                                <IconButton

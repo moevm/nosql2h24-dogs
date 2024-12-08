@@ -161,7 +161,7 @@ export const FilterComponent = () => {
                     setCheckedNumbers([])
                     //setCheckedString([])
                     window.location.reload();
-                }}> сброс </Button>
+                }}> drop </Button>
             </div>
 
             {filter_data_numbers.map((item) => {

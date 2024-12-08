@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {BASE_URL} from "../options.js";
 import {useDispatch} from "react-redux";
-import {ArrowBack, Equalizer, Face, Settings} from "@mui/icons-material";
+import {ArrowBack, Equalizer, Face, Settings, StarBorder} from "@mui/icons-material";
 import SmallCatCardComponent from "../ui/small_cards/smallCatCard.component";
 import NotificationCardComponent from "../ui/small_cards/notificationCard.component";
 import CommentNotificationCardComponent from "../ui/small_cards/commentNotificationCard.component";
@@ -13,28 +13,33 @@ import LikeCardComponent from "../ui/small_cards/likeCard.component";
 import {clearUserData, setUserData} from "../slice/userSlice.js";
 import "../style/profile.css"
 import "../style/small_cards.css"
+
 import LoadingBar from "react-top-loading-bar";
 import CircularProgress from "@mui/material/CircularProgress";
+import {decode as base64_decode, encode as base64_encode} from 'base-64';
 const ProfileComponent = () => {
     let dispatch = useDispatch();
     //let user_data = useSelector(state => state.user);
     let user_data = JSON.parse(localStorage.getItem("userData"));
     let user = useSelector(state => state.user);
     //alert(JSON.stringify(user_data))
+
     const favorites = user_data.favorites;
     const [favoritesData, setFavoritesData] = useState([]);
     const [liked, setLiked] = useState(null);
     const [comments, setComments] = useState(null);
-    const notifications = [
-        {name: "1", comment: "0XYvRd7oD"},
-        {name: "2", comment: "ozEvzdVM"},
-        {name: "3", comment: "0XYvRd7oD"},
-        {name: "4", comment: "ozEvzdVM-"},
-        {name: "1", comment: "0XYvRd7oD"},
-        {name: "2", comment: "ozEvzdVM-"},
-        {name: "1", comment: "0XYvRd7oD"},
-        {name: "2", comment: "ozEvzdVM-"},
-    ]
+    const [notification, setNotification] = useState(null);
+    const admin = user_data.admin?<StarBorder/>:<></>;
+    // const notifications = [
+    //     {name: "1", comment: "0XYvRd7oD"},
+    //     {name: "2", comment: "ozEvzdVM"},
+    //     {name: "3", comment: "0XYvRd7oD"},
+    //     {name: "4", comment: "ozEvzdVM-"},
+    //     {name: "1", comment: "0XYvRd7oD"},
+    //     {name: "2", comment: "ozEvzdVM-"},
+    //     {name: "1", comment: "0XYvRd7oD"},
+    //     {name: "2", comment: "ozEvzdVM-"},
+    // ]
     // const comments = [
     //     {name: "1", comment: "0XYvRd7oD", author: "me"},
     //     {name: "2", comment: "ozEvzdVM", author: "me"},
@@ -60,7 +65,7 @@ const ProfileComponent = () => {
 
     const getNotifications = async () => {
 
-        axios.get(BASE_URL + "/events/notifications/"+user_data?.name, {
+        axios.get(BASE_URL + "/events/breed_comments/"+user_data?.name, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
@@ -69,6 +74,7 @@ const ProfileComponent = () => {
             .then(res => {
                 console.log("notofications:")
                 console.log(res.data);
+                setNotification(res.data)
             })
 
             .catch(err => {
@@ -95,7 +101,7 @@ const ProfileComponent = () => {
     }
     const getComments = async () => {
 
-        axios.get(BASE_URL + "/events/comments/"+user_data?.name, {
+        axios.get(BASE_URL + "/events/reply/"+user_data?.name, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
@@ -134,21 +140,23 @@ const ProfileComponent = () => {
             </div>
         )
 
-    const notifications_data = notifications?.map(cat =>
+    const notifications_data = notification?.map(comment =>
         <div>
-            <NotificationCardComponent name={cat.name} comment={cat.comment}
-            ></NotificationCardComponent>
+            <CommentNotificationCardComponent type="COMMENT" author={comment.commentingUserId} breedId = {comment.breedId}
+                                       commentId={comment.commentId} comment = {comment.text}
+            ></CommentNotificationCardComponent>
         </div>
     )
     const comments_data = comments?.map(comment =>
         <div>
-            <CommentNotificationCardComponent type={comment.type} author={comment.userId} breedId = {comment.breedId}
+            <CommentNotificationCardComponent type="REPLY" author={comment.replyingUserId} breedId = {comment.breedId}
+                                               commentId={comment.commentId} comment = {comment.text}
             ></CommentNotificationCardComponent>
         </div>
     )
     const liked_data = liked?.map(like =>
         <div>
-            <LikeCardComponent author={like.userId} type={like.type} breedId = {like.breedId}
+            <LikeCardComponent author={like.likingUserId} type={like.type} breedId = {like.breedId} comment = {like.commentId}
             ></LikeCardComponent>
         </div>
     )
@@ -188,9 +196,13 @@ const ProfileComponent = () => {
             </div>
 
             <div className="profile_data_row">
-                <img src={"../cats/resource/profile.png"} width="300" height="300" alt={
-                    <Face/>
-                }/>
+                <div className="profile_img">
+                    {admin}
+                    <img src={"../cats/resource/profile.png"} width="300" height="300" alt={
+                        <Face/>
+                    }/>
+                </div>
+
                 <div className="profile_data_column">
                     <div className="big_text">{user.name}</div>
                     <div className="small_text">Age: {user.age}</div>
