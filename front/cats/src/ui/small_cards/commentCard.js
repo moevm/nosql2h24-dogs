@@ -16,7 +16,7 @@ const CommentCardComponent=(props)=>{
             navigate("/cat_card");
         }}>
             <img ref={imgRef}
-                 src={"https://cdn2.thecatapi.com/images/"+props.img+".jpg"}
+                 src={"http://127.0.0.1:1240/images/"+props.img+".jpg"}
                  width="100" height="100"
                  //onError={onImageError}
             />

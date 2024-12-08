@@ -18,11 +18,10 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         log.info("External resources path: {}", externalResourcesPath);
         if (externalResourcesPath != null) {
-            registry.addResourceHandler("/image/**").addResourceLocations("file:" + externalResourcesPath);
+            registry.addResourceHandler("/images/**").addResourceLocations("file:" + externalResourcesPath);
         } else {
             log.error("External resources path not set. External resources will not be served.");
         }
-
     }
 
     @Bean

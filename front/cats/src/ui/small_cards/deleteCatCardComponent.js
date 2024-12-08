@@ -86,7 +86,7 @@ const DeleteCatCardComponent = (props) => {
                 <div className="favorite_card">
 
                     <img ref={imgRef}
-                         src={"https://cdn2.thecatapi.com/images/" + catData.referenceImageId + ".jpg"}
+                         src={"http://127.0.0.1:1240/images/" + catData.referenceImageId + ".jpg"}
                          width="100" height="100"
                          onError={onImageError}
                     />

@@ -143,7 +143,7 @@ const CatCardComponent = () => {
                     </IconButton>
                 </div>
                 <div className="cat_card_data_row">
-                    <img src={"https://cdn2.thecatapi.com/images/" + catData.reference_image_id + ".jpg"}
+                    <img src={"http://127.0.0.1:1240/images/" + catData.reference_image_id + ".jpg"}
                          width="300" height="360"
                     ></img>
                     <div className="cat_card_data_column">
