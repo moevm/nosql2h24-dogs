@@ -118,7 +118,7 @@ const CatCardComponent = () => {
         fetchData();
     }, []);
 
-    const FavoriteIcon = user.favorites.includes(id) ? <Favorite className="profile_app_bar_icon"/>:<FavoriteBorder className="profile_app_bar_icon"/>;
+    const FavoriteIcon =  user?.favorites.includes(id) ? <Favorite className="profile_app_bar_icon"/>:<FavoriteBorder className="profile_app_bar_icon"/>;
     if (isDataLoading) {
         return (
             <div className="cat_card_box">
@@ -130,7 +130,7 @@ const CatCardComponent = () => {
                     </IconButton>
 
                     <IconButton onClick={() => {
-                        if(user.favorites.includes(id)) {
+                        if(user?.favorites.includes(id)) {
                             //dispatch(removeFavorite(cat.cat_id))
                             deleteFavorite().then()
                         }else{
@@ -166,7 +166,7 @@ const CatCardComponent = () => {
                 <label className="small_text">{catData.vcahospitals_url}</label>
                 <label className="small_text">{catData.vetstreet_url}</label>
                 <label className="small_text">{catData.wikipedia_url}</label>
-                <CommentComponent comment={catData.comments}></CommentComponent>
+                <CommentComponent ></CommentComponent>
             </div>
         )
     } else {

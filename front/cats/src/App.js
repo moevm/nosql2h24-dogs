@@ -6,6 +6,7 @@ import ProfileComponent from "./components/profile.component";
 import SignInComponent from "./components/signIn.component";
 import SignUpComponent from "./components/signUp.component";
 import ImpExpComponent from "./components/ImpExp.Component";
+import EditProfileComponent from "./components/edit_profile.component";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route exact path="/cat_card/:id" element={<CatCardComponent />} />
           <Route exact path="/main" element={<MainComponent />} />
           <Route exact path="/profile" element={<ProfileComponent />} />
+          <Route exact path="/edit_profile" element={<EditProfileComponent />} />
           <Route exact path="/sign_in" element={<SignInComponent />} />
           <Route exact path="/sign_up" element={<SignUpComponent />} />
           <Route exact path="/statistic" element={<StatisticComponent />} />
