@@ -112,7 +112,7 @@ const CatCardComponent = () => {
             });
     }
     useEffect(() => {
-        if(Object.keys(user_data).length === 0)
+        if(Object.keys(user).length === 0)
             navigate("/sign_in")
         setIsDataLoading(false)
         //alert(JSON.stringify(filter_data));
