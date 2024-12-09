@@ -1223,7 +1223,8 @@
     "rex": 0,
     "suppressed_tail": 0,
     "short_legs": 0,
-    "hypoallergenic": 0
+    "hypoallergenic": 0,
+    "reference_image_id": "YnPrYEsfa"
   },
   {
     "weight_min": 3,
@@ -1659,7 +1660,8 @@
     "suppressed_tail": 0,
     "short_legs": 0,
     "wikipedia_url": "https://en.wikipedia.org/wiki/Asian_cat",
-    "hypoallergenic": 0
+    "hypoallergenic": 0,
+    "reference_image_id": "khYh2oDcC"
   },
   {
     "weight_min": 3,
