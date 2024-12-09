@@ -6,7 +6,7 @@ RUN apt-get update && \
 
 ENV MAVEN_VERSION=3.9.4
 
-RUN wget https://downloads.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.zip && \
+RUN wget --progress=dot:giga https://downloads.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.zip && \
     unzip apache-maven-${MAVEN_VERSION}-bin.zip -d /opt/ && \
     rm apache-maven-${MAVEN_VERSION}-bin.zip && \
     ln -s /opt/apache-maven-${MAVEN_VERSION}/bin/mvn /usr/bin/mvn
