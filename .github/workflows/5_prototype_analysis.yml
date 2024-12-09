@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-
+  
 jobs:
   check_tag_08_docker_compose:
     name: "Проверка наличия тега 0.8 и работоспособности docker-compose"
@@ -127,11 +127,11 @@ jobs:
     
       - name: Build docker-compose
         run: |
-          docker-compose build --no-cache
+          docker compose build --no-cache
 
       - name: Run docker-compose
         run: |
-          docker-compose up -d
+          docker compose up -d
           sleep 30
 
       - name: Check containers are alive
