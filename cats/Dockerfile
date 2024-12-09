@@ -1,9 +1,8 @@
 FROM openjdk:21-jdk-slim
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends wget unzip && \
+     apt-get install -y --no-install-recommends wget=1.21.1-1ubuntu1 unzip=6.0-21ubuntu1 && \
     rm -rf /var/lib/apt/lists/*
-
 
 ENV MAVEN_VERSION=3.9.4
 
