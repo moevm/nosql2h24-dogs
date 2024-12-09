@@ -54,7 +54,6 @@ public class EventController {
         List<Event> events = eventRepository.findAll();
         return events.stream().filter(e -> Event.Type.isReply(e.getType()) && e.getRecipientId().equals(id)).
                 map(ReplyDto::from).toList();
-
     }
 
     @GetMapping("/breed_comments/{id}")
@@ -63,6 +62,5 @@ public class EventController {
         HashSet<String> favoritesBreeds = userRepository.findById(id).orElseThrow().getFavorites();
         return events.stream().filter(e -> Event.Type.isBreesComment(e.getType()) && favoritesBreeds.contains(e.getBreedId())).
                 map(BreedCommentDto::from).toList();
-
     }
 }
