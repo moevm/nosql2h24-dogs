@@ -11,13 +11,18 @@ import CatGridComponent from "../ui/catGrid.component";
 import FilterComponent from "../ui/filter.component";
 import {ArrowBack, PersonOutline} from "@mui/icons-material";
 import ImpExpComponent from "./ImpExp.Component";
+import {setUserData} from "../slice/userSlice";
 
 export const MainComponent = () => {
-
+    let user_data = JSON.parse(localStorage.getItem("userData"));
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("userData"));
     const imp = user.admin ? <ImpExpComponent></ImpExpComponent>:<></>
+    useEffect(()=>{
+        if(Object.keys(user_data).length === 0)
+            navigate("/sign_in")
 
+    },[]);
     return (
         <div className="main_box">
             <div className="main_app_bar">
