@@ -28,7 +28,7 @@ public class DatabaseInitializer {
     private final CommentsService commentsService;
 
     private final Path BREEDS_JSON;
-    private final boolean IS_ALWAYS = true;
+    private final boolean IS_ALWAYS = false;
 
     public DatabaseInitializer(UserRepository userRepository, BreedRepository breedRepository, EventRepository eventRepository, CommentsService commentsService, @Value("${breeds.json}") String breedsJson) {
         this.userRepository = userRepository;
