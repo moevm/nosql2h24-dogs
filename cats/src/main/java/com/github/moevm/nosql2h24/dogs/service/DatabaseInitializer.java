@@ -43,6 +43,7 @@ public class DatabaseInitializer {
         initUsers();
         initBreeds();
         initEvents();
+        addFavorites();
     }
 
     public void initUsers() {
@@ -52,7 +53,6 @@ public class DatabaseInitializer {
             userRepository.saveUser(new UserDto("Sasha", 21, "111111", "image1"));
             userRepository.saveAdmin(new UserDto("Margo", 21, "222222", "image2"));
             userRepository.saveAdmin(new UserDto("Karim", 21, "222222", "image3"));
-            addFavorites();
         }
     }
 
