@@ -3,7 +3,7 @@ services:
   backend:
     build: ./cats
     ports:
-      - "1240:1240"
+      - "127.0.0.1:1240:1240"
     depends_on:
       - db
     restart: always
@@ -24,14 +24,14 @@ services:
       - app-network
 
 #  client:
-#      build: ./front
-#      container_name: client_frontend
-#      ports:
-#        - '3000:3000'
-#      stdin_open: true
-#      tty: true
-#      networks:
-#        - app-network
+#    build: ./front
+#    container_name: client_frontend
+#    ports:
+#      - '127.0.0.1:3000:3000'
+#    stdin_open: true
+#    tty: true
+#    networks:
+#      - app-network
 
 networks:
   app-network:

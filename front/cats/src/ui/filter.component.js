@@ -10,34 +10,34 @@ export const FilterComponent = () => {
     let dispatch = useDispatch();
 
     const filter_data_numbers = [
-        {id: "1", value: "adaptability", from: 0, to: 0},
-        {id: "2", value: "affectionLevel", from: 0, to: 0},
-        {id: "3", value: "childFriendly", from: 0, to: 0},
-        {id: "4", value: "dogFriendly", from: 0, to: 0},
-        {id: "5", value: "energyLevel", from: 0, to: 0},
-        {id: "6", value: "grooming", from: 0, to: 0},
-        {id: "7", value: "healthIssues", from: 0, to: 0},
-        {id: "8", value: "intelligence", from: 0, to: 0},
-        {id: "9", value: "sheddingLevel", from: 0, to: 0},
-        {id: "10", value: "socialNeeds", from: 0, to: 0},
-        {id: "11", value: "strangerFriendly", from: 0, to: 0},
-        {id: "12", value: "vocalisation", from: 0, to: 0},
-        {id: "13", value: "hairless", from: 0, to: 0},
-        {id: "14", value: "experimental", from: 0, to: 0},
-        {id: "15", value: "natural", from: 0, to: 0},
-        {id: "16", value: "rare", from: 0, to: 0},
-        {id: "17", value: "rex", from: 0, to: 0},
-        {id: "18", value: "suppressedTail", from: 0, to: 0},
-        {id: "19", value: "shortLegs", from: 0, to: 0},
-        {id: "20", value: "hypoallergenic", from: 0, to: 0},
-        {id: "21", value: "indoor", from: 0, to: 0},
-        {id: "22", value: "lap", from: 0, to: 0},
+        {id: "1", value: "adaptability",    from: 1, to: 5},
+        {id: "2", value: "affectionLevel",  from: 1, to: 5},
+        {id: "3", value: "childFriendly",   from: 1, to: 5},
+        {id: "4", value: "dogFriendly",     from: 1, to: 5},
+        {id: "5", value: "energyLevel",     from: 1, to: 5},
+        {id: "6", value: "grooming",        from: 1, to: 5},
+        {id: "7", value: "healthIssues",    from: 1, to: 5},
+        {id: "8", value: "intelligence",    from: 1, to: 5},
+        {id: "9", value: "sheddingLevel",   from: 1, to: 5},
+        {id: "10", value: "socialNeeds",    from: 1, to: 5},
+        {id: "11", value: "strangerFriendly",from: 1, to: 5},
+        {id: "12", value: "vocalisation",   from: 1, to: 5},
+        {id: "13", value: "hairless",       from: 1, to: 5},
+        {id: "14", value: "experimental",   from: 1, to: 5},
+        {id: "15", value: "natural",        from: 1, to: 5},
+        {id: "16", value: "rare",           from: 1, to: 5},
+        {id: "17", value: "rex",            from: 1, to: 5},
+        {id: "18", value: "suppressedTail", from: 1, to: 5},
+        {id: "19", value: "shortLegs",      from: 1, to: 5},
+        {id: "20", value: "hypoallergenic", from: 1, to: 5},
+        {id: "21", value: "indoor",         from: 1, to: 5},
+        {id: "22", value: "lap",            from: 1, to: 5},
     ]
-    const filter_data_string_numbers=[
+    const filter_data_string_numbers = [
         {id: "1", value: "weight", from: 0, to: 0},
         {id: "2", value: "lifeSpan", from: 0, to: 0},
     ]
-    
+
     const filter_data_country_codes = [
         {id: "1", value: "SG"},
         {id: "2", value: "CY"},
@@ -149,10 +149,10 @@ export const FilterComponent = () => {
 
                     const filter_data = {
                         filter_number: JSON.parse(JSON.stringify(checkedNumbers)),
-                        filter_bigger_number:JSON.parse(JSON.stringify(checkedStringNumbers)),
-                        filter_temperament:JSON.parse(JSON.stringify(checkedTemperament)),
-                        filter_country:JSON.parse(JSON.stringify(checkedCountry)),
-                        filter_country_codes:JSON.parse(JSON.stringify(checkedCountryCodes))
+                        filter_bigger_number: JSON.parse(JSON.stringify(checkedStringNumbers)),
+                        filter_temperament: JSON.parse(JSON.stringify(checkedTemperament)),
+                        filter_country: JSON.parse(JSON.stringify(checkedCountry)),
+                        filter_country_codes: JSON.parse(JSON.stringify(checkedCountryCodes))
                     }
                     console.log(JSON.stringify(filter_data))
                     dispatch(updateFilter(filter_data))
@@ -168,11 +168,11 @@ export const FilterComponent = () => {
                 return (
 
                     <div key={item.id} className="filter_row">
-                        <div >
+                        <div>
                             <input type="checkbox"
                                    value={item.id}
                                    id={item.id}
-                                    className="filter_check_box"
+                                   className="filter_check_box"
                                    onChange={(e) => {
                                        const isChecked = e.target.checked
                                        //filter_data_numbers[Number(e.target.value) - 1].isChecked = isChecked;
@@ -190,14 +190,14 @@ export const FilterComponent = () => {
 
                                    }}
                             />
-                            <label className="filter_text" htmlFor={item.id} >{item.value}</label>
+                            <label className="filter_text" htmlFor={item.id}>{item.value}</label>
                         </div>
 
                         <div>
                             <label className="filter_text"> from</label>
-                            <input type="number" min="0" max="5" onChange={(e) => {
-                                if (Number(e.target.value) > 5 || Number(e.target.value) < 0) {
-                                    e.target.value = "0"
+                            <input type="number" min="1" max="5" onChange={(e) => {
+                                if (Number(e.target.value) > 5 || Number(e.target.value) < 1) {
+                                    e.target.value = "1"
                                 } else {
                                     const index = checkedNumbers.findIndex(itemm => itemm.id === item.id);
                                     if (index !== -1) {
@@ -206,11 +206,11 @@ export const FilterComponent = () => {
                                     }
                                     filter_data_numbers[Number(item.id) - 1].from = Number(e.target.value);
                                 }
-                            }}/>
+                            }} placeholder="1"/>
                             <label className="filter_text"> to</label>
-                            <input type="number" min="0" max="5" onChange={(e) => {
-                                if (Number(e.target.value) > 5 || Number(e.target.value) < 0) {
-                                    e.target.value = "0"
+                            <input type="number" min="1" max="5" onChange={(e) => {
+                                if (Number(e.target.value) > 5 || Number(e.target.value) < 1) {
+                                    e.target.value = "1"
                                 } else {
                                     const index = checkedNumbers.findIndex(itemm => itemm.id === item.id);
                                     if (index !== -1) {
@@ -218,7 +218,7 @@ export const FilterComponent = () => {
                                     }
                                     filter_data_numbers[Number(item.id) - 1].to = Number(e.target.value);
                                 }
-                            }}/>
+                            }} placeholder="5"/>
                         </div>
 
 
@@ -231,7 +231,7 @@ export const FilterComponent = () => {
                 return (
 
                     <div key={item.id} className="filter_row">
-                        <div >
+                        <div>
                             <input type="checkbox"
                                    value={item.id}
                                    id={item.id}
@@ -253,7 +253,7 @@ export const FilterComponent = () => {
 
                                    }}
                             />
-                            <label className="filter_text" htmlFor={item.id} >{item.value}</label>
+                            <label className="filter_text" htmlFor={item.id}>{item.value}</label>
                         </div>
 
                         <div>
@@ -293,55 +293,55 @@ export const FilterComponent = () => {
 
             <Autocomplete className="autocomplete"
 
-                multiple
-                options={filter_data_country_codes}
-                onChange={(event, newValue) => {
-                    setCheckedCountryCodes(newValue);
-                }}
-                getOptionLabel={(option) => option.value}
-                disableCloseOnSelect
-                renderInput={(params) => (
-                    <TextField className="autocomplete_text"
-                        {...params}
-                        variant="outlined"
-                        label="Country Codes"
+                          multiple
+                          options={filter_data_country_codes}
+                          onChange={(event, newValue) => {
+                              setCheckedCountryCodes(newValue);
+                          }}
+                          getOptionLabel={(option) => option.value}
+                          disableCloseOnSelect
+                          renderInput={(params) => (
+                              <TextField className="autocomplete_text"
+                                         {...params}
+                                         variant="outlined"
+                                         label="Country Codes"
 
-                    />
-                )}
+                              />
+                          )}
             />
             <Autocomplete className="autocomplete"
-                multiple
-                options={filter_data_country}
-                onChange={(event, newValue) => {
-                    setCheckedCountry(newValue);
-                }}
-                getOptionLabel={(option) => option.value}
-                disableCloseOnSelect
-                renderInput={(params) => (
-                    <TextField className="autocomplete_text"
-                        {...params}
-                        variant="outlined"
-                        label="Country"
-                    />
-                )}
+                          multiple
+                          options={filter_data_country}
+                          onChange={(event, newValue) => {
+                              setCheckedCountry(newValue);
+                          }}
+                          getOptionLabel={(option) => option.value}
+                          disableCloseOnSelect
+                          renderInput={(params) => (
+                              <TextField className="autocomplete_text"
+                                         {...params}
+                                         variant="outlined"
+                                         label="Country"
+                              />
+                          )}
             />
 
             <Autocomplete className="autocomplete"
-                multiple
-                options={filter_data_temperament}
-                onChange={(event, newValue) => {
-                    setCheckedTemperament(newValue);
-                }}
-                getOptionLabel={(option) => option.value}
-                disableCloseOnSelect
-                renderInput={(params) => (
-                    <TextField className="autocomplete_text"
-                        {...params}
-                        variant="outlined"
-                        label="Temperament"
+                          multiple
+                          options={filter_data_temperament}
+                          onChange={(event, newValue) => {
+                              setCheckedTemperament(newValue);
+                          }}
+                          getOptionLabel={(option) => option.value}
+                          disableCloseOnSelect
+                          renderInput={(params) => (
+                              <TextField className="autocomplete_text"
+                                         {...params}
+                                         variant="outlined"
+                                         label="Temperament"
 
-                    />
-                )}
+                              />
+                          )}
             />
 
 

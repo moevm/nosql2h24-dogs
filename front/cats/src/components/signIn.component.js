@@ -53,15 +53,21 @@ export const SignInComponent = () => {
     return (
         <div className="input_box">
             <h3 className="big_text">Sign In</h3>
+            <TextField className="input"
+                       placeholder="login"
+                       variant="standard"
+                       type='text'
+                       InputProps={{
+                           disableUnderline: true,
+                       }}
+                       sx={text_input}
+                       value={userName}
+                       onChange={(e) => {
+                           setUserName(e.target.value)
 
+                       }}
 
-            <CustomTextField value={userName}
-                             onChange={(e) => {
-                                 setUserName(e.target.value)
-
-                             }}
-                             placeholder="login"
-            ></CustomTextField>
+            />
 
 
             <CustomTextField value={password}
