@@ -6,6 +6,8 @@ import axios from "axios";
 import {BASE_URL} from "../options";
 import {setUserData} from "../slice/userSlice";
 import {useDispatch} from "react-redux";
+import {TextField} from "@mui/material";
+import {text_input} from "../Themes";
 
 const SignUpComponent = () => {
     const [userName, setUserName] = useState("");
@@ -42,10 +44,21 @@ const SignUpComponent = () => {
     return (
         <div className="input_box">
             <h3 className="big_text">Sign Up</h3>
-            <CustomTextField value={userName}
-                             onChange={(e) => setUserName(e.target.value)}
-                             placeholder="login"
-            ></CustomTextField>
+            <TextField className="input"
+                       placeholder="login"
+                       variant="standard"
+                       type='text'
+                       InputProps={{
+                           disableUnderline: true,
+                       }}
+                       sx={text_input}
+                       value={userName}
+                       onChange={(e) => {
+                           setUserName(e.target.value)
+
+                       }}
+
+            />
 
             <CustomTextField value={password}
                              onChange={(e) => {
