@@ -14,25 +14,32 @@ const ImpExpComponent = () => {
             alert('Please select a file to import.');
             return;
         }
-    
+
         const formData = new FormData();
         formData.append('file', file);
-    
+
         try {
-            await axios.post('http://127.0.0.1:1240/api/import', formData, {
+            setLoading(true);
+            const response = await axios.post('http://127.0.0.1:1240/api/import', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
-            alert('Import successful!');
+            const { breedCount, userCount, eventCount } = response.data;
+            alert(`Import successful! Added ${breedCount} breeds, ${userCount} users, ${eventCount} events.`);
         } catch (error) {
             console.error('Import failed:', error.response?.data || error.message);
             alert('Failed to import data.');
+        } finally {
+            setLoading(false);
         }
     };
 
     const handleExport = async () => {
         try {
-            const response = await axios.get('http://127.0.0.1:1240/api/export', { responseType: 'blob' });
-            const blob = new Blob([response.data], { type: 'application/json' });
+            setLoading(true);
+            const response = await axios.get('http://127.0.0.1:1240/api/export');
+            const { data: db, counts } = response.data;
+    
+            const blob = new Blob([JSON.stringify(db)], { type: 'application/json' });
             const url = window.URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
@@ -40,17 +47,19 @@ const ImpExpComponent = () => {
             document.body.appendChild(link);
             link.click();
             link.remove();
+    
+            alert(`Export successful! Saved ${counts.breedCount} breeds, ${counts.userCount} users, ${counts.eventCount} events.`);
         } catch (error) {
             console.error('Export failed:', error.response?.data || error.message);
             alert('Failed to export data.');
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
         <div>
             <h1>Import and Export Data</h1>
-
-            {/* Import Section */}
             <div>
                 <h2>Import Data</h2>
                 <input type="file" accept=".json" onChange={handleFileChange} />
@@ -58,8 +67,6 @@ const ImpExpComponent = () => {
                     {loading ? 'Importing...' : 'Import'}
                 </button>
             </div>
-
-            {/* Export Section */}
             <div>
                 <h2>Export Data</h2>
                 <button onClick={handleExport} disabled={loading}>
