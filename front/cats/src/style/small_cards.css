@@ -42,7 +42,7 @@
     background-color: var(--color-purple);
     border-radius: 10px;
     width: 400px;
-    height: 100px;
+    min-height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;

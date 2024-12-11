@@ -152,7 +152,7 @@ const ProfileComponent = () => {
         <div>
             <CommentNotificationCardComponent type="REPLY" author={comment.replyingUserId} breedId = {comment.breedId}
                                                commentId={comment.commentId} comment = {comment.text} breedName = {comment.breedName}
-                                              time = {comment.time}
+                                              time = {comment.date}
             ></CommentNotificationCardComponent>
         </div>
     )
