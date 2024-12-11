@@ -21,6 +21,9 @@ public class Event {
     @Field("breed_id")
     private String breedId;
 
+    @Field("breed_name")
+    private String breedName;
+
     @Field("type")
     private String type;
 

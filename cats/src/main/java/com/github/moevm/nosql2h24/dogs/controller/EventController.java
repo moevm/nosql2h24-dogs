@@ -3,9 +3,9 @@ package com.github.moevm.nosql2h24.dogs.controller;
 import com.github.moevm.nosql2h24.dogs.database.document.Event;
 import com.github.moevm.nosql2h24.dogs.database.repository.EventRepository;
 import com.github.moevm.nosql2h24.dogs.database.repository.UserRepository;
-import com.github.moevm.nosql2h24.dogs.model.controller.request.events.BreedCommentDto;
-import com.github.moevm.nosql2h24.dogs.model.controller.request.events.LikeDto;
-import com.github.moevm.nosql2h24.dogs.model.controller.request.events.ReplyDto;
+import com.github.moevm.nosql2h24.dogs.model.controller.response.events.BreedCommentDto;
+import com.github.moevm.nosql2h24.dogs.model.controller.response.events.LikeDto;
+import com.github.moevm.nosql2h24.dogs.model.controller.response.events.ReplyDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
