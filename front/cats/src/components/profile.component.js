@@ -143,14 +143,16 @@ const ProfileComponent = () => {
     const notifications_data = notification?.map(comment =>
         <div>
             <CommentNotificationCardComponent type="COMMENT" author={comment.commentingUserId} breedId = {comment.breedId}
-                                       commentId={comment.commentId} comment = {comment.text}
+                                       commentId={comment.commentId} comment = {comment.text} breedName = {comment.breedName}
+                                              time = {comment.time}
             ></CommentNotificationCardComponent>
         </div>
     )
     const comments_data = comments?.map(comment =>
         <div>
             <CommentNotificationCardComponent type="REPLY" author={comment.replyingUserId} breedId = {comment.breedId}
-                                               commentId={comment.commentId} comment = {comment.text}
+                                               commentId={comment.commentId} comment = {comment.text} breedName = {comment.breedName}
+                                              time = {comment.time}
             ></CommentNotificationCardComponent>
         </div>
     )
