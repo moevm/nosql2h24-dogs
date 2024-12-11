@@ -19,41 +19,28 @@ const ImpExpComponent = () => {
         formData.append('file', file);
 
         try {
-            setLoading(true);
             const response = await axios.post('http://127.0.0.1:1240/api/import', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
-            const { breedCount, userCount, eventCount } = response.data;
-            alert(`Import successful! Added ${breedCount} breeds, ${userCount} users, ${eventCount} events.`);
+
+            const recordsAdded = response.data.recordsAdded || 0;
+            console.log(`Import successful! ${recordsAdded} records added.`);
+            alert(`Import successful! ${recordsAdded} records added.`);
         } catch (error) {
             console.error('Import failed:', error.response?.data || error.message);
             alert('Failed to import data.');
-        } finally {
-            setLoading(false);
         }
     };
 
     const handleExport = async () => {
         try {
-            setLoading(true);
             const response = await axios.get('http://127.0.0.1:1240/api/export');
-            const { data: db, counts } = response.data;
-    
-            const blob = new Blob([JSON.stringify(db)], { type: 'application/json' });
-            const url = window.URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'exported_data.json');
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-    
-            alert(`Export successful! Saved ${counts.breedCount} breeds, ${counts.userCount} users, ${counts.eventCount} events.`);
+            const recordsSaved = response.data.recordsSaved || 0;
+            console.log(`Export successful! ${recordsSaved} records saved.`);
+            alert(`Export successful! ${recordsSaved} records saved.`);
         } catch (error) {
             console.error('Export failed:', error.response?.data || error.message);
             alert('Failed to export data.');
-        } finally {
-            setLoading(false);
         }
     };
 
