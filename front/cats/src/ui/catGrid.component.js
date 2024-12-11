@@ -56,15 +56,19 @@ const CatGridComponent = () => {
     )
     if (isDataLoading) {
         return (
-            <div className="cat_grid">
-                {/*{JSON.stringify(filter_data)}*/}
-                {data}
+            <div>
+                <div className="big_text">Amount of cats: {catData.length}</div>
+                <div className="cat_grid">
+                    {/*{JSON.stringify(filter_data)}*/}
+                    {data}
+                </div>
             </div>
+
         )
     } else {
         return (
             <Box className="cat_grid_progress_bar">
-                <CircularProgress/>
+            <CircularProgress/>
             </Box>
         )
     }

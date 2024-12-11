@@ -10,7 +10,7 @@ const CommentNotificationCardComponent=(props)=> {
         }}>{props.author}</label>
         <label className="small_bold_text">)</label>
     </div> : <div>
-        <label className="small_bold_text">{props.author} commented breed</label>
+        <label className="small_bold_text">{props.author} commented {props.breedName}</label>
     </div>
     return (
         <div className="comment_card" onClick={() => {
