@@ -34,10 +34,18 @@ const ImpExpComponent = () => {
 
     const handleExport = async () => {
         try {
-            const response = await axios.get('http://127.0.0.1:1240/api/export');
-            const recordsSaved = response.data.recordsSaved || 0;
-            console.log(`Export successful! ${recordsSaved} records saved.`);
-            alert(`Export successful! ${recordsSaved} records saved.`);
+            const response = await axios.get('http://127.0.0.1:1240/api/export', { responseType: 'blob' });
+
+            // Get the total number of records exported
+            const totalRecords = response.headers['x-total-records'] || 0;
+            alert(`Export successful! ${totalRecords} records exported.`);
+
+            // Trigger file download
+            const blob = response.data;
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'exported_data.json';
+            link.click();
         } catch (error) {
             console.error('Export failed:', error.response?.data || error.message);
             alert('Failed to export data.');

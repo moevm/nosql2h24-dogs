@@ -9,8 +9,10 @@ import com.github.moevm.nosql2h24.dogs.database.repository.BreedRepository;
 import com.github.moevm.nosql2h24.dogs.database.repository.EventRepository;
 import com.github.moevm.nosql2h24.dogs.database.repository.UserRepository;
 import com.github.moevm.nosql2h24.dogs.model.controller.Db;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.springframework.http.HttpHeaders;
+
 
 @Service
 public class ImportExportService {
@@ -32,9 +34,11 @@ public class ImportExportService {
     }
 
     public void importDb(Db db) {
+        // Clear existing data before importing
         breedRepository.deleteAll();
         userRepository.deleteAll();
         eventRepository.deleteAll();
+        
         breedRepository.saveAll(db.breeds());
         userRepository.saveAll(db.users());
         eventRepository.saveAll(db.events());
@@ -44,39 +48,32 @@ public class ImportExportService {
         try {
             String content = new String(file.getBytes(), StandardCharsets.UTF_8);
             Db db = new ObjectMapper().readValue(content, Db.class);
-            
-            long breedsAdded = breedRepository.saveAll(db.breeds()).size();
-            long usersAdded = userRepository.saveAll(db.users()).size();
-            long eventsAdded = eventRepository.saveAll(db.events()).size();
-            
-            long totalAdded = breedsAdded + usersAdded + eventsAdded;
-            
-            logger.info("Breeds Added: " + breedsAdded);
-            logger.info("Users Added: " + usersAdded);
-            logger.info("Events Added: " + eventsAdded);
-            logger.info("Total Records Added: " + totalAdded);
-
-            return new ImportExportResponse(totalAdded, 0);  // Import only returns recordsAdded
+            importDb(db);
+            return new ImportExportResponse(db.breeds().size(), 0);  // Returns the number of breeds added
         } catch (IOException e) {
             throw new RuntimeException("Failed to parse file", e);
         }
     }
 
-    public ImportExportResponse exportDb() {
-        long totalSaved = 0;
+    public ExportResponse exportDb() {
+        Db db = new Db(breedRepository.findAll(), userRepository.findAll(), eventRepository.findAll());
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            byte[] data = objectMapper.writeValueAsBytes(db);  // Convert Db object to byte array
 
-        long breedCount = breedRepository.findAll().size();
-        long userCount = userRepository.findAll().size();
-        long eventCount = eventRepository.findAll().size();
+            long breedsCount = db.breeds().size();
+            long usersCount = db.users().size();
+            long eventsCount = db.events().size();
+            long totalRecords = breedsCount + usersCount + eventsCount;
 
-        totalSaved += breedCount + userCount + eventCount;
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Disposition", "attachment; filename=exported_data.json");
 
-        logger.info("Breeds Saved: " + breedCount);
-        logger.info("Users Saved: " + userCount);
-        logger.info("Events Saved: " + eventCount);
-        logger.info("Total Records Saved: " + totalSaved);
-
-        return new ImportExportResponse(0, totalSaved);  // Export only returns recordsSaved
+            return new ExportResponse(data, totalRecords);
+        } catch (IOException e) {
+            logger.error("Failed to export data", e);
+            return new ExportResponse(null, 0);
+        }
     }
 
     public static class ImportExportResponse {
@@ -102,6 +99,24 @@ public class ImportExportService {
 
         public void setRecordsSaved(long recordsSaved) {
             this.recordsSaved = recordsSaved;
+        }
+    }
+
+    public static class ExportResponse {
+        private byte[] fileData;
+        private long totalRecords;
+
+        public ExportResponse(byte[] fileData, long totalRecords) {
+            this.fileData = fileData;
+            this.totalRecords = totalRecords;
+        }
+
+        public byte[] getFileData() {
+            return fileData;
+        }
+
+        public long getTotalRecords() {
+            return totalRecords;
         }
     }
 }
