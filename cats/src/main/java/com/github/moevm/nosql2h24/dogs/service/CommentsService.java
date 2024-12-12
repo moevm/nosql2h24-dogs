@@ -52,17 +52,17 @@ public class CommentsService {
         breed.addComment(comment);
         breedRepository.save(breed);
 
-        Event event = Event.builder().actorId(userId)
-                .breedId(breedId).breedName(breed.getName())
-                .commentId(comment.getId()).
-                commentText(text).type(Event.Type.COMMENT.name()).date(date).build();
+        Event event = new Event.Builder().setActorId(userId)
+                .setBreedId(breedId).setBreedName(breed.getName())
+                .setCommentId(comment.getId()).
+                setCommentText(text).setType(Event.Type.COMMENT.name()).setDate(date).build();
         eventRepository.save(event);
 
         if (parentCommentId != null) {
-            Event parentEvent = Event.builder().recipientId(parentComment.getAuthor())
-                    .breedId(breedId).breedName(breed.getName())
-                    .commentId(comment.getId()).commentText(text)
-                    .actorId(userId).type(Event.Type.REPLY.name()).date(date).build();
+            Event parentEvent = new Event.Builder().setRecipientId(parentComment.getAuthor())
+                    .setBreedId(breedId).setBreedName(breed.getName())
+                    .setCommentId(comment.getId()).setCommentText(text)
+                    .setActorId(userId).setType(Event.Type.REPLY.name()).setDate(date).build();
             eventRepository.save(parentEvent);
         }
         return comment.getId();
@@ -88,10 +88,10 @@ public class CommentsService {
         breedRepository.save(breed);
 
         Date date = Date.from(Instant.now());
-        Event event = Event.builder().recipientId(comment.getAuthor())
-                .breedId(breedId).breedName(breed.getName())
-                .commentId(commentId).commentText(comment.getText())
-                .actorId(userId).type(Event.Type.LIKE.name()).date(date).build();
+        Event event = new Event.Builder().setRecipientId(comment.getAuthor())
+                .setBreedId(breedId).setBreedName(breed.getName())
+                .setCommentId(commentId).setCommentText(comment.getText())
+                .setActorId(userId).setType(Event.Type.LIKE.name()).setDate(date).build();
         eventRepository.save(event);
         return result;
     }
@@ -112,11 +112,11 @@ public class CommentsService {
         breedRepository.save(breed);
 
         Date date = Date.from(Instant.now());
-        Event event = Event.builder().recipientId(comment.getAuthor())
-                .breedId(breedId).breedName(breed.getName())
-                .commentId(commentId).commentText(comment.getText())
-                .actorId(userId)
-                .type(Event.Type.REMOVE_LIKE.name()).date(date).build();
+        Event event = new Event.Builder().setRecipientId(comment.getAuthor())
+                .setBreedId(breedId).setBreedName(breed.getName())
+                .setCommentId(commentId).setCommentText(comment.getText())
+                .setActorId(userId)
+                .setType(Event.Type.REMOVE_LIKE.name()).setDate(date).build();
         eventRepository.save(event);
         return result;
     }
