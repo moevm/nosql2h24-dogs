@@ -41,8 +41,6 @@ const ImpExpComponent = () => {
                 responseType: 'blob'
             });
     
-            console.log(response.headers);
-    
             const totalRecords = response.headers['x-total-records'] || response.headers['X-Total-Records'];
             if (totalRecords) {
                 alert(`Export successful! ${totalRecords} records exported.`);
