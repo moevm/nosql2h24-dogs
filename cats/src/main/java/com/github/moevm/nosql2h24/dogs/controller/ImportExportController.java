@@ -3,6 +3,7 @@ package com.github.moevm.nosql2h24.dogs.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,8 @@ public class ImportExportController {
     public ImportExportController(ImportExportService importExportService) {
         this.importExportService = importExportService;
     }
+
+    @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*", exposedHeaders = "X-Total-Records")
     @GetMapping(value = "/export", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<byte[]> exportDb() {
         ImportExportService.ExportResponse exportResponse = importExportService.exportDb();
@@ -31,14 +34,15 @@ public class ImportExportController {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Disposition", "attachment; filename=exported_data.json");
             headers.add("X-Total-Records", String.valueOf(exportResponse.getTotalRecords()));
-    
+        
             log.info("Export response headers: {}", headers);
-    
+        
             return new ResponseEntity<>(exportResponse.getFileData(), headers, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
        
     @PostMapping(value = "/import", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> importDbFromFile(@RequestParam("file") MultipartFile file) {

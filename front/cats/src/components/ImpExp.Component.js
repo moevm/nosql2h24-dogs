@@ -38,10 +38,11 @@ const ImpExpComponent = () => {
         try {
             setLoading(true);
             const response = await axios.get('http://127.0.0.1:1240/api/export', { 
-                responseType: 'blob' 
+                responseType: 'blob'
             });
     
-            // Extract headers for the total records count
+            console.log(response.headers);
+    
             const totalRecords = response.headers['x-total-records'] || response.headers['X-Total-Records'];
             if (totalRecords) {
                 alert(`Export successful! ${totalRecords} records exported.`);
@@ -49,11 +50,11 @@ const ImpExpComponent = () => {
                 alert('Export successful, but total records count could not be retrieved.');
             }
     
-            // Now handle the blob for file download
+            // Handle file download
             const blob = response.data;
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'exported_data.json';  // Make sure the filename matches
+            link.download = 'exported_data.json';
             link.click();
         } catch (error) {
             console.error('Export failed:', error.response?.data || error.message);
@@ -63,6 +64,7 @@ const ImpExpComponent = () => {
         }
     };
     
+
     return (
         <div>
             <h1>Import and Export Data</h1>
