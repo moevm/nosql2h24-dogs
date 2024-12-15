@@ -18,28 +18,28 @@ const PaginationComponent=(props)=>{
         )
     else if (data.page === 1)
         return (
-            <div>
-                <label>{data.page}</label>
+            <div className="pagination_row">
+                <label className="medium_text">{data.page}</label>
                 <IconButton onClick={() => dispatch(setPage(data.page + 1))}>
-                    <ArrowRight></ArrowRight>
+                    <ArrowRight className="profile_app_bar_icon"></ArrowRight>
                </IconButton>
            </div>
         )
     else if(data.page === data.amountOfPages)
-        return(<div><IconButton onClick={()=>dispatch(setPage(data.page-1))}>
-            <ArrowLeft></ArrowLeft>
+        return(<div className="pagination_row"><IconButton onClick={()=>dispatch(setPage(data.page-1))}>
+            <ArrowLeft className="profile_app_bar_icon"></ArrowLeft>
         </IconButton>
-            <label>{data.page}</label>
+            <label className="medium_text">{data.page}</label>
 </div>
         )
     else
-        return (<div>
+        return (<div className="pagination_row">
             <IconButton onClick={()=>dispatch(setPage(data.page-1))}>
-                <ArrowLeft></ArrowLeft>
+                <ArrowLeft className="profile_app_bar_icon"></ArrowLeft>
             </IconButton>
-            <label>{data.page}</label>
+            <label className="medium_text">{data.page}</label>
             <IconButton onClick={()=>dispatch(setPage(data.page+1))}>
-                <ArrowRight></ArrowRight>
+                <ArrowRight className="profile_app_bar_icon"></ArrowRight>
             </IconButton>
         </div>)
 }
