@@ -131,3 +131,30 @@ export const FILTER_DATA_STRING_NUMBERS = [
     {id: "1", value: "weight", from: 0, to: 0},
     {id: "2", value: "lifeSpan", from: 0, to: 0},
 ]
+export const BREEDS=[
+    {id: "1", value: "Singapore"},
+    {id: "2", value: "Cyprus"},
+    {id: "3", value: "United States"},
+    {id: "4", value: "Japan"},
+    {id: "5", value: "Isle of Man"},
+    {id: "6", value: "Egypt"},
+    {id: "7", value: "Somalia"},
+    {id: "8", value: "United Kingdom"},
+    {id: "9", value: "Iran (Persia)"},
+    {id: "10", value: "United Arab Emirates"},
+    {id: "11", value: "Burma"},
+    {id: "12", value: "Thailand"},
+    {id: "13", value: "Russia"},
+    {id: "14", value: "Greece"},
+    {id: "15", value: "Canada"},
+    {id: "16", value: "Turkey"},
+    {id: "17", value: "Norway"},
+    {id: "18", value: "China"},
+    {id: "19", value: "Australia"},
+    {id: "20", value: "France"}
+]
+
+export const FILTER_STAT=[
+    {id: "1", value: "views", from: 0, to: 0},
+    {id: "2", value: "user_age", from: 0, to: 0},
+]
