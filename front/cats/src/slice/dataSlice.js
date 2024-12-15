@@ -7,6 +7,8 @@ const initialState = {
     commentAuthor:"",
     commentId:0,
     sendComment: false,
+    page:1,
+    amountOfPages:1,
 }
 
 const dataSlice = createSlice({
@@ -30,11 +32,18 @@ const dataSlice = createSlice({
         },
         setSendComment:(state)=>{
             state.sendComment = !state.sendComment;
+        },
+        setPage:(state,action)=>{
+            state.page = action.payload;
+        },
+        setAmountOfPages:(state,action)=>{
+            state.amountOfPages = action.payload;
         }
 
     }
 })
 
 export const {setCatId, setAllCats, addComment,
-    setAuthor, setSendComment} = dataSlice.actions;
+    setAuthor, setSendComment,
+    setPage,setAmountOfPages} = dataSlice.actions;
 export default dataSlice.reducer;

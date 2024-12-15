@@ -8,3 +8,4 @@ export const catOptions = {
  //       "x-api-key": apiKey,
     }
 }
+export const AMOUNT_OF_CATS_ON_PAGE = 10;

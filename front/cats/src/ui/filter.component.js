@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux";
 import {updateFilter} from "../slice/filterSlice.js";
 import {tab} from "@testing-library/user-event/dist/tab";
 import {dark_purple_color, text_input} from "../Themes";
+import {setPage} from "../slice/dataSlice";
 
 export const FilterComponent = () => {
 
@@ -156,6 +157,7 @@ export const FilterComponent = () => {
                     }
                     console.log(JSON.stringify(filter_data))
                     dispatch(updateFilter(filter_data))
+                    dispatch(setPage(1))
                 }}> Filter Data</Button>
                 <Button onClick={() => {
                     setCheckedNumbers([])
