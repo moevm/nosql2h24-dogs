@@ -4,6 +4,7 @@ import com.github.moevm.nosql2h24.dogs.database.document.Breed;
 import com.github.moevm.nosql2h24.dogs.database.repository.BreedRepository;
 import com.github.moevm.nosql2h24.dogs.model.controller.request.Filter;
 import com.github.moevm.nosql2h24.dogs.model.controller.response.BreedInfo;
+import com.github.moevm.nosql2h24.dogs.model.controller.response.BreedsPerPagesDto;
 import com.github.moevm.nosql2h24.dogs.service.FilterBreedService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -56,11 +57,13 @@ public class BreedController {
         List<BreedInfo> breedInfos = bodySearchBreed(filter);
         return breedInfos.stream().sorted().skip(((long) breedsPerPages * (pageNumber - 1))).limit(breedsPerPages).toList();
     }
+
     @PostMapping("/bodySearch/{breedsPerPages}")
-    public int howManyPages(@RequestBody Filter filter, @PathVariable int breedsPerPages) {
+    public BreedsPerPagesDto breedsPerPages(@RequestBody Filter filter, @PathVariable int breedsPerPages) {
         log.info("Body Search Breed was called with filter: {}", filter);
         List<BreedInfo> breedInfos = bodySearchBreed(filter);
-        return (int) Math.ceil(breedInfos.size() / (double) breedsPerPages);
+        int howManyPages = (int) Math.ceil(breedInfos.size() / (double) breedsPerPages);
+        return new BreedsPerPagesDto(howManyPages, breedInfos.size());
     }
 
     @PostMapping("/bodySearch")
