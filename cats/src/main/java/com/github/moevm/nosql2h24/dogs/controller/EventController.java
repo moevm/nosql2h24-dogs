@@ -60,7 +60,7 @@ public class EventController {
     public List<BreedCommentDto> getNotifications(@PathVariable String id) {
         List<Event> events = eventRepository.findAll();
         HashSet<String> favoritesBreeds = userRepository.findById(id).orElseThrow().getFavorites();
-        return events.stream().filter(e -> Event.Type.isBreesComment(e.getType()) && favoritesBreeds.contains(e.getBreedId())).
+        return events.stream().filter(e -> Event.Type.isBreedComment(e.getType()) && favoritesBreeds.contains(e.getBreedId())).
                 map(BreedCommentDto::from).toList();
     }
 }
