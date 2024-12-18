@@ -6,7 +6,10 @@ import {tab} from "@testing-library/user-event/dist/tab";
 import {dark_purple_color, text_input} from "../Themes";
 import {setPage} from "../slice/dataSlice";
 import {FILTER_DATA_TEMPERAMENT} from "../options";
-
+import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import dayjs from "dayjs";
 export const FilterComponent = (props) => {
 
 
@@ -97,7 +100,52 @@ export const FilterComponent = (props) => {
             )
             })}
 
+            {props?.max_filter?.map((elem)=>{
+                return(
+                    <div className="filter_row">
 
+                            <label className="filter_text"> limit</label>
+                            <input type="number" min={elem.min}  onChange={(e) => {
+                                elem.onChange(e)
+                            }}
+                                   placeholder={elem.placeholder}/>
+
+                    </div>
+                )
+            })}
+            {
+                props?.date_filter?.map((elem)=>{
+                    return(
+                        <div>
+                            <div>
+                                <input type="checkbox"
+                                       className="filter_check_box"
+                                       onChange={(e) => {
+                                           elem.onChangeCheck(e)
+
+                                       }}
+                                />
+                                <label className="filter_text" >{elem.label}</label>
+                            </div>
+                            <br/>
+                            <LocalizationProvider dateAdapter={AdapterDayjs} >
+
+                                <label className="filter_text"> from</label>
+                                <MobileDateTimePicker onChange={(e) => {
+                                    elem.onChangeFrom(e)
+                                }
+                                } defaultValue={dayjs('2024-09-17T15:30')}/>
+                                <label className="filter_text"> to</label>
+                                <MobileDateTimePicker onChange={(e) => {
+                                    elem.onChangeTo(e)
+                                }
+                                } defaultValue={dayjs('2024-09-17T17:30')}/>
+                            </LocalizationProvider>
+                        </div>
+
+                    )
+                })
+            }
         </div>
     )
 }

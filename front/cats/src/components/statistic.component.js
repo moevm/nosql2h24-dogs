@@ -12,55 +12,25 @@ import {BASE_URL, BREEDS, FILTER_DATA_NUMBERS, FILTER_STAT, STAT_TYPES} from "..
 const StatisticComponent = () => {
     const [eventData, setEventData] = useState(null);
     const navigate = useNavigate();
-    const [fullChartData, setFullChartData] = useState([
-        {id: "1", value: "adaptability", data:0},
-        {id: "2", value: "affection_level",  data:0},
-        {id: "3", value: "child_friendly",  data:0},
-        {id: "4", value: "dog_friendly",  data:0},
-        {id: "5", value: "energy_level",  data:0},
-        {id: "6", value: "grooming",  data:0},
-        {id: "7", value: "health_issues",  data:0},
-        {id: "8", value: "intelligence",  data:0},
-        {id: "9", value: "shedding_level",  data:5},
-        {id: "10", value: "social_needs",  data:0},
-        {id: "11", value: "stranger_friendly",  data:0},
-        {id: "12", value: "vocalisation",  data:0},
-        {id: "13", value: "hairless",  data:0},
-        {id: "14", value: "experimental",  data:0},
-        {id: "15", value: "natural",  data:0},
-        {id: "16", value: "rare",  data:0},
-        {id: "17", value: "rex",  data:0},
-        {id: "18", value: "suppressed_tail",  data:0},
-        {id: "19", value: "short_legs",  data:0},
-        {id: "20", value: "hypoallergenic",  data:0},
-        {id: "21", value: "indoor",  data:0},
-        {id: "22", value: "lap",  data:0},
-    ]);
-
-    const fetchData = async () => {
-        axios.get(BASE_URL+"/events", {
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-            }
-        })
-            .then(res => {
-                console.log(res.data);
-                setEventData(res.data)
-
-            })
-
-            .catch(err => {
-                console.error("error fetching data", err)
-            });
-    }
-    useEffect(() => {
-
-        fetchData();
-    }, []);
-    const [type, setType] = React.useState(null);
+    const [type, setType] = React.useState(STAT_TYPES[0]);
     const [breeds, setBreeds] = React.useState([]);
     const [filterStat, setFilterStat] = React.useState([]);
+    const [limit, setLimit] = React.useState(10);
+    const [dateFromFilter, setDateFromFilter] = React.useState(null);
+    const [dateToFilter, setDateToFilter] = React.useState(null);
+    const [dateChecked, setDateChecked] = React.useState(null);
+
+    const [fullChartData, setFullChartData] = useState([
+
+    ]);
+
+
+    // useEffect(() => {
+    //
+    //     fetchData();
+    // }, []);
+
+
     const autocomplete = [
         {
             options:BREEDS,
@@ -69,6 +39,21 @@ const StatisticComponent = () => {
             },
             label:"breeds"
         },
+    ]
+    const max_filter = [
+        {
+            min:1,
+            onChange(e){
+
+                if(e.target.value>0){
+                    setLimit(Number(e.target.value));
+                }else{
+                    //setLimit(10)
+                }
+
+            },
+            placeholder:10
+        }
     ]
     const min_max_filter = [
         {
@@ -113,6 +98,45 @@ const StatisticComponent = () => {
 
         }
     ]
+    const date_filter = [
+        {
+            label:"date",
+            onChangeFrom(value){
+                //console.log(value.format('YYYY-MM-DDTHH:mm:ss'))
+                setDateFromFilter(value.format('YYYY-MM-DDTHH:mm:ss'))
+            },
+            onChangeTo(value){
+               setDateToFilter(value.format('YYYY-MM-DDTHH:mm:ss'))
+            },
+            onChangeCheck(e){
+                setDateChecked(e.target.checked)
+            }
+        }
+    ]
+
+
+    const fetchData = async () => {
+        let url = BASE_URL+"/statistic/?type="+type.value + "&limit=" +limit
+        //dateChecked ? url+="&dateFromFilter="+dateFromFilter+"&dateToFilter="+dateToFilter:""
+        //breeds ? url+="&breeds="+breeds
+
+        axios.get(url, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+            }
+        })
+            .then(res => {
+                console.log(res.data.data);
+                //setEventData(res.data)
+                setFullChartData(res.data.data)
+            })
+
+            .catch(err => {
+                console.error("error fetching data", err)
+            });
+    }
+
     return (
         <div className="profile_box">
             <div className="profile_app_bar">
@@ -129,7 +153,7 @@ const StatisticComponent = () => {
                         value={type}
                         label="type"
                         onChange={(e)=>{
-                            alert(e.target.value)
+                            //alert(e.target.value)
                             setType(e.target.value);
                         }}
                     >
@@ -144,19 +168,22 @@ const StatisticComponent = () => {
             <div className="row">
                 <BarChart className="chart"
                           dataset={fullChartData}
-                          xAxis={[{scaleType: 'band', dataKey: "value"}]}
-                          series={[{dataKey: 'data'}]}
+                          xAxis={[{scaleType: 'band', dataKey: "name"}]}
+                          series={[{dataKey: 'value'}]}
                           width={1000}
                           height={500}
                 />
                 <FilterComponent
                     onFilterClick = {()=>{
+                       fetchData()
                     }}
                     onDropClick = {()=>{
                         window.location.reload();
                     }}
                     autocomplete = {autocomplete}
                     min_max_filter = {min_max_filter}
+                    max_filter = {max_filter}
+                    date_filter = {date_filter}
                 ></FilterComponent>
             </div>
         </div>

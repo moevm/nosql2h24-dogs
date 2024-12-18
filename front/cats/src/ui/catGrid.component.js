@@ -16,8 +16,7 @@ const CatGridComponent = () => {
     let data_page = useSelector(state => state.data);
     let dispatch = useDispatch();
     const [catData, setCatData] = useState(null);
-    const [usersData, setUsersData] = useState(null);
-    const [eventsData, setEventsData] = useState(null);
+    const [catOnRequest, setCatOnRequest] = useState(null);
     const [isDataLoading, setIsDataLoading] = useState(false);
 
     const fetchData = async () => {
@@ -37,8 +36,8 @@ const CatGridComponent = () => {
         })
             .then(res => {
                 console.log(res.data);
-                dispatch(setAmountOfPages(res.data))
-
+                dispatch(setAmountOfPages(res.data.pagesAmount))
+                setCatOnRequest(res.data.breedsAmount)
                 getData()
             })
 
@@ -90,7 +89,7 @@ const CatGridComponent = () => {
     if (isDataLoading) {
         return (
             <div>
-                <div className="big_text">Amount of cats: {catData.length}</div>
+                <div className="big_text">Amount of cats: {catOnRequest}</div>
                 <div className="cat_grid">
                     {/*{JSON.stringify(filter_data)}*/}
                     {data}

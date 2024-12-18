@@ -101,7 +101,7 @@ body {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-
+    padding-bottom: 10px;
 }
 .search_input{
     width: 80%;
