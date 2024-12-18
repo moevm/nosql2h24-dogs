@@ -16,7 +16,7 @@ import "../style/small_cards.css"
 
 import LoadingBar from "react-top-loading-bar";
 import CircularProgress from "@mui/material/CircularProgress";
-import {decode as base64_decode, encode as base64_encode} from 'base-64';
+
 const ProfileComponent = () => {
     let dispatch = useDispatch();
     //let user_data = useSelector(state => state.user);
