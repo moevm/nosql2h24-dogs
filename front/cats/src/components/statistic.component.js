@@ -7,7 +7,7 @@ import {BarChart} from "@mui/x-charts";
 import {updateFilter} from "../slice/filterSlice";
 import {setPage} from "../slice/dataSlice";
 import FilterComponent from "../ui/filter.component";
-import {BASE_URL, BREEDS, FILTER_DATA_NUMBERS, FILTER_STAT} from "../options";
+import {BASE_URL, BREEDS, FILTER_DATA_NUMBERS, FILTER_STAT, STAT_TYPES} from "../options";
 
 const StatisticComponent = () => {
     const [eventData, setEventData] = useState(null);
@@ -58,7 +58,7 @@ const StatisticComponent = () => {
 
         fetchData();
     }, []);
-    const [age, setAge] = React.useState('');
+    const [type, setType] = React.useState(null);
     const [breeds, setBreeds] = React.useState([]);
     const [filterStat, setFilterStat] = React.useState([]);
     const autocomplete = [
@@ -121,20 +121,21 @@ const StatisticComponent = () => {
                     <ArrowBack className="profile_app_bar_icon"/>
                 </IconButton>
 
-                <FormControl className="autocomplete">
+                <FormControl className="select" sx = {{minWidth:400}}>
                     <InputLabel id="demo-simple-select-label">type</InputLabel>
                     <Select className="autocomplete_text"
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={age}
-                        label="Age"
+                        value={type}
+                        label="type"
                         onChange={(e)=>{
-                            setAge(e.target.value);
+                            alert(e.target.value)
+                            setType(e.target.value);
                         }}
                     >
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                        {STAT_TYPES.map((item)=>{
+                            return(<MenuItem value={{value:item.value,type:item.type}}>{item.label}</MenuItem>)
+                        })}
                     </Select>
                 </FormControl>
 
@@ -150,7 +151,6 @@ const StatisticComponent = () => {
                 />
                 <FilterComponent
                     onFilterClick = {()=>{
-
                     }}
                     onDropClick = {()=>{
                         window.location.reload();
