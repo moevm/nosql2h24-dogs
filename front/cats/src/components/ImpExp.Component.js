@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {Button, IconButton, Input} from "@mui/material";
+import {FileDownload, FileUpload} from "@mui/icons-material";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const ImpExpComponent = () => {
     const [file, setFile] = useState(null);
@@ -27,6 +34,7 @@ const ImpExpComponent = () => {
             console.error('Import failed:', error.response?.data || error.message);
             alert('Failed to import data.');
         }
+        handleClose()
     };
 
     const handleExport = async () => {
@@ -45,27 +53,69 @@ const ImpExpComponent = () => {
             alert('Failed to export data.');
         }
     };
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <div>
-            <h1>Import and Export Data</h1>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
 
-            {/* Import Section */}
-            <div>
-                <h2>Import Data</h2>
-                <input type="file" accept=".json" onChange={handleFileChange} />
-                <button onClick={handleImport} disabled={loading}>
-                    {loading ? 'Importing...' : 'Import'}
-                </button>
-            </div>
+            >
+                <DialogTitle id="alert-dialog-title">
+                    {"Choose your data"}
+                </DialogTitle>
+                <DialogContent>
+                    <input  type="file" accept=".json" onChange={handleFileChange}
 
-            {/* Export Section */}
-            <div>
-                <h2>Export Data</h2>
-                <button onClick={handleExport} disabled={loading}>
-                    {loading ? 'Exporting...' : 'Export'}
-                </button>
-            </div>
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Close</Button>
+                    <Button onClick={handleImport}>
+                        Load
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
+            <IconButton onClick = {()=>{
+                handleClickOpen()
+            }}>
+                <FileUpload  className="profile_app_bar_icon"></FileUpload>
+            </IconButton>
+            <IconButton onClick={()=>{
+                handleExport()
+            }}>
+                <FileDownload  className="profile_app_bar_icon"></FileDownload>
+            </IconButton>
+            {/*<h1>Import and Export Data</h1>*/}
+
+            {/*/!* Import Section *!/*/}
+            {/*<div>*/}
+            {/*    <h2>Import Data</h2>*/}
+            {/*    <input type="file" accept=".json" onChange={handleFileChange} />*/}
+            {/*    <button onClick={handleImport} disabled={loading}>*/}
+            {/*        {loading ? 'Importing...' : 'Import'}*/}
+            {/*    </button>*/}
+            {/*</div>*/}
+
+            {/*/!* Export Section *!/*/}
+            {/*<div>*/}
+            {/*    <h2>Export Data</h2>*/}
+            {/*    <button onClick={handleExport} disabled={loading}>*/}
+            {/*        {loading ? 'Exporting...' : 'Export'}*/}
+            {/*    </button>*/}
+            {/*</div>*/}
         </div>
     );
 };
