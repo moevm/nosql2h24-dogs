@@ -28,7 +28,7 @@ public class DatabaseInitializer {
     private final CommentsService commentsService;
 
     private final Path BREEDS_JSON;
-    private final boolean IS_ALWAYS = false;
+    private final boolean IS_ALWAYS = true;
 
     public DatabaseInitializer(UserRepository userRepository, BreedRepository breedRepository, EventRepository eventRepository, CommentsService commentsService, @Value("${breeds.json}") String breedsJson) {
         this.userRepository = userRepository;
@@ -73,9 +73,22 @@ public class DatabaseInitializer {
     public void addFavorites() {
 
         User user = userRepository.findAll().get(0);
-        Breed breed = breedRepository.findAll().get(0);
+        Breed breed1 = breedRepository.findAll().get(0);
+        Breed breed2 = breedRepository.findAll().get(2);
         user.setFavorites(new HashSet<>() {{
-            add(breed.getId());
+            add(breed1.getId());
+            add(breed2.getId());
+        }});
+        userRepository.save(user);
+         user = userRepository.findAll().get(1);
+        Breed breed3 = breedRepository.findAll().get(3);
+        Breed breed4 = breedRepository.findAll().get(4);
+        Breed breed5 = breedRepository.findAll().get(5);
+        user.setFavorites(new HashSet<>() {{
+            add(breed3.getId());
+            add(breed2.getId());
+            add(breed4.getId());
+            add(breed5.getId());
         }});
         userRepository.save(user);
     }

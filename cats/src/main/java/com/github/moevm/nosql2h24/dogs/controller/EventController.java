@@ -45,7 +45,7 @@ public class EventController {
     @GetMapping("/likes/{id}")
     public List<LikeDto> getLikes(@PathVariable String id) {
         List<Event> events = eventRepository.findAll();
-        return events.stream().filter(e -> Event.Type.isLike(e.getType()) && e.getRecipientId().equals(id)).
+        return events.stream().filter(e -> Event.Type.isLikeOrRemoveLike(e.getType()) && e.getRecipientId().equals(id)).
                 map(LikeDto::from).toList();
     }
 

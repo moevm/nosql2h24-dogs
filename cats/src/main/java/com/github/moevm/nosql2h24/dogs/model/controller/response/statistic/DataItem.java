@@ -1,4 +1,10 @@
 package com.github.moevm.nosql2h24.dogs.model.controller.response.statistic;
 
-public record DataItem(String name, int value) {
+import java.util.Comparator;
+
+public record DataItem(String name, double value) {
+
+    public static Comparator<DataItem> byValue() {
+        return Comparator.comparingDouble(DataItem::value);
+    }
 }
