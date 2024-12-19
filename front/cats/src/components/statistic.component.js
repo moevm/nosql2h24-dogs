@@ -79,29 +79,40 @@ const StatisticComponent = () => {
                     setFilterStat(filtered)
                 }
             },
-            onChangeFrom(e,item){
-                if (Number(e.target.value) > this.max || Number(e.target.value) < this.min) {
-                    e.target.value = this.min
-                } else {
-                    const index = filterStat.findIndex(itemm => itemm.id === item.id);
-                    if (index !== -1) {
-                        //alert(JSON.stringify(checkedNumbers[index]))
-                        filterStat[index].from = Number(e.target.value);
-                    }
-                    //filter_data_numbers[Number(item.id) - 1].from = Number(e.target.value);
+            // onChangeFrom(e,item){
+            //     if (Number(e.target.value) > this.max || Number(e.target.value) < this.min) {
+            //         e.target.value = this.min
+            //     } else {
+            //         const index = filterStat.findIndex(itemm => itemm.id === item.id);
+            //         if (index !== -1) {
+            //             //alert(JSON.stringify(checkedNumbers[index]))
+            //             filterStat[index].from = Number(e.target.value);
+            //         }
+            //         //filter_data_numbers[Number(item.id) - 1].from = Number(e.target.value);
+            //     }
+            // },
+            // onChangeTo(e,item){
+            //     if (Number(e.target.value) > this.max || Number(e.target.value) < this.min) {
+            //         e.target.value = this.max
+            //     } else {
+            //         const index = filterStat.findIndex(itemm => itemm.id === item.id);
+            //         if (index !== -1) {
+            //             filterStat[index].to = Number(e.target.value);
+            //         }
+            //         //filter_data_numbers[Number(item.id) - 1].to = Number(e.target.value);
+            //     }
+            // },
+            onChange(newValue,id){
+
+                const index = filterStat.findIndex(itemm => itemm.id === id);
+                if(index!==-1){
+                    filterStat[index].from = newValue[0];
+                    filterStat[index].to = newValue[1];
+                    //alert(JSON.stringify(filterStat[index]));
                 }
             },
-            onChangeTo(e,item){
-                if (Number(e.target.value) > this.max || Number(e.target.value) < this.min) {
-                    e.target.value = this.max
-                } else {
-                    const index = filterStat.findIndex(itemm => itemm.id === item.id);
-                    if (index !== -1) {
-                        filterStat[index].to = Number(e.target.value);
-                    }
-                    //filter_data_numbers[Number(item.id) - 1].to = Number(e.target.value);
-                }
-            }
+            checked:filterStat,
+            step:10
 
         }
     ]
@@ -124,7 +135,7 @@ const StatisticComponent = () => {
 
     const getFilteredData = async () => {
         let url = BASE_URL+"/statistic/?type="+typeRequest + "&limit=" +limit
-        if(dateChecked) url+="&dateFromFilter="+dateFromFilter+"&dateToFilter="+dateToFilter
+        if(dateChecked && typeRequest!==STAT_TYPES[0].value && typeRequest!==STAT_TYPES[3].value && dateToFilter && dateFromFilter) url+="&dateFromFilter="+dateFromFilter+"&dateToFilter="+dateToFilter
         if(breeds.length>0 && type==="breed"){
             let list_string=[]
             breeds.forEach(item=>{
@@ -196,6 +207,7 @@ const StatisticComponent = () => {
                         id="demo-simple-select"
                         value={typeRequest}
                         label="type"
+
                         onChange={(e)=>{
                             setTypeRequest(e.target.value);
                             const filtered = STAT_TYPES.filter(item => item.value === e.target.value);
@@ -204,7 +216,7 @@ const StatisticComponent = () => {
                             defaultValue={typeRequest}
                     >
                         {STAT_TYPES.map((item)=>{
-                            return(<MenuItem value={item.value}>{item.label}</MenuItem>)
+                            return(<MenuItem value={item.value} >{item.label}</MenuItem>)
                         })}
                     </Select>
                 </FormControl>
@@ -229,7 +241,7 @@ const StatisticComponent = () => {
                     autocomplete = {type==="breed"?autocomplete:[]}
                     min_max_filter = {type==="user"?min_max_filter:[]}
                     max_filter = {max_filter}
-                    date_filter = {date_filter}
+                    date_filter = {typeRequest!==STAT_TYPES[0].value && typeRequest!==STAT_TYPES[3].value?date_filter:[]}
                 ></FilterComponent>
 
             </div>

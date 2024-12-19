@@ -9,6 +9,7 @@ const initialState = {
     sendComment: false,
     page:1,
     amountOfPages:1,
+    value:[]
 }
 
 const dataSlice = createSlice({
@@ -38,6 +39,9 @@ const dataSlice = createSlice({
         },
         setAmountOfPages:(state,action)=>{
             state.amountOfPages = action.payload;
+        },
+        setValue:(state,action)=>{
+            state.value = action.payload;
         }
 
     }
@@ -45,5 +49,5 @@ const dataSlice = createSlice({
 
 export const {setCatId, setAllCats, addComment,
     setAuthor, setSendComment,
-    setPage,setAmountOfPages} = dataSlice.actions;
+    setPage,setAmountOfPages, setValue} = dataSlice.actions;
 export default dataSlice.reducer;

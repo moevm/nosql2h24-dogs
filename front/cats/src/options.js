@@ -128,8 +128,8 @@ export const FILTER_DATA_NUMBERS = [
     {id: "22", value: "lap",            from: 1, to: 5},
 ]
 export const FILTER_DATA_STRING_NUMBERS = [
-    {id: "1", value: "weight", from: 0, to: 0},
-    {id: "2", value: "lifeSpan", from: 0, to: 0},
+    {id: "1", value: "weight", from: 0, to: 20, },
+    {id: "2", value: "lifeSpan", from: 0, to: 20},
 ]
 export const BREEDS=[
     {id: "0",value:"Abyssinian",breedId:"abys"},
