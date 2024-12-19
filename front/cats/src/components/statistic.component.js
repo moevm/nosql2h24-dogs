@@ -37,7 +37,13 @@ const StatisticComponent = () => {
     //     fetchData();
     // }, []);
 
-
+    let marks_10=[]
+    for (let step = 1; step <=100; step+=15) {
+        marks_10.push({
+            value: step,
+            label: step.toString(),
+        })
+    }
     const autocomplete = [
         {
             options:BREEDS,
@@ -112,7 +118,8 @@ const StatisticComponent = () => {
                 }
             },
             checked:filterStat,
-            step:10
+            step:1,
+            marks: marks_10
 
         }
     ]

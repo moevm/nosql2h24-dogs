@@ -120,7 +120,8 @@ export const FilterComponent = (props) => {
                                             getAriaValueText={valuetext}
                                             disableSwap
                                             step={elem.step}
-                                            marks
+                                            marks = {elem.marks}
+
                                             min={elem.min}
                                             max={elem.max}
                                         />
