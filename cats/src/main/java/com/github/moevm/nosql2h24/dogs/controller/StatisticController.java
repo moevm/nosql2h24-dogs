@@ -111,7 +111,10 @@ public class StatisticController {
                 .collect(Collectors.groupingBy(
                         e -> e, // ключ - порода
                         Collectors.counting() // значение - количество лайков
-                )).entrySet().stream().map(e -> new DataItem(e.getKey(), e.getValue())).sorted(DataItem.byValue().reversed()).toList();
+                )).entrySet().stream().map(breed -> {
+                    String breedName = breedRepository.findById(breed.getKey()).orElseThrow().getName();
+                    return new DataItem(breedName, breed.getValue());
+                }).sorted(DataItem.byValue().reversed()).toList();
         if (limit != null) {
             resultList = resultList.stream().limit(limit).toList();
         }
@@ -136,32 +139,32 @@ public class StatisticController {
             return (ageFrom == null || user.getAge() >= ageFrom) &&
                     (ageTo == null || user.getAge() <= ageTo);
         }).collect(Collectors.groupingBy(
-                Event::getBreedId, // ключ - порода
+                Event::getBreedName, // ключ - порода
                 Collectors.counting() // значение - количество комментариев
-        )).entrySet().stream().map(e -> new DataItem(e.getKey(), e.getValue())).sorted(DataItem.byValue().reversed()).toList();
+        )).entrySet().stream().map(breed -> new DataItem(breed.getKey(), breed.getValue())).sorted(DataItem.byValue().reversed()).toList();
         if (limit != null) {
             resultList = resultList.stream().limit(limit).toList();
         }
         return new Data(resultList);
     }
 
-    //TODO
     private Data getBreedParametersDesc(Date dateFrom, Date dateTo, Integer ageFrom, Integer ageTo, Integer limit, List<String> breeds) {
         List<User> users = userRepository.findAll();
         List<DataItem> resultList = users.stream().filter(user ->
                         (ageFrom == null || user.getAge() >= ageFrom) &&
                                 (ageTo == null || user.getAge() <= ageTo)
-                ).flatMap(user -> user.getFavorites().stream()).filter(
-                        breed -> (breeds == null || breeds.isEmpty() || breeds.contains(breed)))
+                ).flatMap(user -> user.getFavorites().stream()
+                        .map(breed -> breedRepository.findById(breed).orElseThrow().getId()))
+                .filter(breed -> (breeds == null || breeds.isEmpty() || breeds.contains(breed)))
                 .collect(Collectors.groupingBy(
                         e -> e, // ключ - порода
                         Collectors.counting() // значение - количество лайков
-                )).entrySet().stream().map(e -> new DataItem(e.getKey(), e.getValue())).sorted(DataItem.byValue().reversed()).toList();
+                )).entrySet().stream().map(breed -> new DataItem(breed.getKey(), breed.getValue())).sorted(DataItem.byValue().reversed()).toList();
         if (limit != null) {
             resultList = resultList.stream().limit(limit).toList();
         }
         resultList = calculateAverages(resultList).entrySet().stream()
-                .map(e -> new DataItem(e.getKey(), e.getValue())).sorted(DataItem.byValue().reversed()).toList();
+                .map(е -> new DataItem(е.getKey(), е.getValue())).sorted(DataItem.byValue().reversed()).toList();
         return new Data(resultList);
 
     }
