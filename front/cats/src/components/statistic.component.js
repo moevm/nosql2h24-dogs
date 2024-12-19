@@ -13,7 +13,8 @@ import Box from "@mui/material/Box";
 const StatisticComponent = () => {
 
     const navigate = useNavigate();
-    const [type, setType] = React.useState(STAT_TYPES[0].value);
+    const [typeRequest, setTypeRequest] = React.useState(STAT_TYPES[0].value);
+    const [type, setType] = React.useState(STAT_TYPES[0].type);
 
     const [breeds, setBreeds] = React.useState([]);
 
@@ -122,16 +123,16 @@ const StatisticComponent = () => {
 
 
     const getFilteredData = async () => {
-        let url = BASE_URL+"/statistic/?type="+type + "&limit=" +limit
+        let url = BASE_URL+"/statistic/?type="+typeRequest + "&limit=" +limit
         if(dateChecked) url+="&dateFromFilter="+dateFromFilter+"&dateToFilter="+dateToFilter
-        if(breeds.length>0){
+        if(breeds.length>0 && type==="breed"){
             let list_string=[]
             breeds.forEach(item=>{
                 list_string.push(item.breedId)
             })
             url+="&breeds="+list_string
         }
-        if(filterStat.length>0){
+        if(filterStat.length>0 && type==="user"){
             filterStat.forEach(item=>{
                 url+="&"+item.value+"From="+item.from+"&"+item.value+"To="+item.to
             })
@@ -155,7 +156,7 @@ const StatisticComponent = () => {
             });
     }
     const fetchData = async () => {
-        let url = BASE_URL+"/statistic/?type="+type
+        let url = BASE_URL+"/statistic/?type="+typeRequest
 
         axios.get(url, {
             headers: {
@@ -176,7 +177,7 @@ const StatisticComponent = () => {
 
     useEffect(() => {
         fetchData()
-    },[type])
+    },[typeRequest])
 
 
 
@@ -193,13 +194,14 @@ const StatisticComponent = () => {
                     <Select className="autocomplete_text"
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={type}
+                        value={typeRequest}
                         label="type"
                         onChange={(e)=>{
-
-                            setType(e.target.value);
+                            setTypeRequest(e.target.value);
+                            const filtered = STAT_TYPES.filter(item => item.value === e.target.value);
+                            setType(filtered[0].type)
                         }}
-                            defaultValue={type}
+                            defaultValue={typeRequest}
                     >
                         {STAT_TYPES.map((item)=>{
                             return(<MenuItem value={item.value}>{item.label}</MenuItem>)
@@ -224,12 +226,14 @@ const StatisticComponent = () => {
                     onDropClick = {()=>{
                         window.location.reload();
                     }}
-                    autocomplete = {autocomplete}
-                    min_max_filter = {min_max_filter}
+                    autocomplete = {type==="breed"?autocomplete:[]}
+                    min_max_filter = {type==="user"?min_max_filter:[]}
                     max_filter = {max_filter}
                     date_filter = {date_filter}
                 ></FilterComponent>
+
             </div>
+
         </div>
     )
 }
