@@ -8,59 +8,42 @@ import {updateFilter} from "../slice/filterSlice";
 import {setPage} from "../slice/dataSlice";
 import FilterComponent from "../ui/filter.component";
 import {BASE_URL, BREEDS, FILTER_DATA_NUMBERS, FILTER_STAT, STAT_TYPES} from "../options";
+import Box from "@mui/material/Box";
 
 const StatisticComponent = () => {
-    const [eventData, setEventData] = useState(null);
+
     const navigate = useNavigate();
+    const [typeRequest, setTypeRequest] = React.useState(STAT_TYPES[0].value);
+    const [type, setType] = React.useState(STAT_TYPES[0].type);
+
+    const [breeds, setBreeds] = React.useState([]);
+
+    const [filterStat, setFilterStat] = React.useState([]);
+
+
+    const [limit, setLimit] = React.useState(10);
+
+    const [dateFromFilter, setDateFromFilter] = React.useState(null);
+    const [dateToFilter, setDateToFilter] = React.useState(null);
+    const [dateChecked, setDateChecked] = React.useState(false);
+
     const [fullChartData, setFullChartData] = useState([
-        {id: "1", value: "adaptability", data:0},
-        {id: "2", value: "affection_level",  data:0},
-        {id: "3", value: "child_friendly",  data:0},
-        {id: "4", value: "dog_friendly",  data:0},
-        {id: "5", value: "energy_level",  data:0},
-        {id: "6", value: "grooming",  data:0},
-        {id: "7", value: "health_issues",  data:0},
-        {id: "8", value: "intelligence",  data:0},
-        {id: "9", value: "shedding_level",  data:5},
-        {id: "10", value: "social_needs",  data:0},
-        {id: "11", value: "stranger_friendly",  data:0},
-        {id: "12", value: "vocalisation",  data:0},
-        {id: "13", value: "hairless",  data:0},
-        {id: "14", value: "experimental",  data:0},
-        {id: "15", value: "natural",  data:0},
-        {id: "16", value: "rare",  data:0},
-        {id: "17", value: "rex",  data:0},
-        {id: "18", value: "suppressed_tail",  data:0},
-        {id: "19", value: "short_legs",  data:0},
-        {id: "20", value: "hypoallergenic",  data:0},
-        {id: "21", value: "indoor",  data:0},
-        {id: "22", value: "lap",  data:0},
+
     ]);
 
-    const fetchData = async () => {
-        axios.get(BASE_URL+"/events", {
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-            }
+
+    // useEffect(() => {
+    //
+    //     fetchData();
+    // }, []);
+
+    let marks_10=[]
+    for (let step = 1; step <=100; step+=15) {
+        marks_10.push({
+            value: step,
+            label: step.toString(),
         })
-            .then(res => {
-                console.log(res.data);
-                setEventData(res.data)
-
-            })
-
-            .catch(err => {
-                console.error("error fetching data", err)
-            });
     }
-    useEffect(() => {
-
-        fetchData();
-    }, []);
-    const [type, setType] = React.useState(null);
-    const [breeds, setBreeds] = React.useState([]);
-    const [filterStat, setFilterStat] = React.useState([]);
     const autocomplete = [
         {
             options:BREEDS,
@@ -69,6 +52,21 @@ const StatisticComponent = () => {
             },
             label:"breeds"
         },
+    ]
+    const max_filter = [
+        {
+            min:1,
+            onChange(e){
+
+                if(e.target.value>0){
+                    setLimit(Number(e.target.value));
+                }else{
+                    //setLimit(10)
+                }
+
+            },
+            placeholder:10
+        }
     ]
     const min_max_filter = [
         {
@@ -87,32 +85,120 @@ const StatisticComponent = () => {
                     setFilterStat(filtered)
                 }
             },
-            onChangeFrom(e,item){
-                if (Number(e.target.value) > this.max || Number(e.target.value) < this.min) {
-                    e.target.value = this.min
-                } else {
-                    const index = filterStat.findIndex(itemm => itemm.id === item.id);
-                    if (index !== -1) {
-                        //alert(JSON.stringify(checkedNumbers[index]))
-                        filterStat[index].from = Number(e.target.value);
-                    }
-                    //filter_data_numbers[Number(item.id) - 1].from = Number(e.target.value);
+            // onChangeFrom(e,item){
+            //     if (Number(e.target.value) > this.max || Number(e.target.value) < this.min) {
+            //         e.target.value = this.min
+            //     } else {
+            //         const index = filterStat.findIndex(itemm => itemm.id === item.id);
+            //         if (index !== -1) {
+            //             //alert(JSON.stringify(checkedNumbers[index]))
+            //             filterStat[index].from = Number(e.target.value);
+            //         }
+            //         //filter_data_numbers[Number(item.id) - 1].from = Number(e.target.value);
+            //     }
+            // },
+            // onChangeTo(e,item){
+            //     if (Number(e.target.value) > this.max || Number(e.target.value) < this.min) {
+            //         e.target.value = this.max
+            //     } else {
+            //         const index = filterStat.findIndex(itemm => itemm.id === item.id);
+            //         if (index !== -1) {
+            //             filterStat[index].to = Number(e.target.value);
+            //         }
+            //         //filter_data_numbers[Number(item.id) - 1].to = Number(e.target.value);
+            //     }
+            // },
+            onChange(newValue,id){
+
+                const index = filterStat.findIndex(itemm => itemm.id === id);
+                if(index!==-1){
+                    filterStat[index].from = newValue[0];
+                    filterStat[index].to = newValue[1];
+                    //alert(JSON.stringify(filterStat[index]));
                 }
             },
-            onChangeTo(e,item){
-                if (Number(e.target.value) > this.max || Number(e.target.value) < this.min) {
-                    e.target.value = this.max
-                } else {
-                    const index = filterStat.findIndex(itemm => itemm.id === item.id);
-                    if (index !== -1) {
-                        filterStat[index].to = Number(e.target.value);
-                    }
-                    //filter_data_numbers[Number(item.id) - 1].to = Number(e.target.value);
-                }
-            }
+            checked:filterStat,
+            step:1,
+            marks: marks_10
 
         }
     ]
+    const date_filter = [
+        {
+            label:"date",
+            onChangeFrom(value){
+                //console.log(value.format('YYYY-MM-DDTHH:mm:ss'))
+                setDateFromFilter(value.format('YYYY-MM-DDTHH:mm:ss'))
+            },
+            onChangeTo(value){
+               setDateToFilter(value.format('YYYY-MM-DDTHH:mm:ss'))
+            },
+            onChangeCheck(e){
+                setDateChecked(e.target.checked)
+            }
+        }
+    ]
+
+
+    const getFilteredData = async () => {
+        let url = BASE_URL+"/statistic/?type="+typeRequest + "&limit=" +limit
+        if(dateChecked && typeRequest!==STAT_TYPES[0].value && typeRequest!==STAT_TYPES[3].value && dateToFilter && dateFromFilter) url+="&dateFromFilter="+dateFromFilter+"&dateToFilter="+dateToFilter
+        if(breeds.length>0 && type==="breed"){
+            let list_string=[]
+            breeds.forEach(item=>{
+                list_string.push(item.breedId)
+            })
+            url+="&breeds="+list_string
+        }
+        if(filterStat.length>0 && type==="user"){
+            filterStat.forEach(item=>{
+                url+="&"+item.value+"From="+item.from+"&"+item.value+"To="+item.to
+            })
+        }
+
+        console.log(url)
+        axios.get(url, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+            }
+        })
+            .then(res => {
+                console.log(res.data.data);
+                //setEventData(res.data)
+                setFullChartData(res.data.data)
+            })
+
+            .catch(err => {
+                console.error("error fetching data", err)
+            });
+    }
+    const fetchData = async () => {
+        let url = BASE_URL+"/statistic/?type="+typeRequest
+
+        axios.get(url, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+            }
+        })
+            .then(res => {
+                console.log(res.data.data);
+                //setEventData(res.data)
+                setFullChartData(res.data.data)
+            })
+
+            .catch(err => {
+                console.error("error fetching data", err)
+            });
+    }
+
+    useEffect(() => {
+        fetchData()
+    },[typeRequest])
+
+
+
     return (
         <div className="profile_box">
             <div className="profile_app_bar">
@@ -126,15 +212,18 @@ const StatisticComponent = () => {
                     <Select className="autocomplete_text"
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={type}
+                        value={typeRequest}
                         label="type"
+
                         onChange={(e)=>{
-                            alert(e.target.value)
-                            setType(e.target.value);
+                            setTypeRequest(e.target.value);
+                            const filtered = STAT_TYPES.filter(item => item.value === e.target.value);
+                            setType(filtered[0].type)
                         }}
+                            defaultValue={typeRequest}
                     >
                         {STAT_TYPES.map((item)=>{
-                            return(<MenuItem value={{value:item.value,type:item.type}}>{item.label}</MenuItem>)
+                            return(<MenuItem value={item.value} >{item.label}</MenuItem>)
                         })}
                     </Select>
                 </FormControl>
@@ -144,21 +233,26 @@ const StatisticComponent = () => {
             <div className="row">
                 <BarChart className="chart"
                           dataset={fullChartData}
-                          xAxis={[{scaleType: 'band', dataKey: "value"}]}
-                          series={[{dataKey: 'data'}]}
+                          xAxis={[{scaleType: 'band', dataKey: "name"}]}
+                          series={[{dataKey: 'value'}]}
                           width={1000}
                           height={500}
                 />
                 <FilterComponent
                     onFilterClick = {()=>{
+                       getFilteredData()
                     }}
                     onDropClick = {()=>{
                         window.location.reload();
                     }}
-                    autocomplete = {autocomplete}
-                    min_max_filter = {min_max_filter}
+                    autocomplete = {type==="breed"?autocomplete:[]}
+                    min_max_filter = {type==="user"?min_max_filter:[]}
+                    max_filter = {max_filter}
+                    date_filter = {typeRequest!==STAT_TYPES[0].value && typeRequest!==STAT_TYPES[3].value?date_filter:[]}
                 ></FilterComponent>
+
             </div>
+
         </div>
     )
 }

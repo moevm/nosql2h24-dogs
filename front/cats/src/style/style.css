@@ -101,7 +101,7 @@ body {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-
+    padding-bottom: 10px;
 }
 .search_input{
     width: 80%;
@@ -122,8 +122,10 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-content: center;
+
     padding-left: 10px;
     padding-right: 10px;
+    padding-bottom: 10px;
 }
 
 .autocomplete{
@@ -243,4 +245,15 @@ img{
 }
 .select{
     min-width: 220px;
+}
+.date_filter{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+.filter_row_center{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
