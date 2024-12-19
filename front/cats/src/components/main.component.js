@@ -61,6 +61,22 @@ export const MainComponent = () => {
             label:"Temperament"
         },
     ]
+
+
+    let marks_1_5=[]
+    for (let step = 1; step <= 5; step++) {
+        marks_1_5.push({
+            value: step,
+            label: step.toString(),
+        })
+    }
+    let marks_20=[]
+    for (let step = 0; step <=20; step+=5) {
+        marks_20.push({
+            value: step,
+            label: step.toString(),
+        })
+    }
     const min_max_filter = [
         {
             min:1,
@@ -78,29 +94,15 @@ export const MainComponent = () => {
                     setCheckedNumbers(filtered)
                 }
             },
-            onChangeFrom(e,item){
-                if (Number(e.target.value) > 5 || Number(e.target.value) < 1) {
-                    e.target.value = "1"
-                } else {
-                    const index = checkedNumbers.findIndex(itemm => itemm.id === item.id);
-                    if (index !== -1) {
-                        //alert(JSON.stringify(checkedNumbers[index]))
-                        checkedNumbers[index].from = Number(e.target.value);
-                    }
-                    //filter_data_numbers[Number(item.id) - 1].from = Number(e.target.value);
+            onChange(newValue,id){
+                const index = checkedNumbers.findIndex(itemm => itemm.id === id);
+                if(index!==-1){
+                    checkedNumbers[index].from = newValue[0];
+                    checkedNumbers[index].to = newValue[1];
                 }
             },
-            onChangeTo(e,item){
-                if (Number(e.target.value) > 5 || Number(e.target.value) < 1) {
-                    e.target.value = "1"
-                } else {
-                    const index = checkedNumbers.findIndex(itemm => itemm.id === item.id);
-                    if (index !== -1) {
-                        checkedNumbers[index].to = Number(e.target.value);
-                    }
-                    //filter_data_numbers[Number(item.id) - 1].to = Number(e.target.value);
-                }
-            }
+            step:1,
+            marks: marks_1_5
 
         },
         {
@@ -119,30 +121,18 @@ export const MainComponent = () => {
                     setCheckedStringNumbers(filtered)
                 }
             },
-            onChangeFrom(e,item){
-                if (Number(e.target.value) > 20 || Number(e.target.value) < 0) {
-                    e.target.value = "0"
-                } else {
-                    const index = checkedStringNumbers.findIndex(itemm => itemm.id === item.id);
-                    if (index !== -1) {
-                        //alert(JSON.stringify(checkedNumbers[index]))
-                        checkedStringNumbers[index].from = Number(e.target.value);
-                    }
-                    //filter_data_numbers[Number(item.id) - 1].from = Number(e.target.value);
-                }
-            },
-            onChangeTo(e,item){
-                if (Number(e.target.value) > 20 || Number(e.target.value) < 0) {
-                    e.target.value = "0"
-                } else {
-                    const index = checkedStringNumbers.findIndex(itemm => itemm.id === item.id);
-                    if (index !== -1) {
-                        checkedStringNumbers[index].to = Number(e.target.value);
-                    }
-                    //filter_data_numbers[Number(item.id) - 1].to = Number(e.target.value);
-                }
-            }
+            onChange(newValue,id){
 
+                const index = checkedStringNumbers.findIndex(itemm => itemm.id === id);
+                if(index!==-1){
+                    checkedStringNumbers[index].from = newValue[0];
+                    checkedStringNumbers[index].to = newValue[1];
+                    //alert(JSON.stringify(checkedStringNumbers[index]))
+                }
+
+            },
+            step:1,
+            marks: marks_20
         },
     ]
     return (
@@ -177,6 +167,7 @@ export const MainComponent = () => {
                     }}
                     autocomplete = {autocomplete}
                     min_max_filter = {min_max_filter}
+
                 ></FilterComponent>
             </div>
 
