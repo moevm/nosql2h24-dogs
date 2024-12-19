@@ -206,12 +206,12 @@ export const FILTER_STAT=[
 ]
 
 export const STAT_TYPES=[
-    {value:"USER_LIKES_ASC", label:"most liked user", type: "user"},
-    {value:"BREED_LIKES_FAVORITES_ASC", label:"most liked breeds", type: "breed"},
-    {value:"BREED_COMMENTS_ASC", label:"most commented breeds", type: "breed"},
-    {value:"BREED_PARAMETERS_ASC", label:"avarage characteristics popular breeds", type:"breed"},
-    {value:"USER_ACTIVE_ASC", label:"most active user",type:"user"},
-    {value:"USER_CREATION_ASC", label:"new users", type:"user"},
-    {value:"USER_CREATION_DESC", label:"oldest users", type:"user"}
+    {value:"USER_LIKES_DESC", label:"most liked user", type: "user"},
+    {value:"BREED_LIKES_FAVORITES_DESC", label:"most liked breeds", type: "breed"},
+    {value:"BREED_COMMENTS_DESC", label:"most commented breeds", type: "breed"},
+    {value:"BREED_PARAMETERS_DESC", label:"avarage characteristics popular breeds", type:"breed"},
+    {value:"USER_ACTIVE_DESC", label:"most active user",type:"user"},
+    {value:"USER_CREATION_DESC", label:"new users", type:"user"},
+    {value:"USER_CREATION_ASC", label:"oldest users", type:"user"}
 
 ]
