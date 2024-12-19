@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -45,8 +46,8 @@ public class StatisticController {
             @RequestParam(value = "ageTo", required = false) Integer ageTo,
             @RequestParam(value = "limit", required = false) Integer limit,
             @RequestParam(value = "breeds", required = false) List<String> breeds) {
-        Date localDateFrom = dateFrom == null ? null : Date.from(LocalDateTime.parse(dateFrom).toInstant(ZoneOffset.UTC));
-        Date localDateTo = dateTo == null ? null : Date.from(LocalDateTime.parse(dateTo).toInstant(ZoneOffset.UTC));
+        Date localDateFrom = dateFrom == null ? null : Date.from(LocalDateTime.parse(dateFrom).atZone(ZoneId.systemDefault()).toInstant());
+        Date localDateTo = dateTo == null ? null : Date.from(LocalDateTime.parse(dateTo).atZone(ZoneId.systemDefault()).toInstant());
         StatisticType statisticType;
         try {
             statisticType = StatisticType.valueOf(type.toUpperCase());
