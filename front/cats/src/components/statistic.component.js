@@ -167,6 +167,7 @@ const StatisticComponent = () => {
                 console.log(res.data.data);
                 //setEventData(res.data)
                 setFullChartData(res.data.data)
+
             })
 
             .catch(err => {
@@ -186,6 +187,21 @@ const StatisticComponent = () => {
                 console.log(res.data.data);
                 //setEventData(res.data)
                 setFullChartData(res.data.data)
+                let tmp = []
+                // if(typeRequest === STAT_TYPES[5].value || typeRequest === STAT_TYPES[6].value){
+                //
+                //     res.data.data.map(item=>{
+                //         let t = new Date(1970, 0, 1); // Epoch
+                //         t.setSeconds(item.value);
+                //         tmp.push({
+                //             name:t,
+                //             value:item.name,
+                //         })
+                //     })
+                //     console.log(tmp)
+                //     setFullChartData(tmp)
+                // }
+
             })
 
             .catch(err => {
@@ -235,6 +251,18 @@ const StatisticComponent = () => {
                           dataset={fullChartData}
                           xAxis={[{scaleType: 'band', dataKey: "name"}]}
                           series={[{dataKey: 'value'}]}
+                          yAxis={ [{
+                              valueFormatter: (value) => {
+                                  let t = new Date(1970, 0, 1); // Epoch
+                                  t.setSeconds(value);
+                                  console.log(t)
+                                  if (typeRequest === STAT_TYPES[5].value || typeRequest === STAT_TYPES[6].value) {
+                                      return ""+t.getDate()+"."+(t.getMonth()+1)+"."+t.getFullYear()+" "+t.getHours()+":"+t.getMinutes()
+                                  }
+                                  return ''
+                              }
+                          }]
+                          }
                           width={1000}
                           height={500}
                 />
