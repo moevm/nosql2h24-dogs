@@ -8,17 +8,23 @@ import {updateFilter} from "../slice/filterSlice";
 import {setPage} from "../slice/dataSlice";
 import FilterComponent from "../ui/filter.component";
 import {BASE_URL, BREEDS, FILTER_DATA_NUMBERS, FILTER_STAT, STAT_TYPES} from "../options";
+import Box from "@mui/material/Box";
 
 const StatisticComponent = () => {
-    const [eventData, setEventData] = useState(null);
+
     const navigate = useNavigate();
-    const [type, setType] = React.useState(STAT_TYPES[0]);
+    const [type, setType] = React.useState(STAT_TYPES[0].value);
+
     const [breeds, setBreeds] = React.useState([]);
+
     const [filterStat, setFilterStat] = React.useState([]);
+
+
     const [limit, setLimit] = React.useState(10);
+
     const [dateFromFilter, setDateFromFilter] = React.useState(null);
     const [dateToFilter, setDateToFilter] = React.useState(null);
-    const [dateChecked, setDateChecked] = React.useState(null);
+    const [dateChecked, setDateChecked] = React.useState(false);
 
     const [fullChartData, setFullChartData] = useState([
 
@@ -115,10 +121,41 @@ const StatisticComponent = () => {
     ]
 
 
+    const getFilteredData = async () => {
+        let url = BASE_URL+"/statistic/?type="+type + "&limit=" +limit
+        if(dateChecked) url+="&dateFromFilter="+dateFromFilter+"&dateToFilter="+dateToFilter
+        if(breeds.length>0){
+            let list_string=[]
+            breeds.forEach(item=>{
+                list_string.push(item.breedId)
+            })
+            url+="&breeds="+list_string
+        }
+        if(filterStat.length>0){
+            filterStat.forEach(item=>{
+                url+="&"+item.value+"From="+item.from+"&"+item.value+"To="+item.to
+            })
+        }
+
+        console.log(url)
+        axios.get(url, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+            }
+        })
+            .then(res => {
+                console.log(res.data.data);
+                //setEventData(res.data)
+                setFullChartData(res.data.data)
+            })
+
+            .catch(err => {
+                console.error("error fetching data", err)
+            });
+    }
     const fetchData = async () => {
-        let url = BASE_URL+"/statistic/?type="+type.value + "&limit=" +limit
-        //dateChecked ? url+="&dateFromFilter="+dateFromFilter+"&dateToFilter="+dateToFilter:""
-        //breeds ? url+="&breeds="+breeds
+        let url = BASE_URL+"/statistic/?type="+type
 
         axios.get(url, {
             headers: {
@@ -137,6 +174,12 @@ const StatisticComponent = () => {
             });
     }
 
+    useEffect(() => {
+        fetchData()
+    },[type])
+
+
+
     return (
         <div className="profile_box">
             <div className="profile_app_bar">
@@ -153,12 +196,13 @@ const StatisticComponent = () => {
                         value={type}
                         label="type"
                         onChange={(e)=>{
-                            //alert(e.target.value)
+
                             setType(e.target.value);
                         }}
+                            defaultValue={type}
                     >
                         {STAT_TYPES.map((item)=>{
-                            return(<MenuItem value={{value:item.value,type:item.type}}>{item.label}</MenuItem>)
+                            return(<MenuItem value={item.value}>{item.label}</MenuItem>)
                         })}
                     </Select>
                 </FormControl>
@@ -175,7 +219,7 @@ const StatisticComponent = () => {
                 />
                 <FilterComponent
                     onFilterClick = {()=>{
-                       fetchData()
+                       getFilteredData()
                     }}
                     onDropClick = {()=>{
                         window.location.reload();

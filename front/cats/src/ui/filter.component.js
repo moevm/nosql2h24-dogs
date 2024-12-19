@@ -134,12 +134,14 @@ export const FilterComponent = (props) => {
                                 <MobileDateTimePicker onChange={(e) => {
                                     elem.onChangeFrom(e)
                                 }
-                                } defaultValue={dayjs('2024-09-17T15:30')}/>
+                                } />
                                 <label className="filter_text"> to</label>
                                 <MobileDateTimePicker onChange={(e) => {
                                     elem.onChangeTo(e)
                                 }
-                                } defaultValue={dayjs('2024-09-17T17:30')}/>
+                                }
+                                                      // defaultValue={dayjs('2024-09-17T17:30')}
+                                />
                             </LocalizationProvider>
                         </div>
 
