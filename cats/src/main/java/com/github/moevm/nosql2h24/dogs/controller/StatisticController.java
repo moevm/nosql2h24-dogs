@@ -18,7 +18,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -117,7 +116,18 @@ public class StatisticController {
                     return new DataItem(breedName, breed.getValue());
                 }).sorted(DataItem.byValue().reversed()).toList();
         if (limit != null) {
-            resultList = resultList.stream().limit(limit).toList();
+            resultList = resultList.stream().limit(limit).collect(Collectors.toCollection(ArrayList::new));
+            if (resultList.size() < limit) {
+                for (Breed breed : breedRepository.findAll()) {
+                    if (resultList.size() == limit) {
+                        break;
+                    }
+                    if (breeds == null || breeds.isEmpty() || !breeds.contains(breed.getId())) {
+                        resultList.add(new DataItem(breed.getName(), 0));
+                    }
+                }
+
+            }
         }
         return new Data(resultList);
     }
