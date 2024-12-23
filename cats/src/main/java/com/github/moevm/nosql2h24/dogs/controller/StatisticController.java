@@ -117,17 +117,6 @@ public class StatisticController {
                 }).sorted(DataItem.byValue().reversed()).toList();
         if (limit != null) {
             resultList = resultList.stream().limit(limit).collect(Collectors.toCollection(ArrayList::new));
-            if (resultList.size() < limit) {
-                for (Breed breed : breedRepository.findAll()) {
-                    if (resultList.size() == limit) {
-                        break;
-                    }
-                    if (breeds == null || breeds.isEmpty() || !breeds.contains(breed.getId())) {
-                        resultList.add(new DataItem(breed.getName(), 0));
-                    }
-                }
-
-            }
         }
         return new Data(resultList);
     }
