@@ -3,7 +3,7 @@ import axios from "axios";
 import {Autocomplete, Button, FormControl, IconButton, InputLabel, MenuItem, Select, TextField} from "@mui/material";
 import {ArrowBack} from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
-import {BarChart} from "@mui/x-charts";
+import {BarChart, AxisConfig } from "@mui/x-charts";
 import {updateFilter} from "../slice/filterSlice";
 import {setPage} from "../slice/dataSlice";
 import FilterComponent from "../ui/filter.component";
@@ -167,6 +167,7 @@ const StatisticComponent = () => {
                 console.log(res.data.data);
                 //setEventData(res.data)
                 setFullChartData(res.data.data)
+
             })
 
             .catch(err => {
@@ -186,6 +187,21 @@ const StatisticComponent = () => {
                 console.log(res.data.data);
                 //setEventData(res.data)
                 setFullChartData(res.data.data)
+                let tmp = []
+                // if(typeRequest === STAT_TYPES[5].value || typeRequest === STAT_TYPES[6].value){
+                //
+                //     res.data.data.map(item=>{
+                //         let t = new Date(1970, 0, 1); // Epoch
+                //         t.setSeconds(item.value);
+                //         tmp.push({
+                //             name:t,
+                //             value:item.name,
+                //         })
+                //     })
+                //     console.log(tmp)
+                //     setFullChartData(tmp)
+                // }
+
             })
 
             .catch(err => {
@@ -196,7 +212,6 @@ const StatisticComponent = () => {
     useEffect(() => {
         fetchData()
     },[typeRequest])
-
 
 
     return (
@@ -235,9 +250,47 @@ const StatisticComponent = () => {
                           dataset={fullChartData}
                           xAxis={[{scaleType: 'band', dataKey: "name"}]}
                           series={[{dataKey: 'value'}]}
+                          // slots={[{
+                          //     itemContent:{
+                          //         label:"nya nya"
+                          //     }
+                          // }]
+                          // }
+                          // barLabel = {(item, context) => {
+                          //     if (typeRequest === STAT_TYPES[5].value || typeRequest === STAT_TYPES[6].value) {
+                          //         let t = new Date(1970, 0, 1); // Epoch
+                          //         t.setMilliseconds(item.value);
+                          //         return t.toISOString().split('T')[0]+"\n" + t.toISOString().split('T')[1]
+                          //     }
+                          //     return item.value;
+                          // }}
+                          yAxis={ [{
+                              valueFormatter: (value) => {
+
+                                 // console.log(t)
+                                  if (typeRequest === STAT_TYPES[5].value || typeRequest === STAT_TYPES[6].value) {
+                                      let t = new Date(1970, 0, 1); // Epoch
+                                      t.setMilliseconds(value);
+                                      return t.toISOString().split('T')[0]+" " + t.toISOString().split('T')[1].split('.')[0]
+                                      // return ""+t.getDate()+"."+(t.getMonth()+1)+"."+t.getFullYear()+" "+t.getHours()+":"+t.getMinutes()
+                                  }
+                                  return value
+                              },
+                              min:Math.min(...fullChartData.map(item => item.value))-1,
+                              max: Math.max(...fullChartData.map(item => item.value)),
+                              // domainLimit:{
+                              //     min: Math.min(...fullChartData.map(item => item.value)),
+                              //     max: Math.max(...fullChartData.map(item => item.value)),
+                              // }
+
+                          }]
+                          }
+
+
                           width={1000}
                           height={500}
                 />
+
                 <FilterComponent
                     onFilterClick = {()=>{
                        getFilteredData()
