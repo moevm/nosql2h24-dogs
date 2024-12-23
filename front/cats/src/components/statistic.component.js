@@ -150,45 +150,13 @@ const StatisticComponent = () => {
     ]
 
 
-    const getFilteredData = async () => {
-        let url = BASE_URL+"/statistic/?type="+typeRequest + "&limit=" +limit
-        if(dateChecked && typeRequest!==STAT_TYPES[0].value && typeRequest!==STAT_TYPES[3].value) url+="&dateFromFilter="+dateFromFilter+"&dateToFilter="+dateToFilter
-        if(breeds.length>0 && type==="breed"){
-            let list_string=[]
-            breeds.forEach(item=>{
-                list_string.push(item.breedId)
-            })
-            url+="&breeds="+list_string
-        }
-        if(filterStat.length>0 && type==="user"){
-            filterStat.forEach(item=>{
-                url+="&"+item.value+"From="+item.from+"&"+item.value+"To="+item.to
-            })
-        }
 
-        console.log(url)
-        axios.get(url, {
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-            }
-        })
-            .then(res => {
-                console.log(res.data.data);
-                //setEventData(res.data)
-                setFullChartData(res.data.data)
-
-            })
-
-            .catch(err => {
-                console.error("error fetching data", err)
-            });
-    }
     const fetchData = async () => {
 
 
         let url = BASE_URL+"/statistic/?type="+typeRequest + "&limit=" +limit
-        if(dateChecked && typeRequest!==STAT_TYPES[1].value && typeRequest!==STAT_TYPES[3].value) url+="&dateFromFilter="+dateFromFilter+"&dateToFilter="+dateToFilter
+        if(dateChecked && typeRequest!==STAT_TYPES[1].value && typeRequest!==STAT_TYPES[3].value && dateFromFilter) url+="&dateFrom="+dateFromFilter
+        if(dateChecked && typeRequest!==STAT_TYPES[1].value && typeRequest!==STAT_TYPES[3].value && dateToFilter) url+="&dateTo="+dateToFilter
         if(breeds.length>0 && type==="breed"){
             let list_string=[]
             breeds.forEach(item=>{
@@ -324,7 +292,7 @@ const StatisticComponent = () => {
 
                 <FilterComponent
                     onFilterClick = {()=>{
-                       getFilteredData()
+                       fetchData()
                     }}
                     onDropClick = {()=>{
                         window.location.reload();
