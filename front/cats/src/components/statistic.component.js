@@ -19,7 +19,7 @@ const StatisticComponent = () => {
     const [breeds, setBreeds] = React.useState([]);
 
     const [filterStat, setFilterStat] = React.useState([]);
-
+    const apiOptionsJsonString = JSON.stringify(filterStat);
 
     const [limit, setLimit] = React.useState(10);
 
@@ -27,10 +27,9 @@ const StatisticComponent = () => {
     const [dateToFilter, setDateToFilter] = React.useState(null);
     const [dateChecked, setDateChecked] = React.useState(false);
 
-    const [fullChartData, setFullChartData] = useState([
+    const [fullChartData, setFullChartData] = useState([]);
 
-    ]);
-
+    const [ageChange, setAgeChange] = React.useState(false);
 
     // useEffect(() => {
     //
@@ -50,7 +49,8 @@ const StatisticComponent = () => {
             onChange(event, newValue){
                 setBreeds(newValue);
             },
-            label:"breeds"
+            label:"breeds",
+
         },
     ]
     const max_filter = [
@@ -65,7 +65,8 @@ const StatisticComponent = () => {
                 }
 
             },
-            placeholder:10
+            placeholder:10,
+            value:limit
         }
     ]
     const min_max_filter = [
@@ -83,6 +84,7 @@ const StatisticComponent = () => {
                 } else {
                     const filtered = filterStat.filter(item => item.id !== value.id);
                     setFilterStat(filtered)
+
                 }
             },
             // onChangeFrom(e,item){
@@ -111,11 +113,16 @@ const StatisticComponent = () => {
             onChange(newValue,id){
 
                 const index = filterStat.findIndex(itemm => itemm.id === id);
+                let tmp = filterStat
                 if(index!==-1){
-                    filterStat[index].from = newValue[0];
-                    filterStat[index].to = newValue[1];
+                    tmp[index].from = newValue[0];
+                    tmp[index].to = newValue[1];
+
                     //alert(JSON.stringify(filterStat[index]));
                 }
+                //console.log(JSON.stringify(tmp));
+                setAgeChange(JSON.stringify(tmp));
+                setFilterStat(tmp)
             },
             checked:filterStat,
             step:1,
@@ -135,14 +142,17 @@ const StatisticComponent = () => {
             },
             onChangeCheck(e){
                 setDateChecked(e.target.checked)
-            }
+            },
+            defaultValueFrom: dateFromFilter,
+            defaultValueTo: dateToFilter,
+            checked:dateChecked,
         }
     ]
 
 
     const getFilteredData = async () => {
         let url = BASE_URL+"/statistic/?type="+typeRequest + "&limit=" +limit
-        if(dateChecked && typeRequest!==STAT_TYPES[0].value && typeRequest!==STAT_TYPES[3].value && dateToFilter && dateFromFilter) url+="&dateFromFilter="+dateFromFilter+"&dateToFilter="+dateToFilter
+        if(dateChecked && typeRequest!==STAT_TYPES[0].value && typeRequest!==STAT_TYPES[3].value) url+="&dateFromFilter="+dateFromFilter+"&dateToFilter="+dateToFilter
         if(breeds.length>0 && type==="breed"){
             let list_string=[]
             breeds.forEach(item=>{
@@ -175,8 +185,23 @@ const StatisticComponent = () => {
             });
     }
     const fetchData = async () => {
-        let url = BASE_URL+"/statistic/?type="+typeRequest
 
+
+        let url = BASE_URL+"/statistic/?type="+typeRequest + "&limit=" +limit
+        if(dateChecked && typeRequest!==STAT_TYPES[1].value && typeRequest!==STAT_TYPES[3].value) url+="&dateFromFilter="+dateFromFilter+"&dateToFilter="+dateToFilter
+        if(breeds.length>0 && type==="breed"){
+            let list_string=[]
+            breeds.forEach(item=>{
+                list_string.push(item.breedId)
+            })
+            url+="&breeds="+list_string
+        }
+        if(filterStat.length>0 && type==="user"){
+            filterStat.forEach(item=>{
+                url+="&"+item.value+"From="+item.from+"&"+item.value+"To="+item.to
+            })
+        }
+        console.log(url)
         axios.get(url, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -211,7 +236,7 @@ const StatisticComponent = () => {
 
     useEffect(() => {
         fetchData()
-    },[typeRequest])
+    },[typeRequest, breeds, limit, dateFromFilter,dateToFilter, dateChecked,filterStat, ageChange])
 
 
     return (
@@ -234,6 +259,11 @@ const StatisticComponent = () => {
                             setTypeRequest(e.target.value);
                             const filtered = STAT_TYPES.filter(item => item.value === e.target.value);
                             setType(filtered[0].type)
+                            setFilterStat([])
+                            setDateChecked(false)
+                            setDateFromFilter(null)
+                            setDateToFilter(null)
+                            setLimit(10)
                         }}
                             defaultValue={typeRequest}
                     >
@@ -250,12 +280,13 @@ const StatisticComponent = () => {
                           dataset={fullChartData}
                           xAxis={[{scaleType: 'band', dataKey: "name"}]}
                           series={[{dataKey: 'value'}]}
-                          // slots={[{
-                          //     itemContent:{
-                          //         label:"nya nya"
-                          //     }
-                          // }]
-                          // }
+                          slots={[{
+                              axisContent:{
+                                  label:"nya nya",
+                                  
+                              }
+                          }]
+                          }
                           // barLabel = {(item, context) => {
                           //     if (typeRequest === STAT_TYPES[5].value || typeRequest === STAT_TYPES[6].value) {
                           //         let t = new Date(1970, 0, 1); // Epoch
@@ -301,7 +332,7 @@ const StatisticComponent = () => {
                     autocomplete = {type==="breed"?autocomplete:[]}
                     min_max_filter = {type==="user"?min_max_filter:[]}
                     max_filter = {max_filter}
-                    date_filter = {typeRequest!==STAT_TYPES[0].value && typeRequest!==STAT_TYPES[3].value?date_filter:[]}
+                    date_filter = {typeRequest!==STAT_TYPES[1].value && typeRequest!==STAT_TYPES[3].value?date_filter:[]}
                 ></FilterComponent>
 
             </div>

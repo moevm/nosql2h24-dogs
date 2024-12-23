@@ -73,6 +73,7 @@ export const FilterComponent = (props) => {
                                                        elem.onChangeCheck(e)
 
                                                    }}
+                                                   checked={elem.checked.some(el => el.id === item.id)}
                                             />
                                             <label className="filter_text" htmlFor={item.id}>{item.value}</label>
                                         </div>
@@ -93,11 +94,13 @@ export const FilterComponent = (props) => {
                                                 width: 200,
                                                 marginRight: 5
                                             }}
+                                            disabled={!elem.checked.some(el => el.id === item.id)}
                                             getAriaLabel={() => 'Minimum distance'}
                                             value={sliders[index][Number(item.id) - 1]}
                                             onChange={(event,
                                                        newValue,
                                                        activeThumb) => {
+
                                                 if (!Array.isArray(newValue)) {
                                                     return;
                                                 }
@@ -154,6 +157,7 @@ export const FilterComponent = (props) => {
 
                                           />
                                       )}
+
                         />
                     )
                 })}
@@ -165,7 +169,7 @@ export const FilterComponent = (props) => {
                             <label className="filter_text"> limit</label>
                             <input type="number" min={elem.min} onChange={(e) => {
                                 elem.onChange(e)
-                            }}
+                            }} value={elem.value}
                                    placeholder={elem.placeholder}/>
 
                         </div>
@@ -182,6 +186,7 @@ export const FilterComponent = (props) => {
                                                elem.onChangeCheck(e)
 
                                            }}
+                                           checked={elem.checked}
                                     />
                                     <label className="filter_text">{elem.label}</label>
                                 </div>
@@ -194,6 +199,7 @@ export const FilterComponent = (props) => {
                                         }
                                         }
                                                               className="autocomplete_text"
+                                                              value={dayjs(elem.defaultValueFrom)}
                                         />
                                         <label className="filter_text"> to</label>
                                         <MobileDateTimePicker onChange={(e) => {
@@ -201,7 +207,7 @@ export const FilterComponent = (props) => {
                                         }
                                         }
                                                               className="autocomplete_text"
-                                            // defaultValue={dayjs('2024-09-17T17:30')}
+                                                              value={dayjs(elem.defaultValueTo)}
                                         />
                                     </LocalizationProvider>
                                 </div>
