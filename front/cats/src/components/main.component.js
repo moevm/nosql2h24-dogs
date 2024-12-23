@@ -102,8 +102,8 @@ export const MainComponent = () => {
                 }
             },
             step:1,
-            marks: marks_1_5
-
+            marks: marks_1_5,
+            checked:checkedNumbers
         },
         {
             min:0,
@@ -132,7 +132,8 @@ export const MainComponent = () => {
 
             },
             step:1,
-            marks: marks_20
+            marks: marks_20,
+            checked:checkedStringNumbers
         },
     ]
     return (
