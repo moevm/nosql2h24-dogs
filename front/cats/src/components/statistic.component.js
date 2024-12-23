@@ -246,15 +246,42 @@ const StatisticComponent = () => {
             <div className="row">
                 <BarChart className="chart"
                           dataset={fullChartData}
-                          xAxis={[{scaleType: 'band', dataKey: "name"}]}
+
+                          sx={{
+                              padding:'5px',
+                              scale:0.95
+                }}
+                          xAxis={[{
+                              scaleType: 'band',
+                              dataKey: "name",
+                              // labelStyle:{
+                              //     rotate:10
+                              // },
+                              labelStyle: {
+                                  fontSize: 14,
+                                  transform: `translateY(${
+                                      // Hack that should be added in the lib latter.
+                                      5 * Math.abs(Math.sin((Math.PI * 30) / 180))
+                                  }px)`
+                              },
+                              tickLabelStyle: {
+                                  angle: -30,
+                                  textAnchor: 'end',
+                                  fontSize: 14,
+
+                              },
+
+                          }]}
                           series={[{dataKey: 'value'}]}
                           slots={[{
                               axisContent:{
                                   label:"nya nya",
                                   
                               }
+
                           }]
                           }
+
                           // barLabel = {(item, context) => {
                           //     if (typeRequest === STAT_TYPES[5].value || typeRequest === STAT_TYPES[6].value) {
                           //         let t = new Date(1970, 0, 1); // Epoch
