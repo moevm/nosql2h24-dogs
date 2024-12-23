@@ -212,6 +212,6 @@ export const STAT_TYPES=[
     {value:"BREED_PARAMETERS_DESC", label:"avarage characteristics popular breeds", type:"breed"},
     {value:"USER_ACTIVE_DESC", label:"most active user",type:"user"},
     {value:"USER_CREATION_DESC", label:"new users", type:"user"},
-    {value:"USER_CREATION_ASC", label:"oldest users", type:"user"}
+    {value:"USER_CREATION_ASC", label:"old users", type:"user"}
 
 ]

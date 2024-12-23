@@ -168,6 +168,7 @@ body {
 
 .chart{
   width: 100%;
+    overflow: auto;
 }
 .comment_box{
     width: 100%;
@@ -257,3 +258,9 @@ img{
     justify-content: center;
     align-items: center;
 }
+.chart_bottom{
+    color: var(--color-purple);
+}
+/*.MuiChartsAxis-root .MuiChartsAxis-directionX .MuiChartsAxis-bottom .MuiChartsXAxis-tickContainer{*/
+/*    height: 200px;*/
+/*}*/
